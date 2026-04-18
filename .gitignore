@@ -1,5 +1,6 @@
 # Root Gitignore
 node_modules/
+**/venv/
 .env
 .env.local
 .DS_Store
@@ -19,3 +20,6 @@ apache-maven-*/
 !package.json
 !README.md
 !start-all.bat
+**/.gradle/
+**/build/
+bin/
