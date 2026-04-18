@@ -7,5 +7,10 @@
             "approve": true,
             "matchCommandLine": true
         }
+    },
+    "css.validate": false,
+    "css.lint.unknownAtRules": "ignore",
+    "files.associations": {
+        "*.css": "tailwindcss"
     }
-}
+}

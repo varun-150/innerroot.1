@@ -4,63 +4,63 @@ export const cultureData = [
         title: "Diwali - Festival of Lights",
         category: "festivals",
         description: "The most celebrated festival symbolizing the victory of light over darkness.",
-        image: "heritage-gold"
+        image: "accent-cyan"
     },
     {
         id: 2,
         title: "Bharatanatyam",
         category: "arts",
         description: "One of the oldest classical dance forms originating from Tamil Nadu.",
-        image: "heritage-teal"
+        image: "accent-cyan"
     },
     {
         id: 3,
         title: "The Rigveda",
         category: "scriptures",
         description: "The oldest known Vedic Sanskrit text, composed around 1500 BCE.",
-        image: "heritage-green"
+        image: "accent-violet"
     },
     {
         id: 4,
         title: "Holi - Festival of Colors",
         category: "festivals",
         description: "A vibrant spring festival celebrating love, color, and the triumph of good.",
-        image: "heritage-brown"
+        image: "accent-violet"
     },
     {
         id: 5,
         title: "Kuchipudi",
         category: "arts",
         description: "A classical dance-drama from Andhra Pradesh with roots in ancient Natya Shastra.",
-        image: "heritage-teal"
+        image: "accent-cyan"
     },
     {
         id: 6,
         title: "Bhagavad Gita",
         category: "scriptures",
         description: "The divine song of Krishna, containing the essence of Vedic wisdom.",
-        image: "heritage-gold"
+        image: "accent-cyan"
     },
     {
         id: 7,
         title: "Guru-Shishya Parampara",
         category: "traditions",
         description: "The sacred tradition of knowledge transmission from teacher to student.",
-        image: "heritage-green"
+        image: "accent-violet"
     },
     {
         id: 8,
         title: "Navaratri",
         category: "festivals",
         description: "Nine nights dedicated to the worship of Goddess Durga and her forms.",
-        image: "heritage-gold"
+        image: "accent-cyan"
     },
     {
         id: 9,
         title: "Kathakali",
         category: "arts",
         description: "A story-play dance form from Kerala with elaborate costumes and makeup.",
-        image: "heritage-brown"
+        image: "accent-violet"
     },
 ];
 

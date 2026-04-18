@@ -127,15 +127,15 @@ const AdminDashboard = () => {
     ];
 
     return (
-        <div className="flex min-h-screen bg-[#050604] font-sans selection:bg-[#D4AF37]/20 text-[#F0EEE8]">
+        <div className="flex min-h-screen bg-[#0B0515] font-sans selection:bg-[#00F0FF]/20 text-[#F0EEE8]">
             <SEO title="Admin — Inner Root Console" description="Spiritual intelligence administrative control." />
 
             {/* Sidebar */}
             <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#0E100A] text-white transition-transform duration-300 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 border-r border-white/5 overflow-y-auto`}>
                 <div className="flex flex-col h-full">
                     <div className="p-8 flex items-center gap-3">
-                        <div className="w-12 h-12 bg-[#D4AF37]/10 rounded-2xl flex items-center justify-center border border-[#D4AF37]/20 shadow-inner">
-                            <Shield size={26} className="text-[#D4AF37]" />
+                        <div className="w-12 h-12 bg-[#00F0FF]/10 rounded-2xl flex items-center justify-center border border-[#00F0FF]/20 shadow-inner">
+                            <Shield size={26} className="text-[#00F0FF]" />
                         </div>
                         <span className="text-2xl font-black uppercase tracking-tighter font-serif">INNER ROOT</span>
                     </div>
@@ -147,7 +147,7 @@ const AdminDashboard = () => {
                                 onClick={() => setActiveTab(item.id)}
                                 className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl transition-all font-bold uppercase tracking-widest text-[10px] ${
                                     activeTab === item.id 
-                                    ? 'bg-[#D4AF37] text-black shadow-lg shadow-[#D4AF37]/20' 
+                                    ? 'bg-[#00F0FF] text-black shadow-lg shadow-[#00F0FF]/20' 
                                     : 'text-[#8E8C84] hover:bg-white/5 hover:text-white'
                                 }`}
                             >
@@ -169,7 +169,7 @@ const AdminDashboard = () => {
             {/* Main */}
             <main className="flex-1 min-w-0 flex flex-col h-screen overflow-hidden">
                 {/* Topbar */}
-                <header className="h-24 bg-[#050604]/80 backdrop-blur-3xl border-b border-white/5 flex items-center justify-between px-8 shrink-0">
+                <header className="h-24 bg-[#0B0515]/80 backdrop-blur-3xl border-b border-white/5 flex items-center justify-between px-8 shrink-0">
                     <div className="flex items-center gap-6">
                         <button className="md:hidden p-2 text-slate-400" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                             <Menu size={24} />
@@ -181,11 +181,11 @@ const AdminDashboard = () => {
 
                     <div className="flex-1 max-w-xl mx-8 hidden sm:block">
                         <div className="relative group">
-                            <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-[#D4AF37] transition-colors" size={20} />
+                            <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-[#00F0FF] transition-colors" size={20} />
                             <input 
                                 type="text" 
                                 placeholder="Search the protocol..." 
-                                className="w-full h-12 bg-white/5 border border-white/5 rounded-full pl-14 pr-6 text-[13px] focus:ring-2 focus:ring-[#D4AF37]/20 focus:bg-white/10 transition-all outline-none text-[#F0EEE8]"
+                                className="w-full h-12 bg-white/5 border border-white/5 rounded-full pl-14 pr-6 text-[13px] focus:ring-2 focus:ring-[#00F0FF]/20 focus:bg-white/10 transition-all outline-none text-[#F0EEE8]"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
@@ -195,15 +195,15 @@ const AdminDashboard = () => {
                     <div className="flex items-center gap-6">
                         <button className="relative w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 text-[#8E8C84] hover:bg-white/10 hover:text-white transition-all">
                             <Bell size={20} />
-                            <span className="absolute top-3.5 right-3.5 w-2.5 h-2.5 bg-[#D4AF37] rounded-full border-2 border-[#050604]"></span>
+                            <span className="absolute top-3.5 right-3.5 w-2.5 h-2.5 bg-[#00F0FF] rounded-full border-2 border-[#0B0515]"></span>
                         </button>
                         <div className="h-10 w-px bg-slate-100 mx-2 hidden md:block"></div>
                         <div className="flex items-center gap-4">
                             <div className="text-right hidden md:block">
                                 <p className="text-[14px] font-black text-white leading-tight uppercase tracking-tight">{currentUser?.name || "Initializing..."}</p>
-                                <p className="text-[10px] font-black text-[#D4AF37] uppercase tracking-[0.2em] mt-1">Super Admin</p>
+                                <p className="text-[10px] font-black text-[#00F0FF] uppercase tracking-[0.2em] mt-1">Super Admin</p>
                             </div>
-                            <div className="w-12 h-12 rounded-xl bg-[#D4AF37] flex items-center justify-center text-black font-black text-lg shadow-lg shadow-[#D4AF37]/20 overflow-hidden">
+                            <div className="w-12 h-12 rounded-xl bg-[#00F0FF] flex items-center justify-center text-black font-black text-lg shadow-lg shadow-[#00F0FF]/20 overflow-hidden">
                                 {currentUser?.name?.charAt(0) || "I"}
                             </div>
                         </div>
@@ -218,12 +218,12 @@ const AdminDashboard = () => {
                                 {/* Stats Cards */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                                     {[
-                                        { label: 'Sentient Users', value: stats?.totalUsers || 0, icon: Users, color: '#D4AF37' },
-                                        { label: 'Heritage Sites', value: stats?.totalHeritageSites || 0, icon: ClipboardList, color: '#D4AF37' },
-                                        { label: 'Active Events', value: stats?.totalEvents || 0, icon: Package, color: '#D4AF37' },
+                                        { label: 'Sentient Users', value: stats?.totalUsers || 0, icon: Users, color: '#00F0FF' },
+                                        { label: 'Heritage Sites', value: stats?.totalHeritageSites || 0, icon: ClipboardList, color: '#00F0FF' },
+                                        { label: 'Active Events', value: stats?.totalEvents || 0, icon: Package, color: '#00F0FF' },
                                         { label: 'Protocol Nodes', value: stats?.totalWellnessContent || 0, icon: RefreshCw, type: 'action', color: '#000000' }
                                     ].map((stat, i) => (
-                                        <div key={i} className={`p-8 rounded-[2.5rem] border border-white/5 flex items-center justify-between transition-all hover:scale-[1.02] cursor-pointer ${stat.type === 'action' ? 'bg-[#D4AF37] text-black shadow-xl shadow-[#D4AF37]/20' : 'bg-white/5 backdrop-blur-xl shadow-sm hover:shadow-md'}`}>
+                                        <div key={i} className={`p-8 rounded-[2.5rem] border border-white/5 flex items-center justify-between transition-all hover:scale-[1.02] cursor-pointer ${stat.type === 'action' ? 'bg-[#00F0FF] text-black shadow-xl shadow-[#00F0FF]/20' : 'bg-white/5 backdrop-blur-xl shadow-sm hover:shadow-md'}`}>
                                             <div>
                                                 <p className={`text-[36px] font-black tracking-tighter ${stat.type === 'action' ? 'text-black' : 'text-white'}`}>{stat.value}</p>
                                                 <p className={`text-[11px] font-black uppercase tracking-widest ${stat.type === 'action' ? 'text-black/60' : 'text-[#8E8C84]'}`}>{stat.label}</p>
@@ -240,7 +240,7 @@ const AdminDashboard = () => {
                                     <div className="xl:col-span-2 bg-white/5 backdrop-blur-2xl border border-white/5 rounded-[2rem] p-10 shadow-sm overflow-hidden flex flex-col">
                                         <div className="flex items-center justify-between mb-8">
                                             <h3 className="text-xl font-black text-white uppercase tracking-tight">Recent Synchronizations</h3>
-                                            <button className="px-6 py-2.5 bg-[#D4AF37] text-black rounded-full text-[10px] font-black uppercase tracking-widest hover:brightness-110 transition-all flex items-center gap-2 group/btn">
+                                            <button className="px-6 py-2.5 bg-[#00F0FF] text-black rounded-full text-[10px] font-black uppercase tracking-widest hover:brightness-110 transition-all flex items-center gap-2 group/btn">
                                                 Archive <ChevronRight size={14} className="group-hover/btn:translate-x-0.5 transition-transform" />
                                             </button>
                                         </div>
@@ -255,10 +255,10 @@ const AdminDashboard = () => {
                                                 </thead>
                                                 <tbody className="divide-y divide-white/[0.03]">
                                                     {[
-                                                        { title: 'Vedic Mapping', dept: 'Neural Hub', status: 'optimal', color: '#D4AF37' },
+                                                        { title: 'Vedic Mapping', dept: 'Neural Hub', status: 'optimal', color: '#00F0FF' },
                                                         { title: 'Soul Resonance', dept: 'Bio-Sync', status: 'aligning', color: '#8E8C84' },
-                                                        { title: 'Ancestral Protocol', dept: 'Heritage', status: 'stable', color: '#D4AF37' },
-                                                        { title: 'Mandala Genesis', dept: 'Generative', status: 'optimal', color: '#D4AF37' },
+                                                        { title: 'Ancestral Protocol', dept: 'Heritage', status: 'stable', color: '#00F0FF' },
+                                                        { title: 'Mandala Genesis', dept: 'Generative', status: 'optimal', color: '#00F0FF' },
                                                         { title: 'Karmic Analytics', dept: 'Engine V1', status: 'aligning', color: '#8E8C84' }
                                                     ].map((row, i) => (
                                                         <tr key={i} className="hover:bg-white/[0.02] transition-colors">
@@ -288,16 +288,16 @@ const AdminDashboard = () => {
                                             {users.slice(0, 7).map((u, i) => (
                                                 <div key={i} className="flex items-center justify-between group">
                                                     <div className="flex items-center gap-4">
-                                                        <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center font-black text-[#D4AF37]">
+                                                        <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center font-black text-[#00F0FF]">
                                                             {u.name.charAt(0)}
                                                         </div>
                                                         <div>
                                                             <p className="font-bold text-white/90 leading-tight text-[14px]">{u.name}</p>
-                                                            <p className="text-[10px] text-[#D4AF37] font-black uppercase tracking-wider mt-1">{u.role === 'ADMIN' ? 'Super Admin' : 'Explorer'}</p>
+                                                            <p className="text-[10px] text-[#00F0FF] font-black uppercase tracking-wider mt-1">{u.role === 'ADMIN' ? 'Super Admin' : 'Explorer'}</p>
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all">
-                                                        <button className="p-2 bg-white/5 text-[#8E8C84] hover:text-[#D4AF37] rounded-lg"><UserCircle size={16} /></button>
+                                                        <button className="p-2 bg-white/5 text-[#8E8C84] hover:text-[#00F0FF] rounded-lg"><UserCircle size={16} /></button>
                                                     </div>
                                                 </div>
                                             ))}
@@ -315,7 +315,7 @@ const AdminDashboard = () => {
                                             <h3 className="text-2xl font-black text-white uppercase tracking-tighter">Manifested Identities</h3>
                                             <p className="text-[#8E8C84] font-medium text-sm mt-1">Manage sentient vessels and protocol clearances.</p>
                                         </div>
-                                        <button onClick={() => handleOpenUserModal()} className="px-8 py-4 bg-[#D4AF37] text-black rounded-2xl font-black uppercase tracking-widest text-[11px] shadow-lg shadow-[#D4AF37]/20 flex items-center gap-3">
+                                        <button onClick={() => handleOpenUserModal()} className="px-8 py-4 bg-[#00F0FF] text-black rounded-2xl font-black uppercase tracking-widest text-[11px] shadow-lg shadow-[#00F0FF]/20 flex items-center gap-3">
                                             <Plus size={20} /> Initiate Identity
                                         </button>
                                     </div>
@@ -336,23 +336,23 @@ const AdminDashboard = () => {
                                                     <tr key={u.id} className="hover:bg-white/[0.02] transition-colors group">
                                                         <td className="px-8 py-6">
                                                             <div className="flex items-center gap-4">
-                                                                <div className="w-11 h-11 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center font-black text-[#D4AF37]">{u.name.charAt(0)}</div>
+                                                                <div className="w-11 h-11 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center font-black text-[#00F0FF]">{u.name.charAt(0)}</div>
                                                                 <span className="font-bold text-white/90">{u.name}</span>
                                                             </div>
                                                         </td>
                                                         <td className="px-8 py-6 text-[#8E8C84]">{u.email}</td>
                                                         <td className="px-8 py-6 text-center">
-                                                            <button onClick={() => handleUpdateRole(u.id, u.role)} className={`px-4 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest ${u.role === 'ADMIN' ? 'bg-[#D4AF37] text-black shadow-inner' : 'bg-white/5 text-white/40'}`}>
+                                                            <button onClick={() => handleUpdateRole(u.id, u.role)} className={`px-4 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest ${u.role === 'ADMIN' ? 'bg-[#00F0FF] text-black shadow-inner' : 'bg-white/5 text-white/40'}`}>
                                                                 {u.role}
                                                             </button>
                                                         </td>
                                                         <td className="px-8 py-6 text-center">
-                                                            <div className={`w-2 h-2 rounded-full mx-auto animate-pulse ${u.active !== false ? 'bg-[#D4AF37] shadow-[0_0_12px_rgba(212,175,55,0.6)]' : 'bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.6)]'}`}></div>
+                                                            <div className={`w-2 h-2 rounded-full mx-auto animate-pulse ${u.active !== false ? 'bg-[#00F0FF] shadow-[0_0_12px_rgba(0, 240, 255,0.6)]' : 'bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.6)]'}`}></div>
                                                         </td>
                                                         <td className="px-8 py-6 text-right">
                                                             <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-all">
-                                                                <button onClick={() => handleResetPassword(u.id, u.email)} title="Recall Protocol" className="p-2.5 bg-white/5 text-[#8E8C84] hover:text-[#D4AF37] hover:bg-white/10 rounded-xl"><RefreshCw size={18} /></button>
-                                                                <button onClick={() => handleToggleStatus(u.id)} title="Shift Status" className="p-2.5 bg-white/5 text-[#8E8C84] hover:text-[#D4AF37] hover:bg-white/10 rounded-xl"><Shield size={18} /></button>
+                                                                <button onClick={() => handleResetPassword(u.id, u.email)} title="Recall Protocol" className="p-2.5 bg-white/5 text-[#8E8C84] hover:text-[#00F0FF] hover:bg-white/10 rounded-xl"><RefreshCw size={18} /></button>
+                                                                <button onClick={() => handleToggleStatus(u.id)} title="Shift Status" className="p-2.5 bg-white/5 text-[#8E8C84] hover:text-[#00F0FF] hover:bg-white/10 rounded-xl"><Shield size={18} /></button>
                                                                 <button onClick={() => handleDeleteUser(u.id)} title="Terminate" className="p-2.5 bg-red-500/10 text-red-400 hover:text-red-500 hover:bg-red-500/20 rounded-xl"><Trash2 size={18} /></button>
                                                             </div>
                                                         </td>
@@ -367,7 +367,7 @@ const AdminDashboard = () => {
 
                         {activeTab === 'projects' && (
                             <motion.div key="content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white/5 backdrop-blur-2xl border border-white/5 rounded-[2.5rem] p-12 shadow-sm min-h-[600px] flex flex-col items-center justify-center text-center space-y-6">
-                                <ClipboardList size={60} className="text-[#D4AF37] opacity-20" />
+                                <ClipboardList size={60} className="text-[#00F0FF] opacity-20" />
                                 <h3 className="text-2xl font-black text-white uppercase tracking-tighter">Project Nexus</h3>
                                 <p className="max-w-md text-[#8E8C84] font-medium leading-relaxed italic">The internal project vaults are currently being synchronized with the neural network. Check back shortly for full access.</p>
                                 <button onClick={() => setActiveTab('dashboard')} className="px-8 py-3 bg-white/5 text-[#8E8C84] rounded-xl font-black uppercase tracking-widest text-[10px] hover:bg-white/10 transition-all border border-white/10">Return to Nexus</button>
@@ -392,7 +392,7 @@ const AdminDashboard = () => {
 
                         {activeTab === 'accounts' && (
                             <motion.div key="accounts" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white/5 backdrop-blur-2xl border border-white/5 rounded-[2.5rem] p-12 shadow-sm min-h-[600px] flex flex-col items-center justify-center text-center space-y-6">
-                                <UserCircle size={60} className="text-[#D4AF37]" />
+                                <UserCircle size={60} className="text-[#00F0FF]" />
                                 <h3 className="text-2xl font-black text-white uppercase tracking-tight">Vessel Configurations</h3>
                                 <p className="max-w-md text-[#8E8C84] italic">Advanced profile tuning, permission alignment, and security protocols.</p>
                             </motion.div>
@@ -400,7 +400,7 @@ const AdminDashboard = () => {
 
                         {activeTab === 'tasks' && (
                             <motion.div key="tasks" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white/5 backdrop-blur-2xl border border-white/5 rounded-[2.5rem] p-12 shadow-sm min-h-[600px] flex flex-col items-center justify-center text-center space-y-6">
-                                <RefreshCw size={60} className="text-[#D4AF37] animate-spin-slow opacity-20" />
+                                <RefreshCw size={60} className="text-[#00F0FF] animate-spin-slow opacity-20" />
                                 <h3 className="text-2xl font-black text-white uppercase tracking-tight">Operational Flux</h3>
                                 <p className="max-w-md text-[#8E8C84] italic">System maintenance routines and pending administrative resonance tasks.</p>
                             </motion.div>
@@ -413,28 +413,28 @@ const AdminDashboard = () => {
             <AnimatePresence>
                 {isUserModalOpen && (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/80 backdrop-blur-xl">
-                        <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} className="bg-[#050604] border border-white/10 rounded-[2.5rem] w-full max-w-lg p-10 shadow-2xl overflow-hidden relative">
+                        <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} className="bg-[#0B0515] border border-white/10 rounded-[2.5rem] w-full max-w-lg p-10 shadow-2xl overflow-hidden relative">
                             <div className="flex items-center justify-between mb-8">
                                 <h3 className="text-2xl font-black text-white uppercase tracking-tighter">{editingUser ? 'Synchronize Identity' : 'Initiate Vessel'}</h3>
                                 <button onClick={() => setIsUserModalOpen(false)} className="p-2 text-white/20 hover:text-white transition-colors"><X size={28} /></button>
                             </div>
                             <form onSubmit={handleSaveUser} className="space-y-6">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-[#D4AF37] uppercase tracking-[0.2em] ml-1">Identity Designation</label>
-                                    <input required className="w-full h-14 bg-white/5 border border-white/5 rounded-2xl px-6 focus:ring-2 focus:ring-[#D4AF37]/20 transition-all font-bold text-white outline-none" value={userForm.name} onChange={e => setUserForm({...userForm, name: e.target.value})} />
+                                    <label className="text-[10px] font-black text-[#00F0FF] uppercase tracking-[0.2em] ml-1">Identity Designation</label>
+                                    <input required className="w-full h-14 bg-white/5 border border-white/5 rounded-2xl px-6 focus:ring-2 focus:ring-[#00F0FF]/20 transition-all font-bold text-white outline-none" value={userForm.name} onChange={e => setUserForm({...userForm, name: e.target.value})} />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-[#D4AF37] uppercase tracking-[0.2em] ml-1">Communication Channel</label>
-                                    <input required type="email" className="w-full h-14 bg-white/5 border border-white/5 rounded-2xl px-6 focus:ring-2 focus:ring-[#D4AF37]/20 transition-all font-bold text-white outline-none" value={userForm.email} onChange={e => setUserForm({...userForm, email: e.target.value})} />
+                                    <label className="text-[10px] font-black text-[#00F0FF] uppercase tracking-[0.2em] ml-1">Communication Channel</label>
+                                    <input required type="email" className="w-full h-14 bg-white/5 border border-white/5 rounded-2xl px-6 focus:ring-2 focus:ring-[#00F0FF]/20 transition-all font-bold text-white outline-none" value={userForm.email} onChange={e => setUserForm({...userForm, email: e.target.value})} />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-[#D4AF37] uppercase tracking-[0.2em] ml-1">Clearance Tier</label>
-                                    <select className="w-full h-14 bg-white/5 border border-white/5 rounded-2xl px-6 focus:ring-2 focus:ring-[#D4AF37]/20 transition-all font-bold text-white outline-none appearance-none cursor-pointer" value={userForm.role} onChange={e => setUserForm({...userForm, role: e.target.value})}>
+                                    <label className="text-[10px] font-black text-[#00F0FF] uppercase tracking-[0.2em] ml-1">Clearance Tier</label>
+                                    <select className="w-full h-14 bg-white/5 border border-white/5 rounded-2xl px-6 focus:ring-2 focus:ring-[#00F0FF]/20 transition-all font-bold text-white outline-none appearance-none cursor-pointer" value={userForm.role} onChange={e => setUserForm({...userForm, role: e.target.value})}>
                                         <option value="USER">Explorer (Vessel)</option>
                                         <option value="ADMIN">Super Admin (Overseer)</option>
                                     </select>
                                 </div>
-                                <button type="submit" disabled={loading} className="w-full h-14 bg-[#D4AF37] text-black rounded-2xl font-black uppercase tracking-widest text-[12px] shadow-lg shadow-[#D4AF37]/20 hover:brightness-110 transition-all mt-4">
+                                <button type="submit" disabled={loading} className="w-full h-14 bg-[#00F0FF] text-black rounded-2xl font-black uppercase tracking-widest text-[12px] shadow-lg shadow-[#00F0FF]/20 hover:brightness-110 transition-all mt-4">
                                     {loading ? 'Processing Flux...' : (editingUser ? 'Synchronize Resonance' : 'Manifest Identity')}
                                 </button>
                             </form>
@@ -446,8 +446,8 @@ const AdminDashboard = () => {
             <style dangerouslySetInnerHTML={{ __html: `
                 .custom-scrollbar::-webkit-scrollbar { width: 4px; }
                 .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.2); border-radius: 10px; }
-                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(212, 175, 55, 0.4); }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 240, 255, 0.2); border-radius: 10px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0, 240, 255, 0.4); }
             `}} />
         </div>
     );

@@ -38,9 +38,9 @@ const kpiData = [
         value: 82,
         change: '+5%',
         icon: Brain,
-        color: '#d97706',
-        gradient: 'linear-gradient(135deg, #fef7ec, #fde8c8)',
-        darkGradient: 'linear-gradient(135deg, rgba(217,119,6,0.12), rgba(217,119,6,0.05))',
+        color: 'var(--gold-500)',
+        gradient: 'linear-gradient(135deg, var(--midnight-900), var(--midnight-950))',
+        darkGradient: 'linear-gradient(135deg, rgba(244,235,208,0.12), rgba(244,235,208,0.05))',
     },
     {
         label: 'Meditation Streak',
@@ -48,9 +48,9 @@ const kpiData = [
         unit: 'days',
         change: '+2',
         icon: Flame,
-        color: '#22c55e',
-        gradient: 'linear-gradient(135deg, #f0fdf4, #dcfce7)',
-        darkGradient: 'linear-gradient(135deg, rgba(34,197,94,0.12), rgba(34,197,94,0.05))',
+        color: 'var(--gold-400)',
+        gradient: 'linear-gradient(135deg, var(--midnight-850), var(--midnight-900))',
+        darkGradient: 'linear-gradient(135deg, rgba(244,235,208,0.15), rgba(244,235,208,0.08))',
     },
     {
         label: 'Reflections Done',
@@ -58,18 +58,18 @@ const kpiData = [
         unit: '%',
         change: '+12%',
         icon: Target,
-        color: '#7c3aed',
-        gradient: 'linear-gradient(135deg, #f5f3ff, #ede9fe)',
-        darkGradient: 'linear-gradient(135deg, rgba(124,58,237,0.12), rgba(124,58,237,0.05))',
+        color: 'var(--gold-300)',
+        gradient: 'linear-gradient(135deg, #1B263B, #0D1B2A)',
+        darkGradient: 'linear-gradient(135deg, rgba(244,235,208,0.12), rgba(244,235,208,0.05))',
     },
     {
         label: 'Cultural Journeys',
         value: 24,
         change: '+3',
         icon: MapPin,
-        color: '#c9a227',
-        gradient: 'linear-gradient(135deg, #fefce8, #fef9c3)',
-        darkGradient: 'linear-gradient(135deg, rgba(201,162,39,0.12), rgba(201,162,39,0.05))',
+        color: 'var(--gold-200)',
+        gradient: 'linear-gradient(135deg, var(--midnight-800), var(--midnight-850))',
+        darkGradient: 'linear-gradient(135deg, rgba(244,235,208,0.20), rgba(244,235,208,0.10))',
     },
 ];
 
@@ -148,7 +148,7 @@ const BarChart = ({ data }) => {
                         <div className="w-full relative rounded-t-md overflow-hidden" style={{ height: `${pct}%`, minHeight: 8 }}>
                             <div className="absolute bottom-0 w-full" style={{ height: `${(d.meditation / total) * 100}%`, background: 'var(--accent)', borderRadius: '4px 4px 0 0' }} />
                             <div className="absolute w-full" style={{ bottom: `${(d.meditation / total) * 100}%`, height: `${(d.reflection / total) * 100}%`, background: 'var(--forest)', opacity: 0.7 }} />
-                            <div className="absolute w-full" style={{ bottom: `${((d.meditation + d.reflection) / total) * 100}%`, height: `${(d.heritage / total) * 100}%`, background: '#7c3aed', opacity: 0.5 }} />
+                            <div className="absolute w-full" style={{ bottom: `${((d.meditation + d.reflection) / total) * 100}%`, height: `${(d.heritage / total) * 100}%`, background: 'var(--color-accent)', opacity: 0.5 }} />
                         </div>
                         <span className="text-[10px] font-medium" style={{ color: 'var(--text-tertiary)' }}>{d.day}</span>
                     </div>
@@ -330,8 +330,8 @@ const Dashboard = () => {
                         <div className="flex items-center gap-4">
                             <Link
                                 to="/tools/sql-seed-generator"
-                                className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors border border-accent/20"
-                                style={{ background: 'rgba(212,175,55,0.05)', color: 'var(--accent)' }}
+                                className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors border border-[#F4EBD0]/20"
+                                style={{ background: 'rgba(0, 240, 255,0.05)', color: 'var(--accent)' }}
                             >
                                 <Database size={14} />
                                 <span>SQL Seed Tool</span>
@@ -339,7 +339,7 @@ const Dashboard = () => {
 
                             {/* Date Range Filter */}
                             <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg" style={{ background: 'var(--accent-soft)' }}>
-                                <Calendar size={14} className="text-accent/50" />
+                                <Calendar size={14} className="text-[#F4EBD0]/50" />
                                 <select
                                     value={dateRange}
                                     onChange={(e) => setDateRange(e.target.value)}
@@ -367,7 +367,7 @@ const Dashboard = () => {
                             {/* Profile avatar */}
                             <button
                                 onClick={() => setActiveSection('profile')}
-                                className="flex items-center gap-2 px-1.5 py-1.5 rounded-xl border border-white/5 hover:border-accent/30 transition-all bg-white/5"
+                                className="flex items-center gap-2 px-1.5 py-1.5 rounded-xl border border-white/5 hover:border-[#F4EBD0]/30 transition-all bg-white/5"
                             >
                                 <div
                                     style={{
@@ -618,7 +618,7 @@ const Dashboard = () => {
                                         <div className="flex justify-between px-1">
                                             {moodData.map((d) => (
                                                 <div key={d.day} className="text-center group/day">
-                                                    <div className="text-[10px] font-bold transition-colors group-hover/day:text-accent" style={{ color: 'var(--text-tertiary)' }}>{d.day}</div>
+                                                    <div className="text-[10px] font-bold transition-colors group-hover/day:text-[#F4EBD0]" style={{ color: 'var(--text-tertiary)' }}>{d.day}</div>
                                                     <div className="text-[9px] mt-0.5 opacity-60" style={{ color: 'var(--text-secondary)' }}>{d.label}</div>
                                                 </div>
                                             ))}
@@ -635,7 +635,7 @@ const Dashboard = () => {
                                             <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-tighter opacity-70">
                                                 <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }} /> Zen</span>
                                                 <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--forest)', opacity: 0.7 }} /> Soul</span>
-                                                <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full" style={{ background: '#7c3aed', opacity: 0.5 }} /> Root</span>
+                                                <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full" style={{ background: '#F4EBD0', opacity: 0.5 }} /> Root</span>
                                             </div>
                                         </div>
                                         <div className="opacity-80 hover:opacity-100 transition-opacity">

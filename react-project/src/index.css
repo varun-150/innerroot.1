@@ -1,14 +1,12 @@
+/* ── Design system modules ── */
+@import "./styles/design-system.css";
+@import "./styles/components.css";
+@import "./styles/animations.css";
+@import "./styles/ultra.css";
+@import "./styles/horizon-hero.css";
+
+
 /* ── Tailwind base layer ── */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* ── Design system modules ── */
-@import "./styles/design-system.css";
-/* tokens, reset, typography */
-@import "./styles/components.css";
-/* all UI components */
-@import "./styles/animations.css";
-/* keyframes & motion */
-@import "./styles/ultra.css";
-/* 8K cinematic layer */

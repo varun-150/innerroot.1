@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
-@ConfigurationProperties(prefix = "nvidia.api")
+@ConfigurationProperties(prefix = "ai.api")
 @Data
 public class AIConfig {
     /**

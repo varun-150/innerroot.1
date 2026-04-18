@@ -320,7 +320,7 @@ export default function SeedGenerator() {
     URL.revokeObjectURL(url);
   };
 
-  const logColor = { info: '#94a3b8', ok: '#4ade80', error: '#f87171', section: '#fbbf24', fetch: '#38bdf8', success: '#a78bfa' };
+  const logColor = { info: '#94a3b8', ok: '#4ade80', error: '#f87171', section: '#fbbf24', fetch: '#38bdf8', success: '#F4EBD0' };
 
   return (
     <>
@@ -341,8 +341,8 @@ export default function SeedGenerator() {
                   borderRadius: 6,
                   border: '1px solid',
                   cursor: 'pointer',
-                  background: activeTab === tab ? 'linear-gradient(135deg, #7c3aed, #065f46)' : 'transparent',
-                  borderColor: activeTab === tab ? '#7c3aed' : '#334155',
+                  background: activeTab === tab ? 'linear-gradient(135deg, #F4EBD0, #065f46)' : 'transparent',
+                  borderColor: activeTab === tab ? '#F4EBD0' : '#334155',
                   color: activeTab === tab ? '#fff' : '#94a3b8'
                 }}
               >
@@ -358,10 +358,10 @@ export default function SeedGenerator() {
               <div style={{ marginBottom: 14 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                   <span style={{ fontSize: 12, color: '#94a3b8' }}>Generating SQL...</span>
-                  <span style={{ fontSize: 12, color: '#a78bfa', fontWeight: 700 }}>{progress}%</span>
+                  <span style={{ fontSize: 12, color: '#F4EBD0', fontWeight: 700 }}>{progress}%</span>
                 </div>
                 <div style={{ background: '#1e293b', borderRadius: 999, height: 6, overflow: 'hidden' }}>
-                  <div style={{ width: `${progress}%`, height: '100%', background: 'linear-gradient(90deg, #7c3aed, #34d399)', transition: 'width 0.3s ease' }} />
+                  <div style={{ width: `${progress}%`, height: '100%', background: 'linear-gradient(90deg, #F4EBD0, #34d399)', transition: 'width 0.3s ease' }} />
                 </div>
               </div>
             )}
@@ -378,7 +378,7 @@ export default function SeedGenerator() {
                 fontSize: 15,
                 fontWeight: 700,
                 fontFamily: 'inherit',
-                background: isRunning ? '#1e293b' : 'linear-gradient(135deg, #7c3aed 0%, #065f46 50%, #92400e 100%)',
+                background: isRunning ? '#1e293b' : 'linear-gradient(135deg, #F4EBD0 0%, #065f46 50%, #92400e 100%)',
                 color: '#fff'
               }}
             >

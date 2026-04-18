@@ -6,7 +6,7 @@ import SEO from '../components/ui/SEO';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../context/AuthContext';
 
-import logo from '../assets/logo.webp';
+import logo from '../assets/logo-premium.png';
 
 /* ── Google Icon ── */
 const GoogleIcon = () => (
@@ -59,7 +59,7 @@ const Login = () => {
     });
 
     return (
-        <div className="bg-[#050604] min-h-screen text-[#F0EEE8] font-sans selection:bg-[#D4AF37] selection:text-black">
+        <div className="bg-[#0B0515] min-h-screen text-[#F0EEE8] font-sans selection:bg-[#00F0FF] selection:text-black">
             <SEO title="Re-Initiate | Inner Root" />
 
 
@@ -67,7 +67,7 @@ const Login = () => {
                 {/* ── Background Effects ── */}
                 <div className="absolute inset-0 pointer-events-none">
                     <div className="absolute top-1/4 right-1/4 w-[50vw] h-[50vw] bg-[radial-gradient(circle,rgba(20,83,45,0.08)_0%,transparent_70%)] blur-[120px]" />
-                    <div className="absolute bottom-1/4 left-1/4 w-[40vw] h-[40vw] bg-[radial-gradient(circle,rgba(212,175,55,0.05)_0%,transparent_70%)] blur-[100px]" />
+                    <div className="absolute bottom-1/4 left-1/4 w-[40vw] h-[40vw] bg-[radial-gradient(circle,rgba(0, 240, 255,0.05)_0%,transparent_70%)] blur-[100px]" />
                     <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay" 
                         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} 
                     />
@@ -82,7 +82,7 @@ const Login = () => {
                     {/* ── Auth Card ── */}
                     <div className="backdrop-blur-[40px] bg-white/[0.03] border border-white/10 rounded-[2.5rem] p-10 md:p-14 shadow-[0_40px_100px_rgba(0,0,0,0.5)] relative overflow-hidden group">
                         {/* Shimmer Border */}
-                        <div className="absolute inset-0 border border-[#D4AF37]/10 rounded-[2.5rem] group-hover:border-[#D4AF37]/30 transition-colors duration-1000 pointer-events-none" />
+                        <div className="absolute inset-0 border border-[#00F0FF]/10 rounded-[2.5rem] group-hover:border-[#00F0FF]/30 transition-colors duration-1000 pointer-events-none" />
 
                         <div className="text-center mb-12">
                             <div className="w-20 h-20 rounded-3xl mx-auto mb-8 bg-white/5 border border-white/5 flex items-center justify-center shadow-inner group/logo">
@@ -92,8 +92,8 @@ const Login = () => {
                                 Welcome Back
                             </h1>
                             <div className="flex items-center justify-center gap-2">
-                                <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
-                                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-[#D4AF37]/70">Enter your gateway</p>
+                                <div className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] animate-pulse" />
+                                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-[#00F0FF]/70">Enter your gateway</p>
                             </div>
                         </div>
 
@@ -124,11 +124,11 @@ const Login = () => {
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black uppercase tracking-widest text-white/40 ml-1">Email</label>
                                 <div className="relative group/field">
-                                    <Mail size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20 group-hover/field:text-[#D4AF37]/50 transition-colors" />
+                                    <Mail size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20 group-hover/field:text-[#00F0FF]/50 transition-colors" />
                                     <input 
                                         type="email" value={email} onChange={e => setEmail(e.target.value)}
                                         placeholder="you@example.com" 
-                                        className="w-full bg-white/[0.01] border border-white/5 focus:border-[#D4AF37]/40 focus:bg-white/[0.03] rounded-2xl py-4 pl-14 pr-6 outline-none transition-all text-sm font-medium"
+                                        className="w-full bg-white/[0.01] border border-white/5 focus:border-[#00F0FF]/40 focus:bg-white/[0.03] rounded-2xl py-4 pl-14 pr-6 outline-none transition-all text-sm font-medium"
                                     />
                                 </div>
                             </div>
@@ -136,19 +136,19 @@ const Login = () => {
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between px-1">
                                     <label className="text-[10px] font-black uppercase tracking-widest text-white/40 ml-1">Password</label>
-                                    <button type="button" className="text-[10px] font-bold text-[#D4AF37]/60 hover:text-[#D4AF37] transition-colors">FORGOT?</button>
+                                    <button type="button" className="text-[10px] font-bold text-[#00F0FF]/60 hover:text-[#00F0FF] transition-colors">FORGOT?</button>
                                 </div>
                                 <div className="relative group/field">
-                                    <Lock size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20 group-hover/field:text-[#D4AF37]/50 transition-colors" />
+                                    <Lock size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20 group-hover/field:text-[#00F0FF]/50 transition-colors" />
                                     <input 
                                         type={showPassword ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)}
                                         placeholder="••••••••" 
-                                        className="w-full bg-white/[0.01] border border-white/5 focus:border-[#D4AF37]/40 focus:bg-white/[0.03] rounded-2xl py-4 pl-14 pr-14 outline-none transition-all text-sm font-medium"
+                                        className="w-full bg-white/[0.01] border border-white/5 focus:border-[#00F0FF]/40 focus:bg-white/[0.03] rounded-2xl py-4 pl-14 pr-14 outline-none transition-all text-sm font-medium"
                                     />
                                     <button 
                                         type="button" 
                                         onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-5 top-1/2 -translate-y-1/2 text-white/20 hover:text-[#D4AF37] transition-colors"
+                                        className="absolute right-5 top-1/2 -translate-y-1/2 text-white/20 hover:text-[#00F0FF] transition-colors"
                                     >
                                         {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                                     </button>
@@ -157,7 +157,7 @@ const Login = () => {
 
                             <button 
                                 type="submit" disabled={loading}
-                                className="w-full py-5 bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-black font-black uppercase text-[11px] tracking-[0.3em] rounded-2xl shadow-[0_10px_30px_rgba(212,175,55,0.2)] hover:shadow-[0_15px_40px_rgba(212,175,55,0.3)] hover:-translate-y-1 active:translate-y-0 transition-all duration-300 mt-2"
+                                className="w-full py-5 bg-gradient-to-r from-[#00F0FF] to-[#B026FF] text-black font-black uppercase text-[11px] tracking-[0.3em] rounded-2xl shadow-[0_10px_30px_rgba(0, 240, 255,0.2)] hover:shadow-[0_15px_40px_rgba(0, 240, 255,0.3)] hover:-translate-y-1 active:translate-y-0 transition-all duration-300 mt-2"
                             >
                                 {loading ? 'Communing...' : 'Re-Initiate'}
                             </button>
@@ -166,7 +166,7 @@ const Login = () => {
                         <div className="mt-12 pt-8 border-t border-white/5 text-center">
                             <p className="text-xs text-white/40 font-medium">
                                 New to Inner Root?{' '}
-                                <Link to="/signup" className="text-[#D4AF37] hover:brightness-125 transition-all font-black uppercase tracking-widest text-[10px] ml-2">Manifest Identity</Link>
+                                <Link to="/signup" className="text-[#00F0FF] hover:brightness-125 transition-all font-black uppercase tracking-widest text-[10px] ml-2">Manifest Identity</Link>
                             </p>
                         </div>
                     </div>

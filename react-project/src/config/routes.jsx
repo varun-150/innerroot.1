@@ -8,8 +8,9 @@ const Tours = lazy(() => import('../pages/Tours'));
 const Wellness = lazy(() => import('../pages/Wellness'));
 const Library = lazy(() => import('../pages/Library'));
 const About = lazy(() => import('../pages/About'));
-const Login = lazy(() => import('../pages/Login'));
-const Signup = lazy(() => import('../pages/Signup'));
+const Login = lazy(() => import('../pages/auth/Login'));
+const Signup = lazy(() => import('../pages/auth/Signup'));
+const TwoFactorSetup = lazy(() => import('../pages/auth/TwoFactorSetup'));
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Privacy = lazy(() => import('../pages/Privacy'));
 const Terms = lazy(() => import('../pages/Terms'));
@@ -21,7 +22,13 @@ const AdminDashboard = lazy(() => import('../pages/AdminDashboard'));
 import ProtectedRoute from '../components/auth/ProtectedRoute';
 import AdminRoute from '../components/auth/AdminRoute';
 
+import { DemoOne } from '../components/ui/demo';
+import DemoMatrix from '../components/ui/cyber-matrix-hero-demo';
+
 export const routes = [
+    { path: '/demo/hero', element: <DemoOne /> },
+    { path: '/demo/matrix', element: <DemoMatrix /> },
+
     { path: '/', element: <LandingPage />, exact: true },
     { path: '/v1', element: <Home /> },
     { path: '/explore', element: <Explore /> },
@@ -36,8 +43,9 @@ export const routes = [
     { path: '/privacy', element: <Privacy /> },
     { path: '/terms', element: <Terms /> },
     { path: '/monetization', element: <Monetization /> },
+    { path: '/setup-2fa', element: <ProtectedRoute><TwoFactorSetup /></ProtectedRoute> },
     { path: '/dashboard', element: <ProtectedRoute><Dashboard /></ProtectedRoute> },
     { path: '/admin', element: <AdminRoute><AdminDashboard /></AdminRoute> },
     { path: '/tools/sql-seed-generator', element: <ProtectedRoute><SeedGenerator /></ProtectedRoute> },
-    { path: '*', element: <Home /> }, // Fallback route
+    { path: '*', element: <LandingPage /> }, // Fallback route
 ];

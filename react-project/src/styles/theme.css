@@ -4,16 +4,16 @@
 
 /* Force light mode on specific components regardless of global theme */
 .force-light {
-    --color-bg: #faf6f0;
-    --color-text: #1c1917;
-    --color-surface: rgba(255, 255, 255, 0.90);
-    --color-border: #e7e0d5;
+    --color-bg: #f8fafc;
+    --color-text: #080620;
+    --color-surface: rgba(255, 255, 255, 0.95);
+    --color-border: #e2e8f0;
 }
 
 /* Force dark mode on specific components regardless of global theme */
 .force-dark {
-    --color-bg: #0a0d0c;
-    --color-text: #f2ede6;
-    --color-surface: rgba(22, 30, 26, 0.92);
-    --color-border: #262e2a;
+    --color-bg: #080620;
+    --color-text: #f1f5f9;
+    --color-surface: rgba(15, 23, 42, 0.95);
+    --color-border: #1e293b;
 }

@@ -9,17 +9,17 @@ import {
 
 const PricingCard = ({ title, price, period, description, features, buttonText, highlighted, icon: Icon, color }) => (
     <div className={`relative p-10 flex flex-col h-full transition-all duration-500 rounded-[48px] border-2 group ${highlighted
-        ? 'bg-heritage-gold border-heritage-gold text-white shadow-2xl shadow-heritage-gold/20 -translate-y-4'
-        : 'bg-white border-[var(--border)] hover:border-heritage-gold/30 hover:-translate-y-2'}`}>
+        ? 'bg-accent border-[#F4EBD0] text-black shadow-2xl shadow-accent/20 -translate-y-4'
+        : 'bg-white/5 border-[var(--border)] hover:border-[#F4EBD0]/30 hover:-translate-y-2'}`}>
 
         {highlighted && (
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white text-heritage-gold px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl border border-heritage-gold/10 z-10">
-                Most Popular Portal
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl border border-[#F4EBD0]/10 z-10">
+                RECOMMENDED
             </div>
         )}
 
-        <div className={`w-16 h-16 rounded-[24px] ${highlighted ? 'bg-white/20' : 'bg-heritage-gold/10'} flex items-center justify-center mb-8 shadow-xl transition-transform group-hover:scale-110 group-hover:rotate-6`}>
-            <Icon className={`w-8 h-8 ${highlighted ? 'text-white' : 'text-heritage-gold'}`} />
+        <div className={`w-16 h-16 rounded-[24px] ${highlighted ? 'bg-white/20' : 'bg-accent/10'} flex items-center justify-center mb-8 shadow-xl transition-transform group-hover:scale-110 group-hover:rotate-6`}>
+            <Icon className={`w-8 h-8 ${highlighted ? 'text-white' : 'text-[#F4EBD0]'}`} />
         </div>
 
         <h3 className={`font-display text-3xl font-bold mb-3 tracking-tight ${highlighted ? 'text-white' : 'text-[var(--fg)]'}`}>{title}</h3>
@@ -34,8 +34,8 @@ const PricingCard = ({ title, price, period, description, features, buttonText, 
         <ul className="space-y-5 mb-12 flex-grow">
             {features.map((feature, i) => (
                 <li key={i} className="flex items-start gap-4">
-                    <div className={`mt-1 p-0.5 rounded-full ${highlighted ? 'bg-white/20' : 'bg-heritage-gold/10'}`}>
-                        <Check className={`w-4 h-4 ${highlighted ? 'text-white' : 'text-heritage-gold'}`} />
+                    <div className={`mt-1 p-0.5 rounded-full ${highlighted ? 'bg-white/20' : 'bg-accent/10'}`}>
+                        <Check className={`w-4 h-4 ${highlighted ? 'text-white' : 'text-[#F4EBD0]'}`} />
                     </div>
                     <span className={`text-sm font-medium ${highlighted ? 'text-white/90' : 'text-[var(--muted)]'}`}>{feature}</span>
                 </li>
@@ -43,8 +43,8 @@ const PricingCard = ({ title, price, period, description, features, buttonText, 
         </ul>
 
         <button className={`w-full py-5 rounded-[24px] font-bold text-xs uppercase tracking-[0.2em] transition-all duration-500 ${highlighted
-            ? 'bg-white text-heritage-gold hover:bg-neutral-100 shadow-2xl'
-            : 'bg-heritage-gold text-white hover:bg-heritage-goldLight shadow-lg shadow-heritage-gold/20'
+            ? 'bg-white text-black hover:bg-neutral-100 shadow-2xl'
+            : 'bg-accent text-black hover:opacity-90 shadow-lg shadow-accent/20'
             }`}>
             {buttonText}
         </button>
@@ -64,14 +64,15 @@ const Monetization = () => {
 
                 {/* Hero Section */}
                 <Reveal className="text-center mt-12 mb-20 relative">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-heritage-gold/5 blur-[120px] pointer-events-none"></div>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-heritage-gold/10 backdrop-blur-md border border-heritage-gold/20 text-heritage-gold font-bold text-xs uppercase tracking-[0.2em] mb-10">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/5 blur-[120px] pointer-events-none"></div>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 backdrop-blur-md border border-[#F4EBD0]/20 text-[#F4EBD0] font-bold text-xs uppercase tracking-[0.2em] mb-10">
                         <Rocket className="w-3.5 h-3.5" />
                         <span>Sustainable Future</span>
                     </div>
                     <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold text-[var(--fg)] mb-8 tracking-tighter leading-[0.9]">
                         Authentic Spirit,<br />
-                        <span className="text-heritage-gold">Sustainable Growth</span>
+                        <Sparkles size={32} className="inline text-[#F4EBD0] mr-4" />
+                        <span className="text-[#F4EBD0]">Sustainable Growth</span>
                     </h1>
                     <p className="text-[var(--muted)] max-w-3xl mx-auto text-xl leading-relaxed italic font-medium">
                         Empowering cultural guardians through a "By Indians, For Indians" ecosystem that honors traditions while scaling through modern technology.
@@ -93,7 +94,7 @@ const Monetization = () => {
                                 price="₹0"
                                 description="Basic culture exploration and essential meditation tools."
                                 icon={Heart}
-                                color="bg-heritage-teal"
+                                color="bg-accent/10"
                                 features={[
                                     "Basic culture exploration",
                                     "Limited meditations (3 per week)",
@@ -108,7 +109,7 @@ const Monetization = () => {
                                 period="month"
                                 description="Unlimited access and deep-dive heritage experiences."
                                 icon={Crown}
-                                color="bg-heritage-gold"
+                                color="bg-accent"
                                 highlighted={true}
                                 features={[
                                     "Unlimited meditation access",
@@ -130,27 +131,27 @@ const Monetization = () => {
                         </Reveal>
                         <Stagger className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             <div className="heritage-card p-6 bg-white/5 border-dashed">
-                                <Users className="w-8 h-8 text-heritage-teal mb-4" />
+                                <Users className="w-8 h-8 text-[#F4EBD0] mb-4" />
                                 <h3 className="font-bold mb-2 text-[var(--fg)]">Free</h3>
                                 <p className="text-xs text-[var(--muted)] mb-4">Browse and learn from curated archives.</p>
                                 <span className="text-xl font-bold">Browse Only</span>
                             </div>
-                            <div className="heritage-card p-6 border-heritage-teal/30 bg-heritage-teal/5">
-                                <Rocket className="w-8 h-8 text-heritage-teal mb-4" />
+                            <div className="heritage-card p-6 border-[#F4EBD0]/20 bg-accent/5">
+                                <Rocket className="w-8 h-8 text-[#F4EBD0] mb-4" />
                                 <h3 className="font-bold mb-2 text-[var(--fg)]">Creator</h3>
                                 <p className="text-xs text-[var(--muted)] mb-4">Share your wisdom and monetize your content.</p>
                                 <span className="text-xl font-bold">₹249 /mo</span>
                             </div>
-                            <div className="heritage-card p-6 border-heritage-gold/30 bg-heritage-gold/5">
-                                <Crown className="w-8 h-8 text-heritage-gold mb-4" />
+                            <div className="heritage-card p-6 border-[#F4EBD0]/30 bg-accent/5">
+                                <Crown className="w-8 h-8 text-[#F4EBD0] mb-4" />
                                 <h3 className="font-bold mb-2 text-[var(--fg)]">Pro</h3>
                                 <p className="text-xs text-[var(--muted)] mb-4">Advanced learning tools and premium content.</p>
                                 <span className="text-xl font-bold">₹799 /mo</span>
                             </div>
-                            <div className="heritage-card p-6 bg-[var(--fg)] text-white">
-                                <Briefcase className="w-8 h-8 text-heritage-gold mb-4" />
+                            <div className="heritage-card p-6 bg-[var(--fg)] text-black">
+                                <Briefcase className="w-8 h-8 text-[#F4EBD0] mb-4" />
                                 <h3 className="font-bold mb-2">Enterprise</h3>
-                                <p className="text-xs text-white/70 mb-4">Dedicated solutions for schools and institutions.</p>
+                                <p className="text-xs text-black/70 mb-4">Dedicated solutions for schools and institutions.</p>
                                 <span className="text-sm font-bold uppercase">Contact Us</span>
                             </div>
                         </Stagger>
@@ -158,35 +159,35 @@ const Monetization = () => {
 
                     {/* Option C & D: B2B2C and Ad-Supported */}
                     <div className="grid lg:grid-cols-2 gap-12">
-                        <Reveal className="heritage-card p-8 bg-gradient-to-br from-heritage-brown/10 to-transparent">
-                            <GraduationCap className="w-12 h-12 text-heritage-brown mb-6" />
+                        <Reveal className="heritage-card p-8 bg-gradient-to-br from-[#F4EBD0]/10 to-transparent">
+                            <GraduationCap className="w-12 h-12 text-[#F4EBD0] mb-6" />
                             <h2 className="font-display text-3xl font-bold text-[var(--fg)] mb-4">B2B2C & Partnerships</h2>
                             <ul className="space-y-4 text-[var(--muted)]">
                                 <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-heritage-brown/20 flex items-center justify-center shrink-0">1</div>
+                                    <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center shrink-0 text-[#F4EBD0]">1</div>
                                     <p><strong>Educational Curriculums:</strong> partnering with schools to bring Vedic values and history to the modern classroom.</p>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-heritage-brown/20 flex items-center justify-center shrink-0">2</div>
+                                    <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center shrink-0 text-[#F4EBD0]">2</div>
                                     <p><strong>White-label Solutions:</strong> specialized platforms for cultural organizations to manage their archives.</p>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-heritage-brown/20 flex items-center justify-center shrink-0">3</div>
+                                    <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center shrink-0 text-[#F4EBD0]">3</div>
                                     <p><strong>Content Licensing:</strong> providing authentic Indian heritage content to global educational platforms.</p>
                                 </li>
                             </ul>
                         </Reveal>
 
-                        <Reveal className="heritage-card p-8 bg-gradient-to-br from-heritage-teal/10 to-transparent">
-                            <Shield className="w-12 h-12 text-heritage-teal mb-6" />
+                        <Reveal className="heritage-card p-8 bg-gradient-to-br from-[#F4EBD0]/10 to-transparent">
+                            <Shield className="w-12 h-12 text-[#F4EBD0] mb-6" />
                             <h2 className="font-display text-3xl font-bold text-[var(--fg)] mb-4">Hybrid Model</h2>
                             <p className="text-[var(--muted)] mb-6">Our Ad-Supported + Premium approach ensures accessibility without compromising on quality.</p>
                             <div className="grid grid-cols-2 gap-6">
-                                <div className="p-4 rounded-xl border border-dashed border-heritage-teal/30">
+                                <div className="p-4 rounded-xl border border-dashed border-[#F4EBD0]/30">
                                     <span className="font-bold block mb-1">Free Tier</span>
                                     <p className="text-xs text-[var(--muted)]">Supported by culturally aligned, low-intrusion ads.</p>
                                 </div>
-                                <div className="p-4 rounded-xl bg-heritage-gold/10 border border-heritage-gold/20">
+                                <div className="p-4 rounded-xl bg-accent/10 border border-[#F4EBD0]/20">
                                     <span className="font-bold block mb-1">Premium</span>
                                     <p className="text-xs text-[var(--muted)]">Ad-free, faster streaming, and enhanced features.</p>
                                 </div>
@@ -195,7 +196,7 @@ const Monetization = () => {
                     </div>
 
                     {/* Strategic Advantages */}
-                    <div className="py-20 bg-heritage-gold/5 rounded-[40px] px-8 sm:px-12">
+                    <div className="py-20 bg-accent/5 rounded-[40px] px-8 sm:px-12">
                         <Reveal className="mb-12 text-center">
                             <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--fg)] mb-4">Strategic Competitive Advantages</h2>
                         </Reveal>
@@ -209,8 +210,8 @@ const Monetization = () => {
                                 { title: "Heritage First", desc: "Allowing users to explore and curate content, driving organic growth.", icon: Users }
                             ].map(({ icon: Icon, ...item }, i) => (
                                 <div key={i} className="flex gap-4">
-                                    <div className="w-10 h-10 rounded-full bg-heritage-gold/10 flex items-center justify-center shrink-0">
-                                        <Icon className="w-5 h-5 text-heritage-gold" />
+                                    <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                                        <Icon className="w-5 h-5 text-[#F4EBD0]" />
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-[var(--fg)] mb-1">{item.title}</h3>
@@ -220,14 +221,14 @@ const Monetization = () => {
                             ))}
                         </div>
                     </div>
-                </div>
 
-                {/* Final CTA */}
-                <Reveal className="mt-32 text-center">
-                    <h2 className="font-display text-3xl font-bold text-[var(--fg)] mb-6">Ready to scale Indian Heritage?</h2>
-                    <button className="btn-primary min-w-[200px]">Partner With Us</button>
-                    <p className="mt-4 text-sm text-[var(--muted)]">Contact us at partnerships@innerroot.in</p>
-                </Reveal>
+                    {/* Final CTA */}
+                    <Reveal className="mt-32 text-center">
+                        <h2 className="font-display text-3xl font-bold text-[var(--fg)] mb-6">Ready to scale Indian Heritage?</h2>
+                        <button className="btn-primary min-w-[200px]">Partner With Us</button>
+                        <p className="mt-4 text-sm text-[var(--muted)]">Contact us at partnerships@innerroot.in</p>
+                    </Reveal>
+                </div>
             </div>
         </section>
     );

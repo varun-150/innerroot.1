@@ -4,8 +4,10 @@
   "scripts": {
     "dev:frontend": "npm run dev --prefix react-project",
     "dev:backend": "cd inner-root-backend && ./mvnw spring-boot:run",
+    "dev:django": "cd django-auth-service && .\\venv\\Scripts\\python.exe manage.py runserver",
     "build:frontend": "npm run build --prefix react-project",
     "tunnel": "npm run tunnel --prefix react-project",
-    "start:all": "pwsh -Command \"Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'npm run dev:frontend'; Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'npm run dev:backend'\""
+    "start:all": "pwsh -Command \"Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'npm run dev:frontend'; Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'npm run dev:django'\"",
+    "dev": "npm run start:all"
   }
 }

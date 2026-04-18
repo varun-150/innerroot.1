@@ -1,9 +1,3 @@
 import React from 'react';
-
-const MandalaBg = () => {
-    return (
-        <div className="mandala-bg" aria-hidden="true"></div>
-    );
-};
-
+const MandalaBg = () => null;
 export default MandalaBg;

@@ -80,7 +80,7 @@ const HeritageMap = ({ tours = [] }) => {
     if (loading) {
         return (
             <div className="w-full h-[600px] flex items-center justify-center bg-black/20 rounded-xl border border-white/10 backdrop-blur-sm">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-heritage-gold"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#6C63FF]"></div>
                 <span className="ml-3 text-white/70">Loading Map...</span>
             </div>
         );
@@ -100,13 +100,13 @@ const HeritageMap = ({ tours = [] }) => {
     return (
         <div
             ref={containerRef}
-            className="w-full h-[500px] md:h-[600px] bg-black/20 rounded-xl overflow-hidden relative border border-white/10 backdrop-blur-sm shadow-2xl"
+            className="w-full h-[500px] md:h-[600px] bg-black/40 rounded-xl overflow-hidden relative border border-white/10 backdrop-blur-sm shadow-2xl"
         >
             <svg width={dimensions.width} height={dimensions.height} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
                 <defs>
                     <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#2D3748" />
-                        <stop offset="100%" stopColor="#1A202C" />
+                        <stop offset="0%" stopColor="#1a0b2e" />
+                        <stop offset="100%" stopColor="#0b0515" />
                     </linearGradient>
                 </defs>
 
@@ -120,12 +120,12 @@ const HeritageMap = ({ tours = [] }) => {
                                 initial={{ opacity: 0, pathLength: 0 }}
                                 animate={{ opacity: 1, pathLength: 1 }}
                                 transition={{ duration: 1, delay: i * 0.005 }}
-                                fill={hoveredState === i ? "#4A5568" : "rgba(255,255,255,0.05)"} // Slight fill for presence
-                                stroke={hoveredState === i ? "#F6E05E" : "#E2E8F0"}
+                                fill={hoveredState === i ? "rgba(0, 240, 255, 0.05)" : "rgba(255,255,255,0.02)"} // Slight fill for presence
+                                stroke={hoveredState === i ? "#00F0FF" : "rgba(255,255,255,0.1)"}
                                 strokeWidth={hoveredState === i ? "1.5" : "0.75"}
                                 onMouseEnter={() => setHoveredState(i)}
                                 onMouseLeave={() => setHoveredState(null)}
-                                style={{ cursor: "pointer", filter: hoveredState === i ? "drop-shadow(0px 0px 8px rgba(246, 224, 94, 0.5))" : "none" }}
+                                style={{ cursor: "pointer", filter: hoveredState === i ? "drop-shadow(0px 0px 8px rgba(0, 240, 255, 0.5))" : "none" }}
                             />
                         ))
                     ) : (
@@ -157,22 +157,22 @@ const HeritageMap = ({ tours = [] }) => {
                                 whileHover={{ scale: 1.5 }}
                             >
                                 {/* Glow Effect */}
-                                <circle r={12} fill="rgb(217 119 6 / 0.2)" className="animate-pulse" />
+                                <circle r={12} fill="rgba(0, 240, 255, 0.2)" className="animate-pulse" />
                                 {/* Pin */}
                                 <circle
                                     r={5}
-                                    fill="#D97706"
+                                    fill="#00F0FF"
                                     stroke="#fff"
                                     strokeWidth={1.5}
                                     data-tooltip-id="map-tooltip"
                                     data-tooltip-content={`${tour.name || tour.title} - ${tour.location}`}
-                                    className="cursor-pointer focus:outline-none hover:stroke-heritage-gold"
+                                    className="cursor-pointer focus:outline-none hover:stroke-accent"
                                     onClick={() => {
                                         const card = document.getElementById(`tour-card-${tour.id}`);
                                         if (card) {
                                             card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                                            card.classList.add('ring-4', 'ring-heritage-gold', 'ring-offset-2');
-                                            setTimeout(() => card.classList.remove('ring-4', 'ring-ring-heritage-gold', 'ring-offset-2'), 2000);
+                                            card.classList.add('ring-4', 'ring-accent', 'ring-offset-2');
+                                            setTimeout(() => card.classList.remove('ring-4', 'ring-accent', 'ring-offset-2'), 2000);
                                         }
                                     }}
                                 />
@@ -186,22 +186,22 @@ const HeritageMap = ({ tours = [] }) => {
             <Tooltip
                 id="map-tooltip"
                 style={{
-                    backgroundColor: "#1A202C",
+                    backgroundColor: "#0b0515",
                     color: "#fff",
                     padding: "8px 12px",
                     borderRadius: "8px",
-                    border: "1px solid rgba(255,255,255,0.1)",
+                    border: "1px solid rgba(0, 240, 255, 0.2)",
                     zIndex: 50,
                     fontSize: "0.875rem",
-                    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+                    boxShadow: "0 0 20px rgba(0, 240, 255, 0.2)"
                 }}
             />
 
             <div className="absolute bottom-4 right-4 bg-black/80 p-4 rounded-xl backdrop-blur-md border border-white/10 max-w-xs shadow-xl">
-                <h4 className="text-heritage-gold font-display font-bold mb-1 flex items-center gap-2">
+                <h4 className="text-[#6C63FF] font-display font-bold mb-1 flex items-center gap-2">
                     <span className="text-xl">🗺️</span> Explore India’s Heritage
                 </h4>
-                <p className="text-xs text-gray-300 leading-relaxed">
+                <p className="text-xs text-gray-300 leading-relaxed text-balance">
                     Tap the markers to explore monuments, culture, and timeless stories across the map.
                 </p>
             </div>

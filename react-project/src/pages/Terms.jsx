@@ -11,13 +11,13 @@ const Terms = () => {
                 <Breadcrumbs />
 
                 <Reveal className="mt-12 mb-16 text-center">
-                    <h1 className="font-display text-5xl sm:text-7xl font-bold text-[var(--fg)] mb-6 tracking-tighter">Shared <span className="text-heritage-gold">Honor</span></h1>
+                    <h1 className="font-display text-5xl sm:text-7xl font-bold text-[var(--fg)] mb-6 tracking-tighter">Shared <span className="text-[#F4EBD0]">Honor</span></h1>
                     <p className="text-[var(--muted)] max-w-2xl mx-auto text-xl leading-relaxed italic font-medium">Agreement for our community of heritage guardians.</p>
                 </Reveal>
 
                 <Reveal delay={0.2}>
                     <div className="prose prose-invert max-w-none text-[var(--muted)] space-y-6">
-                        <div className="p-4 rounded-lg bg-heritage-gold/10 border border-heritage-gold/20 text-heritage-gold text-sm italic mb-8">
+                        <div className="p-4 rounded-lg bg-accent/10 border border-[#F4EBD0]/20 text-[#F4EBD0] text-sm italic mb-8">
                             Last updated: October 26, 2024
                         </div>
                         <p className="text-lg leading-relaxed">

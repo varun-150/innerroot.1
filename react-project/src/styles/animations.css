@@ -1,481 +1,137 @@
 /* ============================================================
-   INNER ROOT — Animations & Motion System
-   60fps · transform/opacity only · respects prefers-reduced-motion
+   INNER ROOT — Motion & Component System v6 "Midnight Gold"
+   Midnight Blue #1B263B · Champagne Gold #F4EBD0
    ============================================================ */
 
-/* ── HERO GRADIENT ───────────────────────────────────────── */
-.hero-gradient-bg {
-    position: relative;
-    overflow: hidden;
+/* ══ EASING ══ */
+:root {
+    --ease-fluid:  cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-gentle: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --dur-fast:  0.3s;
+    --dur-base:  0.6s;
+    --dur-slow:  0.9s;
 }
 
-.hero-gradient-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gradient-hero);
-    background-size: 250% 250%;
-    animation: heroGradient 14s ease-in-out infinite;
-}
-
-@keyframes heroGradient {
-    0% {
-        background-position: 0% 0%;
-    }
-
-    25% {
-        background-position: 100% 0%;
-    }
-
-    50% {
-        background-position: 100% 100%;
-    }
-
-    75% {
-        background-position: 0% 100%;
-    }
-
-    100% {
-        background-position: 0% 0%;
-    }
-}
-
-/* ── TEXT GRADIENT ANIMATION ─────────────────────────────── */
-@keyframes gradientShift {
-
-    0%,
-    100% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-}
-
-/* ── SACRED GEOMETRY ─────────────────────────────────────── */
-.sacred-geometry {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Ccircle cx='200' cy='200' r='180' fill='none' stroke='%23C09020' stroke-width='0.5'/%3E%3Ccircle cx='200' cy='200' r='140' fill='none' stroke='%23C09020' stroke-width='0.4'/%3E%3Ccircle cx='200' cy='200' r='100' fill='none' stroke='%23C09020' stroke-width='0.4'/%3E%3Ccircle cx='200' cy='200' r='60' fill='none' stroke='%23C09020' stroke-width='0.3'/%3E%3Cpath d='M200 20 L200 380 M20 200 L380 200' stroke='%23C09020' stroke-width='0.3'/%3E%3Cpath d='M60 60 L340 340 M340 60 L60 340' stroke='%23C09020' stroke-width='0.2'/%3E%3Cpolygon points='200,40 340,280 60,280' fill='none' stroke='%23C09020' stroke-width='0.4'/%3E%3Cpolygon points='200,360 340,120 60,120' fill='none' stroke='%23C09020' stroke-width='0.4'/%3E%3Ccircle cx='200' cy='200' r='25' fill='none' stroke='%23C09020' stroke-width='0.6'/%3E%3C/svg%3E");
-    background-size: 500px 500px;
-    background-position: center;
-    animation: sacredRotate 90s linear infinite;
-}
-
-[data-theme="light"] .sacred-geometry {
-    opacity: 0.05;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Ccircle cx='200' cy='200' r='180' fill='none' stroke='%23A07015' stroke-width='0.5'/%3E%3Ccircle cx='200' cy='200' r='140' fill='none' stroke='%23A07015' stroke-width='0.4'/%3E%3Ccircle cx='200' cy='200' r='100' fill='none' stroke='%23A07015' stroke-width='0.4'/%3E%3Ccircle cx='200' cy='200' r='60' fill='none' stroke='%23A07015' stroke-width='0.3'/%3E%3Cpath d='M200 20 L200 380 M20 200 L380 200' stroke='%23A07015' stroke-width='0.3'/%3E%3Cpath d='M60 60 L340 340 M340 60 L60 340' stroke='%23A07015' stroke-width='0.2'/%3E%3Cpolygon points='200,40 340,280 60,280' fill='none' stroke='%23A07015' stroke-width='0.4'/%3E%3Cpolygon points='200,360 340,120 60,120' fill='none' stroke='%23A07015' stroke-width='0.4'/%3E%3Ccircle cx='200' cy='200' r='25' fill='none' stroke='%23A07015' stroke-width='0.6'/%3E%3C/svg%3E");
-}
-
-[data-theme="dark"] .sacred-geometry {
-    opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Ccircle cx='200' cy='200' r='180' fill='none' stroke='%23F5D154' stroke-width='0.5'/%3E%3Ccircle cx='200' cy='200' r='140' fill='none' stroke='%23F5D154' stroke-width='0.4'/%3E%3Ccircle cx='200' cy='200' r='100' fill='none' stroke='%23F5D154' stroke-width='0.4'/%3E%3Ccircle cx='200' cy='200' r='60' fill='none' stroke='%23F5D154' stroke-width='0.3'/%3E%3Cpath d='M200 20 L200 380 M20 200 L380 200' stroke='%23F5D154' stroke-width='0.3'/%3E%3Cpath d='M60 60 L340 340 M340 60 L60 340' stroke='%23F5D154' stroke-width='0.2'/%3E%3Cpolygon points='200,40 340,280 60,280' fill='none' stroke='%23F5D154' stroke-width='0.4'/%3E%3Cpolygon points='200,360 340,120 60,120' fill='none' stroke='%23F5D154' stroke-width='0.4'/%3E%3Ccircle cx='200' cy='200' r='25' fill='none' stroke='%23F5D154' stroke-width='0.6'/%3E%3C/svg%3E");
-}
-
-@keyframes sacredRotate {
-    from {
-        transform: rotate(0deg) scale(1);
-    }
-
-    50% {
-        transform: rotate(180deg) scale(1.05);
-    }
-
-    to {
-        transform: rotate(360deg) scale(1);
-    }
-}
-
-/* ── MANDALA BACKGROUND ──────────────────────────────────── */
-.mandala-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.015;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='none' stroke='%23D4AF37' stroke-width='0.5'/%3E%3Ccircle cx='100' cy='100' r='70' fill='none' stroke='%23D4AF37' stroke-width='0.4'/%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%23D4AF37' stroke-width='0.4'/%3E%3Ccircle cx='100' cy='100' r='30' fill='none' stroke='%23D4AF37' stroke-width='0.3'/%3E%3Cpath d='M100 10 L100 190 M10 100 L190 100 M30 30 L170 170 M170 30 L30 170' stroke='%23D4AF37' stroke-width='0.2'/%3E%3C/svg%3E");
-    background-size: 350px 350px;
-    animation: rotateMandala 120s linear infinite;
-}
-
-@keyframes rotateMandala {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.particle {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: var(--color-accent);
-    border-radius: 50%;
-    pointer-events: none;
-    opacity: 0;
-    animation: floatParticle 10s ease-in-out infinite;
-}
-
-@keyframes floatParticle {
-
-    0%,
-    100% {
-        opacity: 0;
-        transform: translateY(0) scale(0);
-    }
-
-    15% {
-        opacity: 0.4;
-        transform: translateY(-30px) scale(1);
-    }
-
-    85% {
-        opacity: 0.1;
-        transform: translateY(-120px) scale(0.3);
-    }
-}
-
-/* ── PAGE TRANSITION ─────────────────────────────────────── */
-.page {
-    opacity: 0;
-    animation: pageFadeIn 0.45s var(--ease-out) forwards;
-}
-
-.page.active {
-    display: block;
-}
-
-@keyframes pageFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ── SCROLL REVEAL ───────────────────────────────────────── */
-.reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.reveal-left {
-    opacity: 0;
-    transform: translateX(-28px);
-    transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
-}
-
-.reveal-left.active {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.reveal-right {
-    opacity: 0;
-    transform: translateX(28px);
-    transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
-}
-
-.reveal-right.active {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.reveal-scale {
-    opacity: 0;
-    transform: scale(0.94);
-    transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
-}
-
-.reveal-scale.active {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* ── STAGGER CHILDREN ────────────────────────────────────── */
-.stagger-children>* {
-    opacity: 0;
-    transform: translateY(18px);
-}
-
-.stagger-children.active>* {
-    animation: staggerIn 0.55s var(--ease-out) forwards;
-}
-
-.stagger-children.active>*:nth-child(1) {
-    animation-delay: 0.04s;
-}
-
-.stagger-children.active>*:nth-child(2) {
-    animation-delay: 0.08s;
-}
-
-.stagger-children.active>*:nth-child(3) {
-    animation-delay: 0.12s;
-}
-
-.stagger-children.active>*:nth-child(4) {
-    animation-delay: 0.16s;
-}
-
-.stagger-children.active>*:nth-child(5) {
-    animation-delay: 0.20s;
-}
-
-.stagger-children.active>*:nth-child(6) {
-    animation-delay: 0.24s;
-}
-
-.stagger-children.active>*:nth-child(7) {
-    animation-delay: 0.28s;
-}
-
-.stagger-children.active>*:nth-child(8) {
-    animation-delay: 0.32s;
-}
-
-.stagger-children.active>*:nth-child(9) {
-    animation-delay: 0.36s;
-}
-
-.stagger-children.active>*:nth-child(10) {
-    animation-delay: 0.40s;
-}
-
-@keyframes staggerIn {
-    from {
-        opacity: 0;
-        transform: translateY(18px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ── UTILITY ANIMATIONS ──────────────────────────────────── */
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-.animate-float {
-    animation: float 4s ease-in-out infinite;
-}
-
-@keyframes pulseSlow {
-
-    0%,
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    50% {
-        opacity: 0.8;
-        transform: scale(0.97);
-    }
-}
-
-.animate-pulse-slow {
-    animation: pulseSlow 4s ease-in-out infinite;
-}
-
-@keyframes spinSlow {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.animate-spin-slow {
-    animation: spinSlow 8s linear infinite;
-}
-
+/* ══ KEYFRAMES ══ */
 @keyframes breathe {
-
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 0.3;
+    0%, 100% { transform: scale(1);    opacity: 0.85; }
+    50%       { transform: scale(1.04); opacity: 1;    }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0);     }
+    50%       { transform: translateY(-15px); }
+}
+@keyframes gold-breathe {
+    0%, 100% {
+        box-shadow: 0 0 30px rgba(244, 235, 208, 0.15), 0 0 0 1px rgba(244, 235, 208, 0.10);
     }
-
     50% {
-        transform: scale(1.04);
-        opacity: 0.5;
+        box-shadow: 0 0 60px rgba(244, 235, 208, 0.30), 0 0 0 1px rgba(244, 235, 208, 0.20);
     }
 }
-
-.animate-breathe {
-    animation: breathe 6s ease-in-out infinite;
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0  0 rgba(244, 235, 208, 0); }
+    50%       { box-shadow: 0 0 48px 12px rgba(244, 235, 208, 0.25); }
 }
 
-@keyframes bounce-gentle {
+/* ══ ANIMATION UTILITIES ══ */
+.animate-breathe     { animation: breathe      4s  var(--ease-gentle) infinite; }
+.animate-float       { animation: float        7s  ease-in-out         infinite; }
+.animate-pulse-glow  { animation: pulse-glow   3s  ease-in-out         infinite; }
+.animate-gold-breathe { animation: gold-breathe 4s ease-in-out infinite; }
+.animate-indigo-breathe { animation: gold-breathe 4s ease-in-out infinite; } /* Alias */
 
-    0%,
-    100% {
-        transform: translateY(0);
-    }
+/* ══ GLASSMORPHISM — Midnight Gold ══ */
 
-    50% {
-        transform: translateY(-6px);
-    }
+/* Ghost panel */
+.glass-pane {
+    background   : rgba(244, 235, 208, 0.04);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border       : 1px solid rgba(244, 235, 208, 0.12);
+    box-shadow   : 0 8px 32px rgba(0, 0, 0, 0.40);
 }
 
-.animate-bounce-gentle {
-    animation: bounce-gentle 2s ease-in-out infinite;
+/* Standard card */
+.glass-card {
+    background   : rgba(27, 38, 59, 0.65);
+    backdrop-filter: blur(32px) saturate(160%);
+    -webkit-backdrop-filter: blur(32px) saturate(160%);
+    border       : 1px solid rgba(244, 235, 208, 0.14);
+    border-radius: 24px;
+    box-shadow   :
+        0 8px 40px rgba(0, 0, 0, 0.50),
+        inset 0 1px 0 rgba(244, 235, 208, 0.08);
+    transition   :
+        transform    0.7s var(--ease-fluid),
+        border-color 0.7s var(--ease-fluid),
+        box-shadow   0.7s var(--ease-fluid);
+}
+.glass-card:hover {
+    transform    : translateY(-10px) scale(1.02);
+    border-color : rgba(244, 235, 208, 0.35);
+    box-shadow   :
+        0 24px 70px rgba(0, 0, 0, 0.65),
+        0 0 40px rgba(244, 235, 208, 0.15),
+        inset 0 1px 0 rgba(244, 235, 208, 0.12);
 }
 
-@keyframes ping {
-    0% {
-        transform: scale(1);
-        opacity: 0.8;
-    }
-
-    75%,
-    100% {
-        transform: scale(2);
-        opacity: 0;
-    }
+/* ══ BUTTONS — Premium Midnight Gold ══ */
+.btn-premium {
+    position      : relative;
+    display       : inline-flex;
+    align-items   : center;
+    justify-content: center;
+    gap           : 0.75rem;
+    padding       : 1.1rem 3rem;
+    border-radius : 9999px;
+    color         : #1B263B;
+    background    : #F4EBD0;
+    font-weight   : 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size     : 0.7rem;
+    cursor        : pointer;
+    border        : 1px solid rgba(244, 235, 208, 0.4);
+    box-shadow    :
+        0 20px 60px rgba(244, 235, 208, 0.25),
+        0  0   0 1px rgba(244, 235, 208, 0.1);
+    transition    :
+        transform    0.6s var(--ease-fluid),
+        box-shadow   0.6s var(--ease-fluid),
+        background   0.6s var(--ease-fluid),
+        letter-spacing 0.6s var(--ease-fluid);
+}
+.btn-premium:hover {
+    transform      : translateY(-4px) scale(1.03);
+    letter-spacing : 0.2em;
+    background     : #FFFFFF;
+    box-shadow     :
+        0 30px 80px rgba(244, 235, 208, 0.4),
+        0  0   0 1px rgba(244, 235, 208, 0.5);
 }
 
-.animate-ping {
-    animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+.btn-ghost {
+    background   : transparent;
+    border       : 1px solid rgba(244, 235, 208, 0.3);
+    color        : #F4EBD0;
+    border-radius: 9999px;
+    padding      : 1rem 2.5rem;
+    font-weight  : 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size    : 0.7rem;
+    transition   : all 0.6s var(--ease-fluid);
+}
+.btn-ghost:hover {
+    background   : rgba(244, 235, 208, 0.1);
+    border-color : #F4EBD0;
+    transform    : translateY(-2px);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.animate-fade-in {
-    animation: fadeIn var(--duration-normal) var(--ease-out) forwards;
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(16px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-slide-up {
-    animation: slideUp var(--duration-normal) var(--ease-spring) forwards;
-}
-
-/* Shimmer alias (legacy compat) */
-@keyframes shimmer {
-    0% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.animate-shimmer {
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
-    background-size: 800px 100%;
-    animation: shimmer 2.5s infinite linear;
-}
-
-/* ── PARALLAX WRAPPER ────────────────────────────────────── */
-.parallax-section {
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
-
-.parallax-layer {
-    will-change: transform;
-}
-
-/* ── LOADING SPINNER ─────────────────────────────────────── */
-.spinner {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--color-border);
-    border-top-color: var(--color-accent);
-    border-radius: 50%;
-    animation: spinSlow 0.7s linear infinite;
-    display: inline-block;
-}
-
-.spinner-lg {
-    width: 40px;
-    height: 40px;
-    border-width: 3px;
-}
-
-/* ── REDUCED MOTION ──────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-
-    .reveal,
-    .reveal-left,
-    .reveal-right,
-    .reveal-scale,
-    .stagger-children>*,
-    .stagger-children.active>* {
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
-        transition: none !important;
-    }
-
-    .mandala-bg,
-    .sacred-geometry,
-    .animate-float,
-    .animate-pulse-slow,
-    .animate-spin-slow,
-    .animate-breathe,
-    .animate-bounce-gentle,
-    .animate-ping,
-    .hero-gradient-bg::before {
-        animation: none !important;
-    }
-
-    .particle {
-        display: none;
-    }
+/* ══ ORB HELPERS ══ */
+.orb {
+    position:absolute; border-radius:50%; filter:blur(140px); pointer-events:none;
+    background: radial-gradient(circle, rgba(244, 235, 208, 0.15) 0%, rgba(27, 38, 59, 0.8) 70%, transparent 100%);
 }

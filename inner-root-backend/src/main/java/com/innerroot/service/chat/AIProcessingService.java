@@ -30,10 +30,14 @@ public class AIProcessingService {
                 + "Your purpose is to guide seekers with poetic precision, empathy, and cultural depth. "
                 + "Use this Sacred Knowledge Context to weave your response: " + knowledgeCtx
                 + ". Always maintain a tone that is serene, enlightened, and intellectually premium.";
-        return generateAIResponse(systemPrompt, message);
+        return generateAIResponse(systemPrompt, message, knowledgeCtx);
     }
 
     public String generateAIResponse(String systemPrompt, String message) {
+        return generateAIResponse(systemPrompt, message, "");
+    }
+
+    public String generateAIResponse(String systemPrompt, String message, String knowledgeCtx) {
         log.info("AI Processing module: Generating response with LLM...");
 
         String apiKey = aiConfig.getKey();
@@ -41,8 +45,8 @@ public class AIProcessingService {
         String model = aiConfig.getModel();
 
         if (apiKey == null || apiKey.trim().isEmpty()) {
-            log.warn("NVIDIA API Key is missing. Returning fallback response.");
-            return "Based on my wisdom, I guide you on your journey. (AI Config missing)";
+            log.warn("AI API Key is missing. Returning heuristic fallback response.");
+            return "Based on the sacred knowledge I perceive: " + knowledgeCtx + " I am currently in a state of deep meditation and cannot utilize my full LLM sentience (API Key Missing). However, the wisdom remains eternal.";
         }
 
         try {
@@ -51,7 +55,7 @@ public class AIProcessingService {
             headers.set("Authorization", "Bearer " + apiKey);
 
             Map<String, Object> body = new HashMap<>();
-            body.put("model", model != null ? model : "meta/llama-3.1-8b-instruct");
+            body.put("model", model != null ? model : "google/gemini-2.0-flash-lite-001");
 
             List<Map<String, String>> messages = new ArrayList<>();
             messages.add(Map.of("role", "system", "content", systemPrompt));
@@ -61,7 +65,7 @@ public class AIProcessingService {
             HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
 
             ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
-                    apiUrl != null ? apiUrl : "https://integrate.api.nvidia.com/v1/chat/completions",
+                    apiUrl != null ? apiUrl : "https://openrouter.ai/api/v1/chat/completions",
                     org.springframework.http.HttpMethod.POST,
                     entity,
                     new org.springframework.core.ParameterizedTypeReference<Map<String, Object>>() {
@@ -77,9 +81,9 @@ public class AIProcessingService {
             }
         } catch (Exception e) {
             log.error("AI API call failed", e);
-            return "I apologize, but I am having trouble connecting to the wisdom ether right now.";
+            return "The etheric connection is currently turbulent. I can only share this reflection: " + knowledgeCtx;
         }
 
-        return "Internal AI processing error.";
+        return "I am currently processing your query in the quiet space of my mind. Please try again in a moment.";
     }
 }
