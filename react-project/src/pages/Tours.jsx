@@ -4,12 +4,12 @@ import { Compass, MapPin, Clock, Star, ArrowRight, Camera } from 'lucide-react';
 import SEO from '../components/ui/SEO';
 
 const tours = [
-    { title: 'Royal Heritage Hub', location: 'Delhi, Agra, Jaipur', duration: '7 days', rating: 4.9, desc: 'Experience the iconic Mughal and Rajput architectural marvels through a regal lens.', color: '#F4EBD0' },
-    { title: 'Kerala Coastal Wellness', location: 'Alleppey, Munnar, Kochi', duration: '5 days', rating: 4.8, desc: 'Houseboat cruises, Ayurvedic therapies, and spice plantation walks under a starlit canopy.', color: '#E3D8B4' },
-    { title: 'Varanasi Sacred Immersion', location: 'Varanasi, Sarnath', duration: '4 days', rating: 4.9, desc: 'Witness the Ganga Aarti, explore ancient ghats, and walk in the footsteps of the Buddha.', color: '#D1C598' },
-    { title: 'Hampi Ancient Ruins', location: 'Hampi, Badami, Aihole', duration: '4 days', rating: 4.7, desc: 'Step into the ruins of the Vijayanagara Empire — boulder-strewn landscapes and ancient temples.', color: '#F4EBD0' },
-    { title: 'Ladakh High Monasteries', location: 'Leh, Nubra, Pangong', duration: '6 days', rating: 4.9, desc: 'Buddhist monasteries set against the dramatic Himalayan landscape at the roof of the world.', color: '#E3D8B4' },
-    { title: 'Odisha Heritage Trail', location: 'Bhubaneswar, Puri, Konark', duration: '5 days', rating: 4.6, desc: 'From the Sun Temple of Konark to the Jagannath Temple of Puri — a pilgrimage through time.', color: '#D1C598' },
+    { title: 'Royal Heritage Hub', location: 'Delhi, Agra, Jaipur', duration: '7 days', rating: 4.9, desc: 'Experience the iconic Mughal and Rajput architectural marvels through a regal lens.' },
+    { title: 'Kerala Coastal Wellness', location: 'Alleppey, Kochi', duration: '5 days', rating: 4.8, desc: 'Houseboat cruises, Ayurvedic therapies, and spice plantation walks under a starlit canopy.' },
+    { title: 'Varanasi Sacred Immersion', location: 'Varanasi, Sarnath', duration: '4 days', rating: 4.9, desc: 'Witness the Ganga Aarti, explore ancient ghats, and walk in the footsteps of the Buddha.' },
+    { title: 'Hampi Ancient Ruins', location: 'Hampi, Badami', duration: '4 days', rating: 4.7, desc: 'Step into the ruins of the Vijayanagara Empire — boulder-strewn landscapes and ancient temples.' },
+    { title: 'Ladakh High Monasteries', location: 'Leh, Nubra', duration: '6 days', rating: 4.9, desc: 'Buddhist monasteries set against the dramatic Himalayan landscape at the roof of the world.' },
+    { title: 'Odisha Heritage Trail', location: 'Konark, Puri', duration: '5 days', rating: 4.6, desc: 'From the Sun Temple of Konark to the Jagannath Temple of Puri — a pilgrimage through time.' },
 ];
 
 const Tours = () => {
@@ -19,67 +19,63 @@ const Tours = () => {
     const gridInView = useInView(gridRef, { once: true, margin: '-80px' });
 
     return (
-        <>
-            <SEO title="Virtual Tours — Inner Root" description="Take immersive virtual tours of India's most sacred and culturally rich destinations." />
+        <div className="min-h-screen bg-spiritual-gradient text-brand-ivory font-body pb-32 pt-40 px-8">
+            <SEO title="Virtual Tours | Inner Root Immersion" description="Immersive virtual tours into the heart of India's sacred geography." />
 
-            <section ref={heroRef} className="relative overflow-hidden section-padding" style={{ paddingBottom: 'var(--sp-12)' }}>
-                <div className="sacred-geometry" style={{ opacity: 0.02 }} />
-                <div className="max-w-4xl mx-auto px-6 text-center">
-                    <motion.div initial={{ opacity: 0, y: 30 }} animate={heroInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
-                        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-semibold tracking-widest uppercase" style={{ background: 'var(--accent-soft)', color: 'var(--accent)' }}>
-                            <Compass size={14} /> Virtual Tours
-                        </span>
-                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-5 text-gold-500">
-                            Immersive <span className="text-gold-100">Journeys</span>
-                        </h1>
-                        <p className="text-base sm:text-lg max-w-2xl mx-auto text-muted-gray">
-                            Walk through India's most sacred destinations from anywhere in the world.
-                        </p>
-                    </motion.div>
-                </div>
+            <section ref={heroRef} className="relative mb-24 max-w-5xl mx-auto text-center">
+                <motion.div initial={{ opacity: 0, y: 30 }} animate={heroInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }}>
+                    <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full mb-8 text-[10px] font-bold tracking-[0.4em] uppercase bg-brand-gold/10 text-brand-gold border border-brand-gold/20">
+                        <Compass size={16} /> Expedition Nodes
+                    </span>
+                    <h1 className="text-6xl md:text-8xl font-serif font-bold mb-8 text-brand-gold uppercase tracking-tight leading-none">
+                        Immersive <br /> <span className="text-brand-ivory opacity-20 italic font-light">Journeys</span>
+                    </h1>
+                    <p className="text-xl max-w-2xl mx-auto text-brand-ivory/60 font-light leading-relaxed">
+                        Transcend physical boundaries. Access 1:1 digital twins of India's most resonant sacred sites.
+                    </p>
+                </motion.div>
             </section>
 
-            <section ref={gridRef} className="section-padding" style={{ paddingTop: 0 }}>
-                <div className="max-w-6xl mx-auto px-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {tours.map((tour, i) => (
-                            <motion.div
-                                key={tour.title}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={gridInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ delay: i * 0.08, duration: 0.5 }}
-                                className="card-luxury p-0 group cursor-pointer overflow-hidden"
-                            >
-                                {/* Color header */}
-                                <div className="h-36 relative" style={{ background: `linear-gradient(135deg, ${tour.color}20, ${tour.color}08)` }}>
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <Camera size={40} style={{ color: tour.color, opacity: 0.3 }} />
-                                    </div>
-                                    <div className="absolute top-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold" style={{ background: 'var(--bg-glass-strong)', backdropFilter: 'blur(8px)', color: tour.color }}>
-                                        <Star size={10} fill="currentColor" /> {tour.rating}
-                                    </div>
+            <section ref={gridRef} className="max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    {tours.map((tour, i) => (
+                        <motion.div
+                            key={tour.title}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={gridInView ? { opacity: 1, scale: 1 } : {}}
+                            transition={{ delay: i * 0.08, duration: 0.6 }}
+                            className="spiritual-card p-0 group cursor-pointer overflow-hidden backdrop-blur-3xl hover:border-brand-gold/50 transition-all duration-500 shadow-2xl flex flex-col"
+                        >
+                            {/* Visual Header */}
+                            <div className="h-44 relative bg-brand-navy/60 overflow-hidden">
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <Camera size={48} className="text-brand-gold/10 group-hover:scale-110 transition-transform duration-700" />
+                                    <div className="absolute inset-0 bg-brand-gold/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </div>
+                                <div className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-bold bg-brand-gold text-brand-navy shadow-gold-glow">
+                                    <Star size={12} fill="currentColor" /> {tour.rating}
+                                </div>
+                            </div>
 
-                                <div className="p-8">
-                                    <div className="flex items-center gap-4 mb-4 text-[10px] font-black uppercase tracking-widest text-gold-500/30">
-                                        <span className="flex items-center gap-2"><MapPin size={12} /> {tour.location}</span>
-                                        <span className="flex items-center gap-2"><Clock size={12} /> {tour.duration}</span>
-                                    </div>
-                                    <h3 className="text-xl font-black uppercase mb-3 text-gold-500">
-                                        {tour.title}
-                                    </h3>
-                                    <p className="text-sm leading-relaxed mb-6 text-muted-gray">{tour.desc}</p>
-                                    <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-300 group-hover:gap-4 text-gold-500">
-                                        <span>Start Tour</span>
-                                        <ArrowRight size={14} />
-                                    </div>
+                            <div className="p-10 flex-grow flex flex-col">
+                                <div className="flex items-center gap-5 mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold/40">
+                                    <span className="flex items-center gap-2"><MapPin size={14} /> {tour.location}</span>
+                                    <span className="flex items-center gap-2"><Clock size={14} /> {tour.duration}</span>
                                 </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                                <h3 className="text-3xl font-serif font-bold uppercase mb-4 text-brand-gold group-hover:drop-shadow-gold-glow transition-all duration-300">
+                                    {tour.title}
+                                </h3>
+                                <p className="text-base leading-relaxed mb-8 text-brand-ivory/50 font-light flex-grow">{tour.desc}</p>
+                                <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest transition-all duration-300 group-hover:gap-5 text-brand-gold">
+                                    <span>Initialize Tour</span>
+                                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </section>
-        </>
+        </div>
     );
 };
 

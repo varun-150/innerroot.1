@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import {
     Search, Star, ArrowRight, Clock, Eye, Sparkles
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import SEO from '../components/ui/SEO';
-import { useScrollReveal } from '../hooks/useScrollReveal';
-import AmbientGlow from '../components/ui/AmbientGlow';
+import { motion } from 'framer-motion';
 
 const categories = ['All', 'Vedas', 'Yoga', 'Meditation', 'History'];
 
@@ -44,37 +44,45 @@ const articles = [
 const Library = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState('All');
-    useScrollReveal();
 
     return (
-        <div className="bg-gradient-primary min-h-screen text-muted-gray font-body pb-32 pt-32 px-6 overflow-hidden">
-            <SEO title="Ancient Library" />
+        <div className="min-h-screen bg-spiritual-gradient text-brand-ivory font-body pb-32 pt-40 px-8 selection:bg-brand-gold/30">
+            <SEO title="Ancient Library | Spiritual Chronicles" />
 
             <div className="max-w-7xl mx-auto">
-                <div className="mb-20 relative text-center md:text-left reveal">
-                    <AmbientGlow color="rgba(244,235,208,0.06)" top="40%" left="20%" />
+                <div className="mb-24 relative text-center md:text-left">
+                    <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="flex items-center gap-4 mb-6">
+                        <span className="w-12 h-[1px] bg-brand-gold/30" />
+                        <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-brand-gold/60">Digital Repository Locked</span>
+                    </motion.div>
                     
-                    <span className="text-gold-500 font-black uppercase text-[10px] tracking-widest mb-4 block">Digital Repository</span>
-                    <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-8 italic text-gold-500">Ancient <span className="text-gold-100">Chronicles</span></h1>
+                    <motion.h1 
+                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} 
+                        className="text-7xl md:text-9xl font-serif font-bold uppercase tracking-tight mb-12 text-brand-gold drop-shadow-gold-glow"
+                    >
+                        Ancient <br /> <span className="text-brand-ivory opacity-20 italic font-light">Chronicles</span>
+                    </motion.h1>
                     
-                    <div className="bg-midnight-800 border border-gold-500/20 p-6 rounded-3xl flex flex-col md:flex-row gap-6 shadow-2xl">
+                    <div className="spiritual-card p-6 flex flex-col md:flex-row gap-8 shadow-2xl bg-brand-navy/60 backdrop-blur-3xl border-brand-gold/10">
                         <div className="relative flex-grow">
-                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
+                            <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-brand-gold/30" size={20} />
                             <input 
                                 type="text"
-                                placeholder="Search the records..."
-                                className="w-full bg-midnight-950/40 border border-gold-500/10 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-gold-500/30 transition-all text-gold-100 placeholder:text-muted-gray/30"
+                                placeholder="Query the akashic memory..."
+                                className="w-full bg-brand-navy/40 border border-brand-gold/20 rounded-2xl py-5 pl-14 pr-4 outline-none focus:border-brand-gold/50 transition-all text-brand-ivory placeholder:text-brand-ivory/20 font-body"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
-                        <div className="flex gap-2 overflow-x-auto no-scrollbar">
+                        <div className="flex gap-3 overflow-x-auto no-scrollbar py-1">
                             {categories.map(cat => (
                                 <button
                                     key={cat}
                                     onClick={() => setActiveCategory(cat)}
-                                    className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${
-                                        activeCategory === cat ? 'bg-gold-500 text-midnight-950 shadow-glow-accent' : 'bg-midnight-950/50 text-muted-gray hover:text-gold-500 border border-gold-500/5'
+                                    className={`px-8 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap border ${
+                                        activeCategory === cat 
+                                            ? 'bg-brand-gold text-brand-navy border-brand-gold shadow-gold-glow' 
+                                            : 'bg-brand-navy/40 text-brand-ivory/50 hover:text-brand-gold border-brand-gold/10 hover:border-brand-gold/30'
                                     }`}
                                 >
                                     {cat}
@@ -84,47 +92,56 @@ const Library = () => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                     {articles.map((art, i) => (
-                        <div key={i} className="card-luxury p-0 rounded-3xl overflow-hidden group hover:border-gold-500 transition-colors reveal">
-                            <div className="h-56 bg-black relative">
+                        <motion.div 
+                            key={i} 
+                            initial={{ opacity: 0, y: 30 }} 
+                            animate={{ opacity: 1, y: 0 }} 
+                            transition={{ delay: i * 0.1 }}
+                            className="spiritual-card p-0 rounded-[2.5rem] overflow-hidden group hover:border-brand-gold/40 transition-all duration-500 flex flex-col h-full shadow-2xl"
+                        >
+                            <div className="h-64 relative overflow-hidden">
                                 <img 
                                     src={art.image} 
                                     alt={art.title} 
-                                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" 
+                                    className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" 
                                 />
-                                <div className="absolute top-4 left-4 bg-gold-500/20 border border-gold-500/30 text-gold-500 text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-lg">
+                                <div className="absolute top-6 left-6 bg-brand-gold/90 text-brand-navy text-[9px] font-bold uppercase tracking-[0.3em] px-4 py-2 rounded-xl shadow-gold-glow">
                                     {art.category}
                                 </div>
                             </div>
-                            <div className="p-10 space-y-6">
-                                <div className="flex items-center gap-6 text-[9px] font-black uppercase tracking-[0.4em] text-gold-400/60">
-                                    <span className="flex items-center gap-2"><Clock size={12} className="text-gold-500" /> {art.readTime}</span>
-                                    <span className="flex items-center gap-2"><Eye size={12} className="text-gold-500" /> {art.views} Views</span>
+                            <div className="p-10 space-y-6 flex-grow flex flex-col">
+                                <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.4em] text-brand-gold/40">
+                                    <span className="flex items-center gap-2"><Clock size={14} /> {art.readTime}</span>
+                                    <span className="flex items-center gap-2"><Eye size={14} /> {art.views}</span>
                                 </div>
-                                <h3 className="text-2xl font-black uppercase group-hover:text-gold-hover transition-colors leading-tight text-gold-500">{art.title}</h3>
-                                <p className="text-muted-gray text-sm line-clamp-2 leading-relaxed">{art.desc}</p>
-                                <div className="pt-6 border-t border-white/5 flex items-center justify-between">
-                                    <div className="flex text-gold-500">
-                                        {[...Array(5)].map((_, i) => <Star key={i} size={12} fill={i < 4 ? 'currentColor' : 'none'} className="opacity-50" />)}
+                                <h3 className="text-3xl font-serif font-bold text-brand-gold group-hover:drop-shadow-gold-glow transition-all duration-300 leading-tight">{art.title}</h3>
+                                <p className="text-brand-ivory/50 text-base line-clamp-2 leading-relaxed font-body flex-grow">{art.desc}</p>
+                                <div className="pt-8 border-t border-brand-gold/5 flex items-center justify-between">
+                                    <div className="flex text-brand-gold/40">
+                                        {[...Array(5)].map((_, idx) => <Star key={idx} size={14} fill={idx < 4 ? 'currentColor' : 'none'} className="mr-1" />)}
                                     </div>
-                                    <ArrowRight size={18} className="text-gold-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <Link to={`/library/${art.id}`} className="p-3 bg-brand-gold/10 rounded-full text-brand-gold opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-0 -translate-x-4">
+                                        <ArrowRight size={20} />
+                                    </Link>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
-                {/* Large CTA */}
-                <div className="mt-32 p-16 md:p-24 card-luxury text-center relative overflow-hidden group reveal">
+                {/* Membership CTA */}
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} className="mt-40 p-16 md:p-32 spiritual-card text-center relative overflow-hidden shadow-gold-glow-subtle bg-white/[0.02]">
+                    <div className="absolute inset-0 bg-brand-gold/[0.02] animate-pulse" />
                     <div className="relative z-10">
-                        <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none italic text-gold-500">Intelligence <span className="text-gold-100">Plus</span></h2>
-                        <p className="text-muted-gray text-xl max-w-xl mx-auto mb-12 font-bold">Join Heritage Pro for deep-dive translations and exclusive archives.</p>
-                        <button className="btn-primary flex items-center gap-3 mx-auto">
-                            <Sparkles size={18} /> Upgrade Access
+                        <h2 className="text-5xl md:text-7xl font-serif font-bold uppercase tracking-tight mb-10 leading-none text-brand-gold">Collective <span className="opacity-20">Plus</span></h2>
+                        <p className="text-brand-ivory/70 text-xl max-w-2xl mx-auto mb-14 font-light leading-relaxed">Unlock the deep-dive Sanskrit translations and high-resolution heritage blueprints.</p>
+                        <button className="btn-primary flex items-center gap-4 mx-auto px-12 py-5 uppercase tracking-widest text-sm">
+                            <Sparkles size={20} /> Upgrade Memory Access
                         </button>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </div>
     );

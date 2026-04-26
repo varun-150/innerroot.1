@@ -45,6 +45,11 @@
       "source": "nextlevelbuilder/ui-ux-pro-max-skill",
       "sourceType": "github",
       "computedHash": "6337038fe1fe6bbe1b9f252ab678ee575859190bab6f0f246f4061824eb40875"
+    },
+    "web-development": {
+      "source": "mindrally/skills",
+      "sourceType": "github",
+      "computedHash": "36a57bb9c6bb727ebe9f09f3bad5caf647831bea3c2872f6cbe17f67cd6d8ce0"
     }
   }
 }

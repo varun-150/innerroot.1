@@ -88,8 +88,8 @@ function HeritageExplorer() {
         <style dangerouslySetInnerHTML={{ __html: `
             .custom-scrollbar::-webkit-scrollbar { width: 4px; }
             .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-            .leaflet-container { background: #000 !important; }
-            .map-tiles { filter: grayscale(1) invert(1) brightness(0.6) contrast(1.2) !important; }
+            .leaflet-container { background: #0a0e1a !important; }
+            .map-tiles { filter: brightness(0.85) contrast(1.15) sepia(0.25) hue-rotate(10deg) !important; }
         `}} />
     </div>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Heart, Target, Globe, Sparkles, ArrowRight } from 'lucide-react';
 import SEO from '../components/ui/SEO';
@@ -23,107 +24,100 @@ const timeline = [
 ];
 
 const About = () => (
-    <div className="min-h-screen bg-gradient-primary font-body pb-32 pt-32 px-6 relative overflow-hidden text-muted-gray">
-        <SEO title="About Inner Root" />
-
-        {/* Background Orbs */}
-        <div className="fixed inset-0 pointer-events-none z-0">
-            <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full blur-[160px] opacity-5 bg-gold-500 animate-float" />
-            <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] rounded-full blur-[140px] opacity-5 bg-gold-400 animate-breathe" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[120px] opacity-[0.03] bg-gold-300" />
-        </div>
+    <div className="min-h-screen bg-spiritual-gradient font-body pb-32 pt-40 px-8 relative overflow-x-hidden text-brand-ivory/80">
+        <SEO title="About Inner Root | Spiritual AI Collective" />
 
         {/* ── HERO ── */}
-        <div className="max-w-4xl mx-auto text-center mb-32 relative z-10">
-            <span className="text-[9px] font-black uppercase tracking-[0.6em] mb-6 block text-gold-500">Historical Dossier</span>
-            <h1 className="font-display font-black uppercase tracking-tighter mb-8 leading-none text-gold-500"
-                style={{ fontSize:'clamp(3.5rem,9vw,7.5rem)' }}>
-                The <span className="text-gold-100">Collective</span>
-            </h1>
-            <p className="text-xl leading-relaxed max-w-2xl mx-auto text-muted-gray">
-                Inner Root is a digital architecture where ancient wisdom meets silicon reality.
-            </p>
+        <div className="max-w-5xl mx-auto text-center mb-32 relative z-10">
+            <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[10px] font-bold uppercase tracking-[0.6em] mb-8 block text-brand-gold/60">Historical Archive Node</motion.span>
+            <motion.h1 
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                className="font-serif font-bold uppercase tracking-tight mb-12 leading-[0.9] text-brand-gold drop-shadow-gold-glow"
+                style={{ fontSize:'clamp(4rem,10vw,8rem)' }}
+            >
+                The <span className="text-brand-ivory opacity-20">Spiritual</span> <br /> Architecture
+            </motion.h1>
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="text-2xl font-light leading-relaxed max-w-3xl mx-auto text-brand-ivory/60">
+                Inner Root represents a collision of 5,000 years of distilled Vedic chronicles with the next generation of artificial intelligence.
+            </motion.p>
         </div>
 
-        {/* Gradient divider */}
-        <div className="h-[1px] w-full max-w-7xl mx-auto mb-32 relative z-10"
-            style={{ background: 'var(--gold-500)', opacity: 0.15 }} />
-
         {/* ── MISSION ── */}
-        <section className="max-w-4xl mx-auto mb-40 relative z-10">
-            <div className="card-luxury p-16 text-center relative overflow-hidden">
-                <div className="absolute inset-0 opacity-[0.04] bg-gold-500" />
-                <h2 className="text-4xl font-display font-black uppercase mb-8 leading-none text-gold-500">
-                    Our Mission
+        <section className="max-w-4xl mx-auto mb-48 relative z-10">
+            <div className="spiritual-card p-16 md:p-24 text-center relative overflow-hidden backdrop-blur-3xl">
+                <div className="absolute inset-0 bg-brand-gold/[0.03] animate-pulse" />
+                <h2 className="text-4xl md:text-5xl font-serif font-bold uppercase mb-10 leading-none text-brand-gold">
+                    Our Core Mission
                 </h2>
-                <p className="text-2xl leading-relaxed font-light max-w-2xl mx-auto text-gold-100">
-                    "To bridge India's timeless heritage with AI-powered self-awareness, creating a sanctuary for every digital seeker."
+                <p className="text-2xl md:text-3xl leading-relaxed font-light text-brand-ivory max-w-2xl mx-auto">
+                    "To digitize the eternal essence of Bharat's heritage, transforming static wisdom into interactive, sentient enlightenment."
                 </p>
             </div>
         </section>
 
         {/* ── VALUES ── */}
-        <section className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-40 relative z-10">
+        <section className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-48 relative z-10">
             {values.map((v, i) => (
-                <div key={i} className="card-luxury p-10 group relative overflow-hidden">
-                    <div className="absolute top-0 left-0 right-0 h-[2px] opacity-60 bg-gold-500" />
-                    <div className="w-16 h-16 glass-pane rounded-3xl flex items-center justify-center mb-8 text-gold-500 group-hover:scale-110 transition-transform duration-700 bg-black/40 border border-gold-500/10">
+                <div key={i} className="spiritual-card p-10 group hover:border-brand-gold/40 transition-all duration-500">
+                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 bg-brand-gold/10 text-brand-gold group-hover:scale-110 group-hover:bg-brand-gold/20 transition-all duration-500 border border-brand-gold/20">
                         <v.icon size={28} />
                     </div>
-                    <h3 className="text-2xl font-display font-black uppercase mb-4 text-gold-500">
+                    <h3 className="text-2xl font-serif font-bold uppercase mb-4 text-brand-gold">
                         {v.title}
                     </h3>
-                    <p className="text-sm leading-relaxed text-muted-gray">{v.desc}</p>
+                    <p className="text-sm leading-relaxed text-brand-ivory/50 font-body">{v.desc}</p>
                 </div>
             ))}
         </section>
 
-        {/* Divider */}
-        <div className="h-[1px] w-full max-w-7xl mx-auto mb-40 relative z-10 bg-gold-500/10" />
-
-        {/* ── TIMELINE ── */}
-        <section className="max-w-7xl mx-auto mb-40 overflow-x-auto pb-12 relative z-10">
-            <h2 className="text-center font-display font-black uppercase tracking-tighter mb-20 text-4xl text-gold-500">
-                Milestones
-            </h2>
-            <div className="flex md:justify-center gap-10 min-w-max px-6">
+        {/* ── MILESTONES ── */}
+        <section className="max-w-7xl mx-auto mb-48 relative z-10">
+            <div className="flex items-center gap-6 mb-20 justify-center">
+                <div className="h-[1px] w-20 bg-brand-gold/20" />
+                <h2 className="font-serif font-bold uppercase tracking-tight text-5xl text-brand-gold">
+                    Chronology
+                </h2>
+                <div className="h-[1px] w-20 bg-brand-gold/20" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                 {timeline.map((item, i) => (
-                    <div key={i} className="text-center w-64 group card-luxury p-10">
-                        <div className="w-20 h-20 rounded-full flex items-center justify-center font-display font-black text-xl mx-auto mb-8 text-[#1B263B] bg-gold-500">
+                    <div key={i} className="spiritual-card p-12 text-center group">
+                        <div className="w-20 h-20 rounded-full flex items-center justify-center font-serif font-bold text-2xl mx-auto mb-10 text-brand-navy bg-brand-gold shadow-gold-glow group-hover:scale-110 transition-transform duration-500">
                             {item.year}
                         </div>
-                        <h4 className="text-xl font-display font-black uppercase mb-4 text-gold-500">
+                        <h4 className="text-2xl font-serif font-bold uppercase mb-4 text-brand-gold">
                             {item.event}
                         </h4>
-                        <p className="text-xs leading-relaxed px-4 text-muted-gray">{item.desc}</p>
+                        <p className="text-sm leading-relaxed text-brand-ivory/40 font-body px-4">{item.desc}</p>
                     </div>
                 ))}
             </div>
         </section>
 
         {/* ── TEAM ── */}
-        <section className="max-w-7xl mx-auto mb-32 relative z-10">
-            <div className="text-center mb-20">
-                <h2 className="font-display font-black uppercase tracking-tighter text-4xl text-gold-500">
-                    The <span className="text-gold-100">Builders</span>
+        <section className="max-w-7xl mx-auto mb-48 relative z-10">
+            <div className="text-center mb-24">
+                <h2 className="font-serif font-bold uppercase tracking-tight text-5xl text-brand-gold">
+                    Collective <span className="text-brand-ivory opacity-30">Lead</span>
                 </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 {teamMembers.map((member, i) => (
-                    <div key={i} className="card-luxury p-12 flex flex-col items-center text-center group">
-                        <div className="w-24 h-24 rounded-full flex items-center justify-center mb-8 text-3xl font-display font-black text-[#1B263B] bg-gold-500 transition-transform duration-700 group-hover:scale-110">
+                    <div key={i} className="spiritual-card p-12 flex flex-col items-center text-center group bg-white/[0.02]">
+                        <div className="w-28 h-28 rounded-full border border-brand-gold/20 flex items-center justify-center mb-10 text-4xl font-serif font-bold text-brand-gold bg-brand-navy group-hover:scale-110 group-hover:border-brand-gold/50 transition-all duration-700">
                             {member.initials}
                         </div>
-                        <h3 className="text-lg font-display font-black uppercase mb-3 text-gold-500">{member.name}</h3>
-                        <p className="text-[9px] font-black tracking-[0.4em] uppercase text-muted-gray">{member.role}</p>
+                        <h3 className="text-xl font-serif font-bold uppercase mb-3 text-brand-gold">{member.name}</h3>
+                        <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-ivory/40">{member.role}</p>
                     </div>
                 ))}
             </div>
         </section>
 
-        <div className="text-center relative z-10">
-            <Link to="/explore" className="btn-primary inline-flex items-center gap-4">
-                Explore Heritage <ArrowRight size={18} />
+        {/* ── FOOTER CTA ── */}
+        <div className="text-center relative z-10 pt-10">
+            <Link to="/explore" className="btn-primary inline-flex items-center gap-4 px-12 py-5 text-sm uppercase tracking-widest font-bold">
+                Enter the Archive <ArrowRight size={20} />
             </Link>
         </div>
     </div>

@@ -1,203 +1,157 @@
 /* ============================================================
-   INNER ROOT — Design System v6 "Midnight & Champagne"
-   Midnight Blue #1B263B · Champagne Gold #F4EBD0
+   INNER ROOT — Spiritual-Tech Design System
+   Deep Navy #0B1F3A · Dark Forest #0B2E26 · Gold #D4AF37
    ============================================================ */
 
 :root {
-    /* ══════════════════════════════════════════════════════
-       THE COLOR PALETTE — Midnight & Champagne Gold
-    ══════════════════════════════════════════════════════ */
+    /* ── Colors ── */
+    --brand-navy: #0B1F3A;
+    --brand-forest: #0B2E26;
+    --brand-gold: #D4AF37;
+    --brand-ivory: #F5F1E6;
+    
+    --bg-main: var(--brand-navy);
+    --bg-gradient: linear-gradient(135deg, var(--brand-navy) 0%, var(--brand-forest) 100%);
+    
+    --text-primary: var(--brand-ivory);
+    --text-secondary: rgba(245, 241, 230, 0.7);
+    --text-gold: var(--brand-gold);
+    
+    /* ── Glassmorphism ── */
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-blur: blur(16px);
+    
+    /* ── Shadows & Glows ── */
+    --gold-glow: 0 0 20px rgba(212, 175, 55, 0.2);
+    --gold-glow-hover: 0 0 30px rgba(212, 175, 55, 0.4);
+    
+    /* ── Spacing ── */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-8: 64px;
 
-    /* ── Midnight Blue Scale ── */
-    --midnight-950: #0B132B;   /* deepest base            */
-    --midnight-900: #1B263B;   /* page background          */
-    --midnight-850: #1E2A38;   /* card background A        */
-    --midnight-800: #223044;   /* search & filter bg       */
-    --midnight-footer: #0F1A2E; /* footer background       */
-    --midnight-750: #243B55;   /* highlight base           */
-
-    /* ── Champagne Gold Scale ── */
-    --gold-500: #F4EBD0;       /* ★ PRIMARY BRAND ACCENT   */
-    --gold-400: #EAD7B0;       /* SUBHEADINGS              */
-    --gold-300: #D1C598;       /* active state             */
-    --gold-200: #B5A97D;       /* subtle accents           */
-    --gold-100: #EAEAEA;       /* soft off-white           */
-    --gold-hover: #FFF3D6;     /* button hover state       */
-
-    /* ── Neutral Scale ── */
-    --text-muted: #AAB3C5;      /* ★ BODY TEXT READABILITY */
-    --text-pure:  #F4EBD0;
-
-    /* ── Transparent Layers ── */
-    --gold-alpha-5:  rgba(244, 235, 208, 0.05);
-    --gold-alpha-12: rgba(244, 235, 208, 0.12);
-    --gold-alpha-20: rgba(244, 235, 208, 0.20);
-    --gold-alpha-30: rgba(244, 235, 208, 0.30);
-    --gold-alpha-45: rgba(244, 235, 208, 0.45);
-    --midnight-alpha-60: rgba(27, 38, 59, 0.60);
-
-    /* ══ SEMANTIC TOKENS ══ */
-    --nightshade-pure: var(--midnight-900);
-    --color-bg:        var(--midnight-900);
-    --color-bg-subtle: var(--midnight-950);
-    --color-bg-muted:  var(--midnight-850);
-
-    --color-surface:        rgba(27, 38, 59, 0.70);
-    --color-surface-raised: rgba(36, 59, 85, 0.95);
-    --color-overlay:        rgba(13, 27, 42, 0.95);
-
-    --color-text:        var(--text-muted);
-    --color-text-strong: var(--gold-500);
-    --color-text-faint:  #64748B;
-    --color-text-accent: var(--gold-500);
-
-    /* Primary action — Champagne Gold */
-    --color-accent:      var(--gold-500);
-    --color-accent-hover:var(--gold-400);
-    --color-accent-soft: var(--gold-alpha-12);
-    --color-accent-glow: var(--gold-alpha-45);
-    --color-accent-faint:var(--gold-alpha-5);
-
-    --color-border:       rgba(244, 235, 208, 0.15);
-    --color-border-hover: rgba(244, 235, 208, 0.35);
-    --color-border-focus: rgba(244, 235, 208, 0.60);
-
-    /* ══ ELEVATION & SHADOWS ══ */
-    --shadow-sm:   0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
-    --shadow-md:   0 4px 12px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.4);
-    --shadow-lg:   0 12px 28px rgba(0,0,0,0.6), 0 4px 8px rgba(0,0,0,0.4);
-    --shadow-xl:   0 20px 48px rgba(0,0,0,0.7), 0 8px 16px rgba(0,0,0,0.5);
-
-    --shadow-glow-accent:
-        0 0 80px  rgba(244, 235, 208, 0.35),
-        0 0 30px  rgba(244, 235, 208, 0.15),
-        0 0  8px  rgba(244, 235, 208, 0.10);
-    --shadow-card:
-        0 8px 32px rgba(0, 0, 0, 0.40),
-        inset 0 1px 0 rgba(244, 235, 208, 0.08);
-    --shadow-card-hover:
-        0 20px 48px rgba(0, 0, 0, 0.60),
-        0 0 40px  rgba(244, 235, 208, 0.12),
-        inset 0 1px 0 rgba(244, 235, 208, 0.12);
-    --shadow-premium:
-        0 32px 64px -12px rgba(0, 0, 0, 0.70),
-        inset 0 1px 1px rgba(244, 235, 208, 0.05);
-    --shadow-ring: 0 0 0 3px rgba(244, 235, 208, 0.25);
-
-    /* ══ GRADIENTS ══ */
-    --gradient-primary:
-        linear-gradient(135deg, #0D1B2A 0%, #1B263B 50%, #415A77 100%);
-    --gradient-primary-r:
-        linear-gradient(315deg, #0D1B2A 0%, #1B263B 50%, #415A77 100%);
-
-    --gradient-luminous:
-        linear-gradient(135deg, #F4EBD0 0%, #E3D8B4 50%, #B5A97D 100%);
-    --gradient-luminous-r:
-        linear-gradient(315deg, #F4EBD0 0%, #E3D8B4 50%, #B5A97D 100%);
-
-    --gradient-hero-bg:
-        radial-gradient(ellipse at 30% 20%, rgba(244, 235, 208, 0.10) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 80%, rgba(65, 90, 119, 0.15) 0%, transparent 55%),
-        linear-gradient(180deg, #1B263B 0%, #0D1B2A 100%);
-
-    --gradient-text:
-        linear-gradient(135deg, #F4EBD0 0%, #E3D8B4 40%, #8E8A7B 100%);
-
-    /* ── Aliases ── */
-    --indigo-brand-300: var(--gold-500); 
-    --indigo-brand-200: var(--gold-200);
-    --font-primary: var(--gold-500);
-    --accent: var(--gold-500);
-
-    /* Text Compatibility */
-    --text-primary:   var(--gold-500);
-    --text-secondary: var(--gold-400);
-    --text-tertiary:  var(--gold-300);
-    --fg:             var(--gold-500);
-    --muted:          var(--gold-200);
+    /* Fonts */
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
 }
 
-/* ── RESET ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html {
-    scroll-behavior: smooth; font-size: 16px;
-    -webkit-text-size-adjust: 100%;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-}
+/* ── Global Styles ── */
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    color: var(--color-text);
-    background-color: var(--midnight-900);
-    background-image: var(--gradient-hero-bg);
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background-color: var(--bg-main);
+    background-image: var(--bg-gradient);
     background-attachment: fixed;
     min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
 }
 
-/* ── TYPOGRAPHY ── */
-h3, h4 { color: var(--gold-400) !important; text-transform: none; letter-spacing: 0.02em; }
-p, span, li, a, div { color: var(--text-muted); line-height: 1.8; }
-.text-gold, .text-gold-500 { color: var(--gold-500) !important; }
-.text-subheading { color: var(--gold-400) !important; }
-.text-white { color: var(--gold-100) !important; }
+/* Grainy Texture */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 9999;
+}
 
-/* ── COMPONENTS ── */
+/* Sacred Geometry Pattern (Optional/Subtle) */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://www.transparenttextures.com/patterns/sacred-geometry.png");
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: -1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+}
+
+/* ── Global Components ── */
+
+/* Cards */
+.spiritual-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: var(--space-3);
+    transition: all 0.3s ease;
+}
+
+.spiritual-card:hover {
+    transform: scale(1.02);
+    box-shadow: var(--gold-glow);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+/* Buttons */
 .btn-primary {
-    background: var(--gold-500);
-    color: #1B263B !important;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 1rem 2.5rem;
+    background-color: var(--brand-gold);
+    color: var(--brand-navy) !important;
+    font-family: var(--font-body);
+    font-weight: 600;
+    padding: 12px 32px;
     border-radius: 99px;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
+
 .btn-primary:hover {
-    background: var(--gold-hover);
+    box-shadow: var(--gold-glow-hover);
     transform: translateY(-2px);
-    box-shadow: 0 20px 40px rgba(244, 235, 208, 0.25);
 }
 
 .btn-secondary {
     background: transparent;
-    color: var(--gold-500) !important;
-    border: 1px solid var(--gold-500);
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 1rem 2.5rem;
+    color: var(--brand-gold) !important;
+    border: 1px solid var(--brand-gold);
+    font-family: var(--font-body);
+    font-weight: 600;
+    padding: 12px 32px;
     border-radius: 99px;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
+
 .btn-secondary:hover {
-    background: var(--gold-alpha-5);
-    border-color: var(--gold-400);
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-2px);
 }
 
-.card-luxury {
-    background: var(--midnight-850);
-    border: 1px solid rgba(244, 235, 208, 0.1);
-    border-radius: 2rem;
-    padding: 2.5rem;
-    backdrop-filter: blur(16px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(244, 235, 208, 0.05);
-}
-.card-luxury:hover {
-    border-color: rgba(244, 235, 208, 0.3);
-    transform: translateY(-5px);
-    box-shadow: 
-        0 24px 64px rgba(0, 0, 0, 0.50),
-        0 0 40px rgba(244, 235, 208, 0.08);
-}
+/* ── Typography Scale ── */
+.text-hero { font-size: 4rem; line-height: 1.1; font-family: var(--font-heading); }
+.text-section { font-size: 2.5rem; line-height: 1.2; font-family: var(--font-heading); }
+.text-card { font-size: 1.5rem; line-height: 1.3; font-family: var(--font-heading); }
+.text-body { font-size: 1rem; line-height: 1.8; font-family: var(--font-body); }
+.gold-text { color: var(--brand-gold); }
 
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-thumb { background: var(--gold-alpha-30); border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: var(--gold-500); }
+/* ── Spacing Helpers ── */
+.p-section { padding: var(--space-8) 0; }
+.m-gutter { margin-bottom: var(--space-4); }
 
-/* ── SELECTION ── */
-::selection { background: rgba(244, 235, 208, 0.3); color: #fff; }
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--brand-navy); }
+::-webkit-scrollbar-thumb { background: var(--brand-gold); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #b8972f; }
