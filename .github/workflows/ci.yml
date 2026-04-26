@@ -25,6 +25,7 @@ jobs:
       - run: npm run build
         env:
           VITE_API_URL: https://placeholder.api.com/api
+          VITE_OTP_URL: https://placeholder.otp.com
 
   otp-service:
     name: 🔐 OTP Service (Node.js)

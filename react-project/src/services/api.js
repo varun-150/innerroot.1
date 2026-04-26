@@ -1,9 +1,15 @@
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
+const OTP_URL = import.meta.env.VITE_OTP_URL || 'http://localhost:3001';
 
 const api = axios.create({
     baseURL: API_URL,
+});
+
+// OTP service API instance
+const otpApi = axios.create({
+    baseURL: OTP_URL,
 });
 
 // automatically attach JWT token if present
@@ -106,4 +112,18 @@ export const adminAPI = {
     deleteWisdomQuote: (id) => api.delete(`/wisdom/${id}`).then(res => res.data),
 };
 
+export const otpAuthAPI = {
+    sendOTP: (phone) => otpApi.post('/otp/send', { phone }).then(res => res.data),
+    verifyOTP: (phone, code) => otpApi.post('/otp/verify', { phone, code }).then(res => res.data),
+    resendOTP: (phone) => otpApi.post('/otp/resend', { phone }).then(res => res.data),
+    refreshToken: (refreshToken) => otpApi.post('/auth/refresh', { refreshToken }).then(res => res.data),
+    logout: () => {
+        const token = localStorage.getItem('innerRootToken');
+        return otpApi.post('/auth/logout', null, {
+            headers: { Authorization: `Bearer ${token}` }
+        }).then(res => res.data);
+    },
+};
+
+export { otpApi };
 export default api;

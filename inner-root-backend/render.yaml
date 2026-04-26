@@ -1,27 +1,72 @@
 services:
+  # --- Spring Boot Backend ---
   - type: web
     name: inner-root-backend
     runtime: java
     plan: free
+    rootDir: inner-root-backend
     buildCommand: ./mvnw clean install -DskipTests
-    startCommand: java -jar target/*.jar
+    startCommand: java -Dserver.port=$PORT -jar target/*.jar
+    healthCheckPath: /api/health
     envVars:
       - key: PORT
         value: 8080
-      - fromGroup: inner-root-db-creds
       - key: DATABASE_URL
-        sync: false # Set in Render Dashboard
+        sync: false
       - key: DB_USER
         sync: false
       - key: DB_PASSWORD
         sync: false
       - key: JWT_SECRET
-        sync: false
+        generateValue: true
       - key: GOOGLE_CLIENT_ID
         sync: false
-      - key: GOOGLE_CLIENT_SECRET
+      - key: AI_API_KEY
         sync: false
-      - key: NVIDIA_API_KEY
+      - key: AI_API_URL
+        value: "https://openrouter.ai/api/v1/chat/completions"
+      - key: AI_API_MODEL
+        value: "google/gemini-2.0-flash-lite-001"
+      - key: ALLOWED_ORIGINS
+        sync: false
+
+  # --- Node.js OTP Service ---
+  - type: web
+    name: otp-service
+    runtime: node
+    plan: free
+    rootDir: otp-service
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: NODE_ENV
+        value: production
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: "3306"
+      - key: DB_NAME
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRY
+        value: "1h"
+      - key: SMS_PROVIDER
+        value: "resend"
+      - key: RESEND_API_KEY
         sync: false
       - key: ALLOWED_ORIGINS
-        value: "https://your-netlify-url.netlify.app,https://your-vercel-url.vercel.app"
+        sync: false
+
+databases:
+  - name: inner-root-db
+    plan: free
+    databaseName: innerrootdb
+    user: innerroot
