@@ -1,4 +1,20 @@
 services:
+  # --- React Frontend ---
+  - type: static
+    name: inner-root-frontend
+    rootDir: react-project
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+      - key: VITE_OTP_URL
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
   # --- Spring Boot Backend ---
   - type: web
     name: inner-root-backend
