@@ -33,5 +33,4 @@ ENV PORT=8080
 EXPOSE 8080
 
 # Run with memory limits for Render Free Tier (512MB)
-# We use sh -c to allow environment variable expansion in the command
-ENTRYPOINT ["sh", "-c", "java -Xmx384m -Xms384m -Dserver.port=${PORT} -Dspring.datasource.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=true&serverTimezone=UTC -jar app.jar"]
+ENTRYPOINT ["sh", "-c", "java -Xmx384m -Xms384m -Dserver.port=${PORT} -Dspring.datasource.url=\"jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=true&serverTimezone=UTC\" -jar app.jar"]
