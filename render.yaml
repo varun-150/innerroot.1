@@ -43,9 +43,9 @@ services:
           name: inner-root-db
           property: database
       - key: SPRING_DATASOURCE_DRIVER
-        value: com.mysql.cj.jdbc.Driver
+        value: org.postgresql.Driver
       - key: SPRING_JPA_DIALECT
-        value: org.hibernate.dialect.MySQLDialect
+        value: org.hibernate.dialect.PostgreSQLDialect
       - key: SPRING_DATASOURCE_USERNAME
         fromDatabase:
           name: inner-root-db

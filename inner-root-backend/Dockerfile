@@ -32,4 +32,4 @@ EXPOSE 8080
 
 # Run with memory limits for Render Free Tier (512MB)
 # We construct the SPRING_DATASOURCE_URL from individual components
-ENTRYPOINT ["sh", "-c", "export SPRING_DATASOURCE_URL=\"jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=true&serverTimezone=UTC\"; echo \"Starting with URL: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}\"; java -Xmx384m -Xms384m -Dserver.port=${PORT} -jar app.jar"]
+ENTRYPOINT ["sh", "-c", "export SPRING_DATASOURCE_URL=\"jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=require\"; echo \"Starting with URL: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}\"; java -Xmx384m -Xms384m -Dserver.port=${PORT} -jar app.jar"]
