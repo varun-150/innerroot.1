@@ -31,4 +31,4 @@ ENV PORT=8080
 EXPOSE 8080
 
 # Run
-ENTRYPOINT ["java", "-Dserver.port=${PORT}", "-jar", "app.jar"]
+ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT} -Dspring.datasource.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=true&serverTimezone=UTC -jar app.jar"]

@@ -28,10 +28,18 @@ services:
     envVars:
       - key: PORT
         value: 8080
-      - key: SPRING_DATASOURCE_URL
+      - key: DB_HOST
         fromDatabase:
           name: inner-root-db
-          property: jdbcConnectionString
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: inner-root-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: inner-root-db
+          property: database
       - key: SPRING_DATASOURCE_USERNAME
         fromDatabase:
           name: inner-root-db
