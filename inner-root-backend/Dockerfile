@@ -24,13 +24,12 @@ RUN addgroup --system spring && adduser --system spring --ingroup spring
 USER spring:spring
 
 # Copy jar from build stage
-# We use a specific pattern to avoid copying the '-plain' jar if it exists
 COPY --from=build /app/target/inner-root-backend-*.jar app.jar
 
 # Configuration
-# Render provides the PORT env var automatically
 ENV PORT=8080
 EXPOSE 8080
 
 # Run with memory limits for Render Free Tier (512MB)
-ENTRYPOINT ["sh", "-c", "java -Xmx384m -Xms384m -Dserver.port=${PORT} -Dspring.datasource.url=\"jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=true&serverTimezone=UTC\" -jar app.jar"]
+# We construct the SPRING_DATASOURCE_URL from individual components
+ENTRYPOINT ["sh", "-c", "export SPRING_DATASOURCE_URL=\"jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=true&serverTimezone=UTC\"; echo \"Starting with URL: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}\"; java -Xmx384m -Xms384m -Dserver.port=${PORT} -jar app.jar"]
