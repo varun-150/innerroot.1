@@ -24,11 +24,14 @@ RUN addgroup --system spring && adduser --system spring --ingroup spring
 USER spring:spring
 
 # Copy jar from build stage
-COPY --from=build /app/target/*.jar app.jar
+# We use a specific pattern to avoid copying the '-plain' jar if it exists
+COPY --from=build /app/target/inner-root-backend-*.jar app.jar
 
 # Configuration
+# Render provides the PORT env var automatically
 ENV PORT=8080
 EXPOSE 8080
 
-# Run
-ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT} -Dspring.datasource.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=true&serverTimezone=UTC -jar app.jar"]
+# Run with memory limits for Render Free Tier (512MB)
+# We use sh -c to allow environment variable expansion in the command
+ENTRYPOINT ["sh", "-c", "java -Xmx384m -Xms384m -Dserver.port=${PORT} -Dspring.datasource.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=true&serverTimezone=UTC -jar app.jar"]
