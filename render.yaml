@@ -1,7 +1,8 @@
 services:
   # Frontend
-  - type: static
+  - type: web
     name: inner-root-frontend
+    runtime: static
     buildCommand: npm run build
     staticPublishPath: dist
     envVars:
