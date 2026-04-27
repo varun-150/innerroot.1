@@ -7,6 +7,8 @@ import hooksPlugin from 'eslint-plugin-react-hooks';
 export default [
   {
     ignores: ['node_modules/**', 'dist/**'],
+  },
+  {
     languageOptions: {
       globals: {
         window: 'readonly',

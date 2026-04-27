@@ -41,23 +41,12 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints
-                        .requestMatchers("/api/auth/register", "/api/auth/login", "/api/auth/google", "/api/auth/refresh", "/api/auth/logout").permitAll()
+                        .requestMatchers("/api/auth/login", "/api/auth/google", "/api/auth/refresh", "/api/auth/logout").permitAll()
                         .requestMatchers("/api/health").permitAll()
                         .requestMatchers("/api/contact/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/ws/**").permitAll()
                         
-                        // Permit ALL GET requests for global content exploration
-                        .requestMatchers(org.springframework.http.HttpMethod.GET, 
-                            "/api/heritage-sites/**", 
-                            "/api/wellness/**",
-                            "/api/wisdom/**",
-                            "/api/library/**",
-                            "/api/culture/**",
-                            "/api/guides/**",
-                            "/api/events/**",
-                            "/api/community/**").permitAll()
-
                         // Require ADMIN for modifying global content and admin operations
                         .requestMatchers(
                             "/api/admin/**",
