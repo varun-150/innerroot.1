@@ -11,6 +11,8 @@ services:
         sync: false
       - key: VITE_OTP_URL
         sync: false
+      - key: VITE_GOOGLE_CLIENT_ID
+        sync: false
     routes:
       - type: rewrite
         source: /*
