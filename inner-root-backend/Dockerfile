@@ -31,5 +31,5 @@ ENV PORT=8080
 EXPOSE 8080
 
 # Run with memory limits for Render Free Tier (512MB)
-# We convert Render's connection string (RENDER_DATABASE_URL) to JDBC format (SPRING_DATASOURCE_URL).
-ENTRYPOINT ["sh", "-c", "if [ -z \"$RENDER_DATABASE_URL\" ]; then echo \"ERROR: RENDER_DATABASE_URL is not set!\"; exit 1; fi; export SPRING_DATASOURCE_URL=$(echo $RENDER_DATABASE_URL | sed -E 's/^(postgre)sql?:\\/\\//jdbc:postgresql:\\/\\//'); echo \"JDBC conversion complete. Starting application...\"; java -Xmx384m -Xms384m -Dserver.port=${PORT} -jar app.jar"]
+# We use '|' as sed delimiter to avoid breaking if the password contains '/' characters.
+ENTRYPOINT ["sh", "-c", "if [ -z \"$RENDER_DATABASE_URL\" ]; then echo \"ERROR: RENDER_DATABASE_URL is not set!\"; exit 1; fi; export SPRING_DATASOURCE_URL=$(echo $RENDER_DATABASE_URL | sed -E 's|^(postgre)sql?://|jdbc:postgresql://|'); echo \"JDBC conversion complete. Starting application...\"; java -Xmx384m -Xms384m -Dserver.port=${PORT} -jar app.jar"]
