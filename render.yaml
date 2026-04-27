@@ -5,7 +5,7 @@ services:
     runtime: static
     rootDir: react-project
     buildCommand: npm install && npm run build
-    publishPath: dist
+    staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
         sync: false
@@ -19,11 +19,11 @@ services:
   # --- Spring Boot Backend ---
   - type: web
     name: inner-root-backend
-    runtime: java
+    runtime: docker
     plan: free
     rootDir: inner-root-backend
-    buildCommand: ./mvnw clean install -DskipTests
-    startCommand: java -Xmx384m -Dserver.port=$PORT -jar target/*.jar
+    dockerfilePath: Dockerfile
+    dockerContext: .
     healthCheckPath: /api/health
     envVars:
       - key: PORT
@@ -50,35 +50,6 @@ services:
         value: "https://openrouter.ai/api/v1/chat/completions"
       - key: AI_API_MODEL
         value: "google/gemini-2.0-flash-lite-001"
-      - key: ALLOWED_ORIGINS
-        sync: false
-
-  # --- Node.js OTP Service ---
-  - type: web
-    name: otp-service
-    runtime: node
-    plan: free
-    rootDir: otp-service
-    buildCommand: npm install
-    startCommand: npm start
-    healthCheckPath: /health
-    envVars:
-      - key: PORT
-        value: 3001
-      - key: NODE_ENV
-        value: production
-      - key: DATABASE_URL
-        fromDatabase:
-          name: inner-root-db
-          property: connectionString
-      - key: JWT_SECRET
-        generateValue: true
-      - key: JWT_EXPIRY
-        value: "1h"
-      - key: SMS_PROVIDER
-        value: "resend"
-      - key: RESEND_API_KEY
-        sync: false
       - key: ALLOWED_ORIGINS
         sync: false
 
