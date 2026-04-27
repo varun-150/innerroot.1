@@ -31,5 +31,5 @@ ENV PORT=8080
 EXPOSE 8080
 
 # Run with memory limits for Render Free Tier (512MB)
-# We construct the SPRING_DATASOURCE_URL from individual components
-ENTRYPOINT ["sh", "-c", "export SPRING_DATASOURCE_URL=\"jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=require\"; echo \"Starting with URL: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}\"; java -Xmx384m -Xms384m -Dserver.port=${PORT} -jar app.jar"]
+# We convert Render's DATABASE_URL (postgres://) to JDBC format (jdbc:postgresql://)
+ENTRYPOINT ["sh", "-c", "export DATABASE_URL=$(echo $DATABASE_URL | sed 's/postgres:\\/\\//jdbc:postgresql:\\/\\//'); java -Xmx384m -Xms384m -Dserver.port=${PORT} -jar app.jar"]
