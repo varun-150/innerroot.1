@@ -23,10 +23,14 @@ services:
     plan: free
     healthCheckPath: /api/health
     envVars:
-      - key: RENDER_DATABASE_URL
+      - key: DB_HOST
         fromDatabase:
           name: inner-root-db
-          property: connectionString
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: inner-root-db
+          property: port
       - key: DB_USER
         fromDatabase:
           name: inner-root-db
@@ -35,6 +39,10 @@ services:
         fromDatabase:
           name: inner-root-db
           property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: inner-root-db
+          property: databaseName
       - key: GOOGLE_CLIENT_ID
         sync: false
       - key: AI_API_KEY

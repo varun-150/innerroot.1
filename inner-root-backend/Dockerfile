@@ -31,5 +31,6 @@ ENV PORT=8080
 EXPOSE 8080
 
 # Run with memory limits for Render Free Tier (512MB)
-# We use '|' as sed delimiter to avoid breaking if the password contains '/' characters.
-ENTRYPOINT ["sh", "-c", "if [ -z \"$RENDER_DATABASE_URL\" ]; then echo \"ERROR: RENDER_DATABASE_URL is not set!\"; exit 1; fi; export SPRING_DATASOURCE_URL=$(echo $RENDER_DATABASE_URL | sed -E 's|^(postgre)sql?://|jdbc:postgresql://|'); echo \"JDBC conversion complete. Starting application...\"; java -Xmx384m -Xms384m -Dserver.port=${PORT} -jar app.jar"]
+# We construct the JDBC URL manually from individual components.
+# This is the most reliable method for Render Blueprints.
+ENTRYPOINT ["sh", "-c", "if [ -z \"$DB_HOST\" ]; then echo \"ERROR: DB_HOST is not set! Blueprint linkage failed.\"; exit 1; fi; export SPRING_DATASOURCE_URL=\"jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}\"; echo \"Manual JDBC construction complete. Starting application...\"; java -Xmx384m -Xms384m -Dserver.port=${PORT} -jar app.jar"]
