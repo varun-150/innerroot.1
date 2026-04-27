@@ -31,5 +31,6 @@ ENV PORT=8080
 EXPOSE 8080
 
 # Run with memory limits for Render Free Tier (512MB)
-# We convert Render's DATABASE_URL (postgres://) to JDBC format (jdbc:postgresql://)
-ENTRYPOINT ["sh", "-c", "export DATABASE_URL=$(echo $DATABASE_URL | sed 's/postgres:\\/\\//jdbc:postgresql:\\/\\//'); java -Xmx384m -Xms384m -Dserver.port=${PORT} -jar app.jar"]
+# We convert Render's connection string to JDBC format. 
+# We use a more robust regex to handle both 'postgres://' and 'postgresql://' correctly.
+ENTRYPOINT ["sh", "-c", "export SPRING_DATASOURCE_URL=$(echo $DATABASE_URL | sed -E 's/^(postgre)sql?:\\/\\//jdbc:postgresql:\\/\\//'); echo \"Spring Boot will connect to: $SPRING_DATASOURCE_URL\"; java -Xmx384m -Xms384m -Dserver.port=${PORT} -jar app.jar"]
