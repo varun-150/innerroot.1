@@ -42,16 +42,20 @@ public class AuthController {
             AuthResponse response = authService.register(request);
             
             ResponseCookie jwtCookie = jwtTokenProvider.generateJwtCookie(response.getEmail());
-            refreshTokenService.createRefreshToken(response.getId()); // Optional: Refresh tokens for new users
+            refreshTokenService.createRefreshToken(response.getId());
 
             webhookService.triggerEvent("USER_SIGNUP", Map.of(
                 "email", request.getEmail(),
                 "name", request.getName()
             ));
 
+            // Return user and token in body for frontend convenience
             return ResponseEntity.status(HttpStatus.CREATED)
                     .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                    .body(response);
+                    .body(Map.of(
+                        "user", response,
+                        "token", jwtCookie.getValue()
+                    ));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         }
@@ -72,7 +76,13 @@ public class AuthController {
 
             return ResponseEntity.ok()
                     .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                    .body(Map.of("user", authResponse, "refreshToken", refreshToken.getToken()));
+                    .body(Map.of(
+                        "user", authResponse, 
+                        "tokens", Map.of(
+                            "accessToken", jwtCookie.getValue(),
+                            "refreshToken", refreshToken.getToken()
+                        )
+                    ));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Map.of("error", "Invalid email or password"));
@@ -100,7 +110,13 @@ public class AuthController {
 
             return ResponseEntity.ok()
                     .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                    .body(Map.of("user", authResponse, "refreshToken", refreshToken.getToken()));
+                    .body(Map.of(
+                        "user", authResponse, 
+                        "tokens", Map.of(
+                            "accessToken", jwtCookie.getValue(),
+                            "refreshToken", refreshToken.getToken()
+                        )
+                    ));
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Map.of("error", "Google authentication failed: " + e.getMessage()));

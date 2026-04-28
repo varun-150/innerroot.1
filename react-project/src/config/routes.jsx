@@ -19,33 +19,31 @@ const HeritageExplorer = lazy(() => import('../pages/HeritageExplorer'));
 const Contact = lazy(() => import('../pages/Contact'));
 const Monetization = lazy(() => import('../pages/Monetization'));
 const AdminDashboard = lazy(() => import('../pages/AdminDashboard'));
-import ProtectedRoute from '../components/auth/ProtectedRoute';
-import AdminRoute from '../components/auth/AdminRoute';
 
 import { DemoOne } from '../components/ui/demo';
 import DemoMatrix from '../components/ui/cyber-matrix-hero-demo';
 
 export const routes = [
-    { path: '/demo/hero', element: <ProtectedRoute><DemoOne /></ProtectedRoute> },
-    { path: '/demo/matrix', element: <ProtectedRoute><DemoMatrix /></ProtectedRoute> },
+    { path: '/demo/hero', element: <DemoOne /> },
+    { path: '/demo/matrix', element: <DemoMatrix /> },
 
     { path: '/', element: <LandingPage />, exact: true },
-    { path: '/v1', element: <ProtectedRoute><Home /></ProtectedRoute> },
-    { path: '/explore', element: <ProtectedRoute><Explore /></ProtectedRoute> },
-    { path: '/tours', element: <ProtectedRoute><Tours /></ProtectedRoute> },
-    { path: '/wellness', element: <ProtectedRoute><Wellness /></ProtectedRoute> },
-    { path: '/heritage-map', element: <ProtectedRoute><HeritageExplorer /></ProtectedRoute> },
-    { path: '/library', element: <ProtectedRoute><Library /></ProtectedRoute> },
-    { path: '/about', element: <ProtectedRoute><About /></ProtectedRoute> },
-    { path: '/contact', element: <ProtectedRoute><Contact /></ProtectedRoute> },
+    { path: '/v1', element: <Home /> },
+    { path: '/explore', element: <Explore /> },
+    { path: '/tours', element: <Tours /> },
+    { path: '/wellness', element: <Wellness /> },
+    { path: '/heritage-map', element: <HeritageExplorer /> },
+    { path: '/library', element: <Library /> },
+    { path: '/about', element: <About /> },
+    { path: '/contact', element: <Contact /> },
     { path: '/login', element: <Login /> },
     { path: '/signup', element: <Signup /> },
     { path: '/privacy', element: <Privacy /> },
     { path: '/terms', element: <Terms /> },
-    { path: '/monetization', element: <ProtectedRoute><Monetization /></ProtectedRoute> },
-    { path: '/setup-2fa', element: <ProtectedRoute><TwoFactorSetup /></ProtectedRoute> },
-    { path: '/dashboard', element: <ProtectedRoute><Dashboard /></ProtectedRoute> },
-    { path: '/admin', element: <AdminRoute><AdminDashboard /></AdminRoute> },
-    { path: '/tools/sql-seed-generator', element: <ProtectedRoute><SeedGenerator /></ProtectedRoute> },
+    { path: '/monetization', element: <Monetization /> },
+    { path: '/setup-2fa', element: <TwoFactorSetup /> },
+    { path: '/dashboard', element: <Dashboard /> },
+    { path: '/admin', element: <AdminDashboard /> },
+    { path: '/tools/sql-seed-generator', element: <SeedGenerator /> },
     { path: '*', element: <LandingPage /> }, // Fallback route
 ];

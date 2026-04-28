@@ -111,7 +111,7 @@ const Wellness = () => {
                         </h3>
                         <div className="space-y-6">
                             {[1, 2, 3].map(i => (
-                                <div key={i} className="p-6 rounded-2xl bg-brand-navy/50 flex items-center justify-between border border-brand-gold/10 hover:border-brand-gold/30 transition-colors cursor-default">
+                                <div key={i} className="p-6 rounded-2xl bg-brand-olive-dark/50 flex items-center justify-between border border-brand-gold/10 hover:border-brand-gold/30 transition-colors cursor-default">
                                     <div className="space-y-1">
                                         <p className="text-[11px] font-bold uppercase text-brand-gold">Mantra Cycle #{i}09</p>
                                         <p className="text-[9px] text-brand-ivory/30">18 APR 2026, 11:22 PM</p>
@@ -130,7 +130,7 @@ const Wellness = () => {
                             value={journal} 
                             onChange={(e) => setJournal(e.target.value)} 
                             placeholder="Digitize your spiritual insights..."
-                            className="w-full h-80 bg-brand-navy/30 border border-brand-gold/10 rounded-2xl p-8 text-sm focus:outline-none focus:border-brand-gold/40 transition-all font-body text-brand-ivory placeholder:text-brand-ivory/20 resize-none"
+                            className="w-full h-80 bg-brand-olive-dark/30 border border-brand-gold/10 rounded-2xl p-8 text-sm focus:outline-none focus:border-brand-gold/40 transition-all font-body text-brand-ivory placeholder:text-brand-ivory/20 resize-none"
                         />
                         <button className="w-full py-4 spiritual-card border-brand-gold/20 text-[11px] font-bold uppercase tracking-widest hover:bg-brand-gold/20 text-brand-gold">
                             Archive to Vault

@@ -162,9 +162,9 @@ const ChatBot = () => {
                         {/* Header */}
                         <div className="p-8 border-b border-white/5 flex items-center justify-between bg-white/[0.03]">
                             <div className="flex items-center gap-4">
-                                <div className="relative w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-[#6C63FF] overflow-hidden">
+                                <div className="relative w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-[#D4AF37] overflow-hidden">
                                      <motion.div 
-                                        className="absolute inset-0 border border-[#6C63FF]/20"
+                                        className="absolute inset-0 border border-[#D4AF37]/20"
                                         animate={{ rotate: 360 }}
                                         transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
                                     />
@@ -174,7 +174,7 @@ const ChatBot = () => {
                                     <h3 className="text-lg font-serif font-black tracking-widest uppercase text-white">Aura AI</h3>
                                     <div className="flex items-center gap-2">
                                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                                        <span className="text-[9px] uppercase font-black text-[#6C63FF]/70 tracking-[0.2em]">Sentience Level: Harmonic</span>
+                                        <span className="text-[9px] uppercase font-black text-[#D4AF37]/70 tracking-[0.2em]">Sentience Level: Harmonic</span>
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@ const ChatBot = () => {
                         <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-6 scroll-smooth custom-scrollbar">
                             {isFetchingHistory && (
                                 <div className="flex flex-col items-center justify-center h-full gap-4 text-white/20">
-                                    <Loader2 className="animate-spin text-[#6C63FF]" size={32} />
+                                    <Loader2 className="animate-spin text-[#D4AF37]" size={32} />
                                     <span className="text-[10px] tracking-[0.4em] uppercase font-black">Aligning Chronologies...</span>
                                 </div>
                             )}
@@ -209,14 +209,14 @@ const ChatBot = () => {
                                 >
                                     <div className={`flex gap-3 max-w-[90%] ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
                                         <div className={`mt-1 h-8 w-8 rounded-xl flex-shrink-0 flex items-center justify-center border ${
-                                            msg.role === 'user' ? 'bg-white/10 border-white/10' : 'bg-accent/10 border-[#6C63FF]/20'
+                                            msg.role === 'user' ? 'bg-white/10 border-white/10' : 'bg-accent/10 border-[#D4AF37]/20'
                                         }`}>
-                                            {msg.role === 'user' ? <User size={14} className="text-white/60" /> : <Sparkles size={14} className="text-[#6C63FF]" />}
+                                            {msg.role === 'user' ? <User size={14} className="text-white/60" /> : <Sparkles size={14} className="text-[#D4AF37]" />}
                                         </div>
                                         <div 
                                             className={`p-6 rounded-[2rem] text-sm leading-relaxed ${
                                                 msg.role === 'user' 
-                                                ? 'bg-gradient-to-br from-[#6C63FF] to-[#6C63FF]-600 text-obsidian-pure font-bold rounded-tr-none shadow-premium' 
+                                                ? 'bg-gradient-to-br from-[#D4AF37] to-[#D4AF37]-600 text-obsidian-pure font-bold rounded-tr-none shadow-premium' 
                                                 : 'bg-white/[0.05] text-white/90 rounded-tl-none border border-white/10 backdrop-blur-md'
                                             }`}
                                         >
@@ -229,8 +229,8 @@ const ChatBot = () => {
                              {isLoading && (
                                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-start">
                                     <div className="flex gap-3">
-                                        <div className="mt-1 h-8 w-8 rounded-xl bg-accent/10 border border-[#6C63FF]/20 flex items-center justify-center">
-                                            <Bot size={14} className="text-[#6C63FF]" />
+                                        <div className="mt-1 h-8 w-8 rounded-xl bg-accent/10 border border-[#D4AF37]/20 flex items-center justify-center">
+                                            <Bot size={14} className="text-[#D4AF37]" />
                                         </div>
                                         <div className="bg-white/[0.03] p-5 rounded-[1.5rem] rounded-tl-none border border-white/10 flex flex-col gap-4">
                                             <div className="flex gap-1.5">
@@ -253,7 +253,7 @@ const ChatBot = () => {
                                                     />
                                                 ))}
                                             </div>
-                                            <span className="text-[9px] uppercase font-black tracking-widest text-[#6C63FF]/40">Alchemizing Divine Knowledge</span>
+                                            <span className="text-[9px] uppercase font-black tracking-widest text-[#D4AF37]/40">Alchemizing Divine Knowledge</span>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -264,7 +264,7 @@ const ChatBot = () => {
                         {/* Input Area */}
                         <div className="p-8 bg-black/40 border-t border-white/5">
                             <div className="relative group">
-                                <div className="absolute -inset-[1px] bg-gradient-to-r from-[#6C63FF]/50 to-transparent rounded-2xl opacity-20 blur-sm group-focus-within:opacity-40 transition duration-700" />
+                                <div className="absolute -inset-[1px] bg-gradient-to-r from-[#D4AF37]/50 to-transparent rounded-2xl opacity-20 blur-sm group-focus-within:opacity-40 transition duration-700" />
                                 <div className="relative flex items-center bg-obsidian-pure rounded-2xl p-2 border border-white/10 shadow-inner">
                                     <input
                                         type="text"
@@ -288,7 +288,7 @@ const ChatBot = () => {
                             </div>
                             <div className="flex justify-between items-center mt-6">
                                 <div className="flex items-center gap-2 opacity-30">
-                                    <ShieldCheck size={10} className="text-[#6C63FF]" />
+                                    <ShieldCheck size={10} className="text-[#D4AF37]" />
                                     <span className="text-[9px] uppercase tracking-[0.3em] font-black text-white">Sacred Interface V4.0</span>
                                 </div>
                                 <div className="flex gap-1.5">

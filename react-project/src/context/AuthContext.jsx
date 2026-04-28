@@ -43,13 +43,20 @@ export const AuthProvider = ({ children }) => {
         setError(null);
         try {
             const response = await authAPI.login(email, password);
-            localStorage.setItem('innerRootToken', response.token);
+            // Backend returns { user: AuthResponse, tokens: { accessToken, refreshToken } }
+            const { user: userData, tokens } = response;
+            const token = tokens?.accessToken;
+            
+            if (token) {
+                localStorage.setItem('innerRootToken', token);
+            }
+            
             setUser({
-                id: response.id,
-                name: response.name,
-                email: response.email,
-                profilePicture: response.profilePicture,
-                role: response.role,
+                id: userData.id,
+                name: userData.name,
+                email: userData.email,
+                profilePicture: userData.profilePicture,
+                role: userData.role,
             });
             return response;
         } catch (err) {
@@ -62,13 +69,20 @@ export const AuthProvider = ({ children }) => {
         setError(null);
         try {
             const response = await authAPI.register(name, email, password, onboardingData);
-            localStorage.setItem('innerRootToken', response.token);
+            // Backend now returns { user: AuthResponse, token: "..." }
+            const userData = response.user || response;
+            const token = response.token || response.tokens?.accessToken;
+            
+            if (token) {
+                localStorage.setItem('innerRootToken', token);
+            }
+
             setUser({
-                id: response.id,
-                name: response.name,
-                email: response.email,
-                profilePicture: response.profilePicture,
-                role: response.role,
+                id: userData.id,
+                name: userData.name,
+                email: userData.email,
+                profilePicture: userData.profilePicture,
+                role: userData.role,
             });
             return response;
         } catch (err) {
@@ -81,13 +95,19 @@ export const AuthProvider = ({ children }) => {
         setError(null);
         try {
             const response = await authAPI.googleAuth(accessToken);
-            localStorage.setItem('innerRootToken', response.token);
+            const { user: userData, tokens } = response;
+            const token = tokens?.accessToken;
+
+            if (token) {
+                localStorage.setItem('innerRootToken', token);
+            }
+
             setUser({
-                id: response.id,
-                name: response.name,
-                email: response.email,
-                profilePicture: response.profilePicture,
-                role: response.role,
+                id: userData.id,
+                name: userData.name,
+                email: userData.email,
+                profilePicture: userData.profilePicture,
+                role: userData.role,
             });
             return response;
         } catch (err) {

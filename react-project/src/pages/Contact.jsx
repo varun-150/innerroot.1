@@ -91,7 +91,7 @@ const Contact = () => {
 
                             {contactDetails.map((item) => (
                                 <div key={item.label} className="spiritual-card p-8 flex items-center gap-8 group hover:border-brand-gold/40 transition-all duration-500">
-                                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 bg-brand-gold text-brand-navy shadow-gold-glow group-hover:scale-110 transition-transform duration-700">
+                                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 bg-brand-gold text-brand-olive-dark shadow-gold-glow group-hover:scale-110 transition-transform duration-700">
                                         <item.icon size={28} />
                                     </div>
                                     <div>
@@ -142,7 +142,7 @@ const Contact = () => {
                                                             <User size={18} className="absolute left-6 top-1/2 -translate-y-1/2 text-brand-gold/20 group-focus-within:text-brand-gold transition-colors" />
                                                             <input type="text" placeholder="Your name..." value={form.name}
                                                                 onChange={e => updateField('name', e.target.value)} required
-                                                                className="w-full bg-brand-navy/40 rounded-2xl pl-14 pr-6 py-6 text-base text-brand-ivory placeholder:text-brand-ivory/10 focus:outline-none focus:border-brand-gold/40 border border-brand-gold/10 transition-all duration-500 font-body" />
+                                                                className="w-full bg-brand-olive-dark/40 rounded-2xl pl-14 pr-6 py-6 text-base text-brand-ivory placeholder:text-brand-ivory/10 focus:outline-none focus:border-brand-gold/40 border border-brand-gold/10 transition-all duration-500 font-body" />
                                                         </div>
                                                     </div>
                                                     <div>
@@ -151,7 +151,7 @@ const Contact = () => {
                                                             <Mail size={18} className="absolute left-6 top-1/2 -translate-y-1/2 text-brand-gold/20 group-focus-within:text-brand-gold transition-colors" />
                                                             <input type="email" placeholder="active@resonance.com" value={form.email}
                                                                 onChange={e => updateField('email', e.target.value)} required
-                                                                className="w-full bg-brand-navy/40 rounded-2xl pl-14 pr-6 py-6 text-base text-brand-ivory placeholder:text-brand-ivory/10 focus:outline-none focus:border-brand-gold/40 border border-brand-gold/10 transition-all duration-500 font-body" />
+                                                                className="w-full bg-brand-olive-dark/40 rounded-2xl pl-14 pr-6 py-6 text-base text-brand-ivory placeholder:text-brand-ivory/10 focus:outline-none focus:border-brand-gold/40 border border-brand-gold/10 transition-all duration-500 font-body" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -162,7 +162,7 @@ const Contact = () => {
                                                         <MessageSquare size={18} className="absolute left-6 top-7 text-brand-gold/20 group-focus-within:text-brand-gold transition-colors" />
                                                         <textarea rows={6} placeholder="Describe your intent or inquiry..." value={form.message}
                                                             onChange={e => updateField('message', e.target.value)} required
-                                                            className="w-full bg-brand-navy/40 rounded-2xl pl-14 pr-6 py-7 text-base text-brand-ivory placeholder:text-brand-ivory/10 focus:outline-none focus:border-brand-gold/40 border border-brand-gold/10 transition-all duration-500 resize-none font-body" />
+                                                            className="w-full bg-brand-olive-dark/40 rounded-2xl pl-14 pr-6 py-7 text-base text-brand-ivory placeholder:text-brand-ivory/10 focus:outline-none focus:border-brand-gold/40 border border-brand-gold/10 transition-all duration-500 resize-none font-body" />
                                                     </div>
                                                 </div>
 

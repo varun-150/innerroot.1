@@ -47,12 +47,12 @@ const Tours = () => {
                             className="spiritual-card p-0 group cursor-pointer overflow-hidden backdrop-blur-3xl hover:border-brand-gold/50 transition-all duration-500 shadow-2xl flex flex-col"
                         >
                             {/* Visual Header */}
-                            <div className="h-44 relative bg-brand-navy/60 overflow-hidden">
+                            <div className="h-44 relative bg-brand-olive-dark/60 overflow-hidden">
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <Camera size={48} className="text-brand-gold/10 group-hover:scale-110 transition-transform duration-700" />
                                     <div className="absolute inset-0 bg-brand-gold/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </div>
-                                <div className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-bold bg-brand-gold text-brand-navy shadow-gold-glow">
+                                <div className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-bold bg-brand-gold text-brand-olive-dark shadow-gold-glow">
                                     <Star size={12} fill="currentColor" /> {tour.rating}
                                 </div>
                             </div>

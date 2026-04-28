@@ -63,13 +63,13 @@ const Library = () => {
                         Ancient <br /> <span className="text-brand-ivory opacity-20 italic font-light">Chronicles</span>
                     </motion.h1>
                     
-                    <div className="spiritual-card p-6 flex flex-col md:flex-row gap-8 shadow-2xl bg-brand-navy/60 backdrop-blur-3xl border-brand-gold/10">
+                    <div className="spiritual-card p-6 flex flex-col md:flex-row gap-8 shadow-2xl bg-brand-olive-dark/60 backdrop-blur-3xl border-brand-gold/10">
                         <div className="relative flex-grow">
                             <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-brand-gold/30" size={20} />
                             <input 
                                 type="text"
                                 placeholder="Query the akashic memory..."
-                                className="w-full bg-brand-navy/40 border border-brand-gold/20 rounded-2xl py-5 pl-14 pr-4 outline-none focus:border-brand-gold/50 transition-all text-brand-ivory placeholder:text-brand-ivory/20 font-body"
+                                className="w-full bg-brand-olive-dark/40 border border-brand-gold/20 rounded-2xl py-5 pl-14 pr-4 outline-none focus:border-brand-gold/50 transition-all text-brand-ivory placeholder:text-brand-ivory/20 font-body"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
@@ -81,8 +81,8 @@ const Library = () => {
                                     onClick={() => setActiveCategory(cat)}
                                     className={`px-8 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap border ${
                                         activeCategory === cat 
-                                            ? 'bg-brand-gold text-brand-navy border-brand-gold shadow-gold-glow' 
-                                            : 'bg-brand-navy/40 text-brand-ivory/50 hover:text-brand-gold border-brand-gold/10 hover:border-brand-gold/30'
+                                            ? 'bg-brand-gold text-brand-olive-dark border-brand-gold shadow-gold-glow' 
+                                            : 'bg-brand-olive-dark/40 text-brand-ivory/50 hover:text-brand-gold border-brand-gold/10 hover:border-brand-gold/30'
                                     }`}
                                 >
                                     {cat}
@@ -107,7 +107,7 @@ const Library = () => {
                                     alt={art.title} 
                                     className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" 
                                 />
-                                <div className="absolute top-6 left-6 bg-brand-gold/90 text-brand-navy text-[9px] font-bold uppercase tracking-[0.3em] px-4 py-2 rounded-xl shadow-gold-glow">
+                                <div className="absolute top-6 left-6 bg-brand-gold/90 text-brand-olive-dark text-[9px] font-bold uppercase tracking-[0.3em] px-4 py-2 rounded-xl shadow-gold-glow">
                                     {art.category}
                                 </div>
                             </div>

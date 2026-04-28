@@ -24,11 +24,11 @@ const ExploreCard = ({ item, index }) => {
                     className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
                     onError={e => { e.target.src = 'https://images.unsplash.com/photo-1545224144-2d42c4e97ade?auto=format&fit=crop&q=80&w=800'; }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-olive-dark via-transparent to-transparent" />
 
                 {/* Category pill */}
                 <div className="absolute top-5 left-5">
-                    <span className="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] bg-brand-gold text-brand-navy shadow-gold-glow">
+                    <span className="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] bg-brand-gold text-brand-olive-dark shadow-gold-glow">
                         {item.category}
                     </span>
                 </div>
@@ -106,13 +106,13 @@ const Explore = () => {
 
             {/* ── STICKY SEARCH & FILTER ── */}
             <div className="sticky top-20 z-40 px-8 py-4">
-                <div className="max-w-7xl mx-auto spiritual-card p-6 flex flex-col md:flex-row gap-8 shadow-2xl bg-brand-navy/60 backdrop-blur-3xl border-brand-gold/10">
+                <div className="max-w-7xl mx-auto spiritual-card p-6 flex flex-col md:flex-row gap-8 shadow-2xl bg-brand-olive-dark/60 backdrop-blur-3xl border-brand-gold/10">
                     <div className="relative flex-grow">
                         <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-brand-gold/30" size={20} />
                         <input 
                             type="text"
                             placeholder="Search the collective memory..."
-                            className="w-full bg-brand-navy/40 border border-brand-gold/20 rounded-2xl py-4 pl-14 pr-4 outline-none focus:border-brand-gold/50 transition-all text-brand-ivory placeholder:text-brand-ivory/20 font-body"
+                            className="w-full bg-brand-olive-dark/40 border border-brand-gold/20 rounded-2xl py-4 pl-14 pr-4 outline-none focus:border-brand-gold/50 transition-all text-brand-ivory placeholder:text-brand-ivory/20 font-body"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
@@ -124,8 +124,8 @@ const Explore = () => {
                                 onClick={() => setCategory(cat)}
                                 className={`px-8 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap border ${
                                     category === cat 
-                                        ? 'bg-brand-gold text-brand-navy border-brand-gold shadow-gold-glow' 
-                                        : 'bg-brand-navy/40 text-brand-ivory/50 hover:text-brand-gold border-brand-gold/10 hover:border-brand-gold/30'
+                                        ? 'bg-brand-gold text-brand-olive-dark border-brand-gold shadow-gold-glow' 
+                                        : 'bg-brand-olive-dark/40 text-brand-ivory/50 hover:text-brand-gold border-brand-gold/10 hover:border-brand-gold/30'
                                 }`}
                             >
                                 {cat}

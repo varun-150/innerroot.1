@@ -1,15 +1,24 @@
 import { useState, useEffect } from 'react';
 
 export const useTheme = () => {
-    const [theme] = useState('light');
+    const [theme, setTheme] = useState(() => {
+        return localStorage.getItem('theme') || 'dark';
+    });
 
     useEffect(() => {
-        document.body.dataset.theme = 'light';
-        document.body.style.backgroundColor = '#ffffff';
-        document.body.style.color = '#000000';
-    }, []);
+        document.body.dataset.theme = theme;
+        localStorage.setItem('theme', theme);
+        
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    }, [theme]);
 
-    const toggleTheme = () => {};
+    const toggleTheme = () => {
+        setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    };
 
     return { theme, toggleTheme };
 };

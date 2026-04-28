@@ -38,8 +38,8 @@ const kpiData = [
         value: 82,
         change: '+5%',
         icon: Brain,
-        color: 'var(--gold-500)',
-        gradient: 'linear-gradient(135deg, var(--midnight-900), var(--midnight-950))',
+        color: 'var(--brand-gold)',
+        gradient: 'linear-gradient(135deg, #1B2412, #2A3B1B)',
         darkGradient: 'linear-gradient(135deg, rgba(244,235,208,0.12), rgba(244,235,208,0.05))',
     },
     {
@@ -48,8 +48,8 @@ const kpiData = [
         unit: 'days',
         change: '+2',
         icon: Flame,
-        color: 'var(--gold-400)',
-        gradient: 'linear-gradient(135deg, var(--midnight-850), var(--midnight-900))',
+        color: 'var(--brand-gold)',
+        gradient: 'linear-gradient(135deg, #2A3B1B, #1B2412)',
         darkGradient: 'linear-gradient(135deg, rgba(244,235,208,0.15), rgba(244,235,208,0.08))',
     },
     {
@@ -58,8 +58,8 @@ const kpiData = [
         unit: '%',
         change: '+12%',
         icon: Target,
-        color: 'var(--gold-300)',
-        gradient: 'linear-gradient(135deg, #1B263B, #0D1B2A)',
+        color: 'var(--brand-gold)',
+        gradient: 'linear-gradient(135deg, #1B2412, #2A3B1B)',
         darkGradient: 'linear-gradient(135deg, rgba(244,235,208,0.12), rgba(244,235,208,0.05))',
     },
     {
@@ -67,8 +67,8 @@ const kpiData = [
         value: 24,
         change: '+3',
         icon: MapPin,
-        color: 'var(--gold-200)',
-        gradient: 'linear-gradient(135deg, var(--midnight-800), var(--midnight-850))',
+        color: 'var(--brand-gold)',
+        gradient: 'linear-gradient(135deg, #2A3B1B, #1B2412)',
         darkGradient: 'linear-gradient(135deg, rgba(244,235,208,0.20), rgba(244,235,208,0.10))',
     },
 ];

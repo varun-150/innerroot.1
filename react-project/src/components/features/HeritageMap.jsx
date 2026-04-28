@@ -80,7 +80,7 @@ const HeritageMap = ({ tours = [] }) => {
     if (loading) {
         return (
             <div className="w-full h-[600px] flex items-center justify-center bg-black/20 rounded-xl border border-white/10 backdrop-blur-sm">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#6C63FF]"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#D4AF37]"></div>
                 <span className="ml-3 text-white/70">Loading Map...</span>
             </div>
         );
@@ -106,7 +106,7 @@ const HeritageMap = ({ tours = [] }) => {
                 <defs>
                     <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="#1a0b2e" />
-                        <stop offset="100%" stopColor="#0b0515" />
+                        <stop offset="100%" stopColor="#1B2412" />
                     </linearGradient>
                 </defs>
 
@@ -121,7 +121,7 @@ const HeritageMap = ({ tours = [] }) => {
                                 animate={{ opacity: 1, pathLength: 1 }}
                                 transition={{ duration: 1, delay: i * 0.005 }}
                                 fill={hoveredState === i ? "rgba(0, 240, 255, 0.05)" : "rgba(255,255,255,0.02)"} // Slight fill for presence
-                                stroke={hoveredState === i ? "#00F0FF" : "rgba(255,255,255,0.1)"}
+                                stroke={hoveredState === i ? "#D4AF37" : "rgba(255,255,255,0.1)"}
                                 strokeWidth={hoveredState === i ? "1.5" : "0.75"}
                                 onMouseEnter={() => setHoveredState(i)}
                                 onMouseLeave={() => setHoveredState(null)}
@@ -161,7 +161,7 @@ const HeritageMap = ({ tours = [] }) => {
                                 {/* Pin */}
                                 <circle
                                     r={5}
-                                    fill="#00F0FF"
+                                    fill="#D4AF37"
                                     stroke="#fff"
                                     strokeWidth={1.5}
                                     data-tooltip-id="map-tooltip"
@@ -186,7 +186,7 @@ const HeritageMap = ({ tours = [] }) => {
             <Tooltip
                 id="map-tooltip"
                 style={{
-                    backgroundColor: "#0b0515",
+                    backgroundColor: "#1B2412",
                     color: "#fff",
                     padding: "8px 12px",
                     borderRadius: "8px",
@@ -198,7 +198,7 @@ const HeritageMap = ({ tours = [] }) => {
             />
 
             <div className="absolute bottom-4 right-4 bg-black/80 p-4 rounded-xl backdrop-blur-md border border-white/10 max-w-xs shadow-xl">
-                <h4 className="text-[#6C63FF] font-display font-bold mb-1 flex items-center gap-2">
+                <h4 className="text-[#D4AF37] font-display font-bold mb-1 flex items-center gap-2">
                     <span className="text-xl">🗺️</span> Explore India’s Heritage
                 </h4>
                 <p className="text-xs text-gray-300 leading-relaxed text-balance">

@@ -82,7 +82,7 @@ const About = () => (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                 {timeline.map((item, i) => (
                     <div key={i} className="spiritual-card p-12 text-center group">
-                        <div className="w-20 h-20 rounded-full flex items-center justify-center font-serif font-bold text-2xl mx-auto mb-10 text-brand-navy bg-brand-gold shadow-gold-glow group-hover:scale-110 transition-transform duration-500">
+                        <div className="w-20 h-20 rounded-full flex items-center justify-center font-serif font-bold text-2xl mx-auto mb-10 text-brand-olive-dark bg-brand-gold shadow-gold-glow group-hover:scale-110 transition-transform duration-500">
                             {item.year}
                         </div>
                         <h4 className="text-2xl font-serif font-bold uppercase mb-4 text-brand-gold">
@@ -104,7 +104,7 @@ const About = () => (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 {teamMembers.map((member, i) => (
                     <div key={i} className="spiritual-card p-12 flex flex-col items-center text-center group bg-white/[0.02]">
-                        <div className="w-28 h-28 rounded-full border border-brand-gold/20 flex items-center justify-center mb-10 text-4xl font-serif font-bold text-brand-gold bg-brand-navy group-hover:scale-110 group-hover:border-brand-gold/50 transition-all duration-700">
+                        <div className="w-28 h-28 rounded-full border border-brand-gold/20 flex items-center justify-center mb-10 text-4xl font-serif font-bold text-brand-gold bg-brand-olive-dark group-hover:scale-110 group-hover:border-brand-gold/50 transition-all duration-700">
                             {member.initials}
                         </div>
                         <h3 className="text-xl font-serif font-bold uppercase mb-3 text-brand-gold">{member.name}</h3>

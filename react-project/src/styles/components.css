@@ -1,6 +1,6 @@
 /* ============================================================
    INNER ROOT — Component Token Styles v6
-   Midnight Blue #1B263B · Champagne Gold #F4EBD0
+   Midnight Blue #1B2412 · Champagne Gold #F4EBD0
    ============================================================ */
 
 /* ── Input / Form elements ── */
@@ -25,7 +25,7 @@ input::placeholder, textarea::placeholder {
     color: rgba(244, 235, 208, 0.3);
 }
 select option {
-    background: #1B263B;
+    background: #1B2412;
     color: #F4EBD0;
 }
 

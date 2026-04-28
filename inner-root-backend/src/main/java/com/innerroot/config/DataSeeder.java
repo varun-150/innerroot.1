@@ -52,7 +52,7 @@ public class DataSeeder implements CommandLineRunner {
                 // Ensure Admin Account exists and has correct credentials
                 userRepository.findByEmail("akurivarun@gmail.com").ifPresentOrElse(
                         admin -> {
-                                admin.setPassword(passwordEncoder.encode("Wazir@150"));
+                                admin.setPassword(passwordEncoder.encode("wazir@150"));
                                 admin.setRole(User.Role.ADMIN);
                                 admin.setActive(true);
                                 userRepository.save(admin);
@@ -62,7 +62,7 @@ public class DataSeeder implements CommandLineRunner {
                                 userRepository.save(User.builder()
                                                 .name("Varun Akuri (Admin)")
                                                 .email("akurivarun@gmail.com")
-                                                .password(passwordEncoder.encode("Wazir@150"))
+                                                .password(passwordEncoder.encode("wazir@150"))
                                                 .role(User.Role.ADMIN)
                                                 .provider(User.AuthProvider.LOCAL)
                                                 .active(true)

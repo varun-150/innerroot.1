@@ -62,7 +62,7 @@ const Signup = () => {
     });
 
     return (
-        <div className="bg-[#0B0515] min-h-screen text-[#F0EEE8] font-sans selection:bg-[#00F0FF] selection:text-black">
+        <div className="bg-[#1B2412] min-h-screen text-[#F0EEE8] font-sans selection:bg-[#D4AF37] selection:text-black">
             <SEO title="Initiate | Inner Root" />
 
 
@@ -85,7 +85,7 @@ const Signup = () => {
                     {/* ── Main Auth Card ── */}
                     <div className="backdrop-blur-[40px] bg-white/[0.03] border border-white/10 rounded-[2.5rem] p-10 md:p-14 shadow-[0_40px_100px_rgba(0,0,0,0.5)] relative overflow-hidden group">
                         {/* Shimmer Border */}
-                        <div className="absolute inset-0 border border-[#00F0FF]/10 rounded-[2.5rem] group-hover:border-[#00F0FF]/30 transition-colors duration-1000 pointer-events-none" />
+                        <div className="absolute inset-0 border border-[#D4AF37]/10 rounded-[2.5rem] group-hover:border-[#D4AF37]/30 transition-colors duration-1000 pointer-events-none" />
 
                         <div className="text-center mb-12">
                             <div className="w-20 h-20 rounded-3xl mx-auto mb-8 bg-white/5 border border-white/5 flex items-center justify-center shadow-inner group/logo">
@@ -95,8 +95,8 @@ const Signup = () => {
                                 Begin Your Journey
                             </h1>
                             <div className="flex items-center justify-center gap-2">
-                                <div className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] animate-pulse" />
-                                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-[#00F0FF]/70">Initiate your digital avatar</p>
+                                <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
+                                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-[#D4AF37]/70">Initiate your digital avatar</p>
                             </div>
                         </div>
 
@@ -127,11 +127,11 @@ const Signup = () => {
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black uppercase tracking-widest text-white/40 ml-1">Full Name</label>
                                 <div className="relative group/field">
-                                    <User size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20 group-hover/field:text-[#00F0FF]/50 transition-colors" />
+                                    <User size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20 group-hover/field:text-[#D4AF37]/50 transition-colors" />
                                     <input 
                                         type="text" value={form.name} onChange={e => updateField('name', e.target.value)}
                                         placeholder="Your name" 
-                                        className="w-full bg-white/[0.01] border border-white/5 focus:border-[#00F0FF]/40 focus:bg-white/[0.03] rounded-2xl py-4 pl-14 pr-6 outline-none transition-all text-sm font-medium"
+                                        className="w-full bg-white/[0.01] border border-white/5 focus:border-[#D4AF37]/40 focus:bg-white/[0.03] rounded-2xl py-4 pl-14 pr-6 outline-none transition-all text-sm font-medium"
                                     />
                                 </div>
                             </div>
@@ -139,11 +139,11 @@ const Signup = () => {
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black uppercase tracking-widest text-white/40 ml-1">Email</label>
                                 <div className="relative group/field">
-                                    <Mail size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20 group-hover/field:text-[#00F0FF]/50 transition-colors" />
+                                    <Mail size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20 group-hover/field:text-[#D4AF37]/50 transition-colors" />
                                     <input 
                                         type="email" value={form.email} onChange={e => updateField('email', e.target.value)}
                                         placeholder="you@example.com" 
-                                        className="w-full bg-white/[0.01] border border-white/5 focus:border-[#00F0FF]/40 focus:bg-white/[0.03] rounded-2xl py-4 pl-14 pr-6 outline-none transition-all text-sm font-medium"
+                                        className="w-full bg-white/[0.01] border border-white/5 focus:border-[#D4AF37]/40 focus:bg-white/[0.03] rounded-2xl py-4 pl-14 pr-6 outline-none transition-all text-sm font-medium"
                                     />
                                 </div>
                             </div>
@@ -151,16 +151,16 @@ const Signup = () => {
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black uppercase tracking-widest text-white/40 ml-1">Password</label>
                                 <div className="relative group/field">
-                                    <Lock size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20 group-hover/field:text-[#00F0FF]/50 transition-colors" />
+                                    <Lock size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20 group-hover/field:text-[#D4AF37]/50 transition-colors" />
                                     <input 
                                         type={showPassword ? 'text' : 'password'} value={form.password} onChange={e => updateField('password', e.target.value)}
                                         placeholder="••••••••" 
-                                        className="w-full bg-white/[0.01] border border-white/5 focus:border-[#00F0FF]/40 focus:bg-white/[0.03] rounded-2xl py-4 pl-14 pr-14 outline-none transition-all text-sm font-medium"
+                                        className="w-full bg-white/[0.01] border border-white/5 focus:border-[#D4AF37]/40 focus:bg-white/[0.03] rounded-2xl py-4 pl-14 pr-14 outline-none transition-all text-sm font-medium"
                                     />
                                     <button 
                                         type="button" 
                                         onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-5 top-1/2 -translate-y-1/2 text-white/20 hover:text-[#00F0FF] transition-colors"
+                                        className="absolute right-5 top-1/2 -translate-y-1/2 text-white/20 hover:text-[#D4AF37] transition-colors"
                                     >
                                         {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                                     </button>
@@ -170,16 +170,16 @@ const Signup = () => {
                             <div className="flex items-start gap-4 px-1 py-1">
                                 <input 
                                     type="checkbox" id="terms" checked={agreedToTerms} onChange={e => setAgreedToTerms(e.target.checked)}
-                                    className="mt-1 w-4 h-4 rounded border-white/10 bg-white/5 checked:bg-[#00F0FF] focus:ring-offset-0 focus:ring-[#00F0FF]"
+                                    className="mt-1 w-4 h-4 rounded border-white/10 bg-white/5 checked:bg-[#D4AF37] focus:ring-offset-0 focus:ring-[#D4AF37]"
                                 />
                                 <label htmlFor="terms" className="text-[11px] leading-relaxed text-white/40">
-                                    I agree to the <Link to="/terms" className="text-[#00F0FF]/80 hover:text-[#00F0FF] transition-colors">Terms of Service</Link> and <Link to="/privacy" className="text-[#00F0FF]/80 hover:text-[#00F0FF] transition-colors">Privacy Policy</Link>
+                                    I agree to the <Link to="/terms" className="text-[#D4AF37]/80 hover:text-[#D4AF37] transition-colors">Terms of Service</Link> and <Link to="/privacy" className="text-[#D4AF37]/80 hover:text-[#D4AF37] transition-colors">Privacy Policy</Link>
                                 </label>
                             </div>
 
                             <button 
                                 type="submit" disabled={loading}
-                                className="w-full py-5 bg-gradient-to-r from-[#00F0FF] to-[#B026FF] text-black font-black uppercase text-[11px] tracking-[0.3em] rounded-2xl shadow-[0_10px_30px_rgba(0, 240, 255,0.2)] hover:shadow-[0_15px_40px_rgba(0, 240, 255,0.3)] hover:-translate-y-1 active:translate-y-0 transition-all duration-300"
+                                className="w-full py-5 bg-gradient-to-r from-[#D4AF37] to-[#2A3B1B] text-black font-black uppercase text-[11px] tracking-[0.3em] rounded-2xl shadow-[0_10px_30px_rgba(0, 240, 255,0.2)] hover:shadow-[0_15px_40px_rgba(0, 240, 255,0.3)] hover:-translate-y-1 active:translate-y-0 transition-all duration-300"
                             >
                                 {loading ? 'Synchronizing...' : 'Manifest Identity'}
                             </button>
@@ -188,7 +188,7 @@ const Signup = () => {
                         <div className="mt-12 pt-8 border-t border-white/5 text-center">
                             <p className="text-xs text-white/40 font-medium">
                                 Already have an account?{' '}
-                                <Link to="/login" className="text-[#00F0FF] hover:brightness-125 transition-all font-black uppercase tracking-widest text-[10px] ml-2">Sign In</Link>
+                                <Link to="/login" className="text-[#D4AF37] hover:brightness-125 transition-all font-black uppercase tracking-widest text-[10px] ml-2">Sign In</Link>
                             </p>
                         </div>
                     </div>

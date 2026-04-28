@@ -5,11 +5,13 @@ const OTP_URL = import.meta.env.VITE_OTP_URL || 'http://localhost:3001';
 
 const api = axios.create({
     baseURL: API_URL,
+    withCredentials: true,
 });
 
 // OTP service API instance
 const otpApi = axios.create({
     baseURL: OTP_URL,
+    withCredentials: true,
 });
 
 // automatically attach JWT token if present

@@ -1,34 +1,36 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Lock, ShieldCheck, ArrowRight, Loader2 } from 'lucide-react';
-import authService from '../../services/authService';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useGoogleLogin } from '@react-oauth/google';
+import { useAuth } from '../../context/AuthContext';
+import authService from '../../services/authService';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const location = useLocation();
+    const [email, setEmail] = useState(location.state?.email || '');
     const [password, setPassword] = useState('');
     const [otp, setOtp] = useState('');
     const [requires2FA, setRequires2FA] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    const [error, setLoginError] = useState('');
     const navigate = useNavigate();
+    const { login, googleAuth } = useAuth();
 
     const handleInitialLogin = async (e) => {
         e.preventDefault();
         setLoading(true);
-        setError('');
+        setLoginError('');
         try {
-            const response = await authService.login(email, password);
-            if (response.data.requires_2fa) {
+            // Check if backend uses 2FA flow via authService first, or just use context login
+            const response = await login(email, password);
+            if (response.requires_2fa) {
                 setRequires2FA(true);
             } else {
-                localStorage.setItem('user', JSON.stringify(response.data.user));
-                localStorage.setItem('tokens', JSON.stringify(response.data.tokens));
                 navigate('/dashboard');
             }
         } catch (err) {
-            setError(err.response?.data?.error || 'Login failed. Please check your credentials.');
+            setLoginError(err.response?.data?.error || err.message || 'Login failed. Please check your credentials.');
         } finally {
             setLoading(false);
         }
@@ -37,14 +39,20 @@ const Login = () => {
     const handleOTPVerify = async (e) => {
         e.preventDefault();
         setLoading(true);
-        setError('');
+        setLoginError('');
         try {
             const response = await authService.verifyOtp(email, otp);
-            localStorage.setItem('user', JSON.stringify(response.data.user));
-            localStorage.setItem('tokens', JSON.stringify(response.data.tokens));
-            navigate('/dashboard');
+            // If OTP verification succeeds, we need to handle the token
+            if (response.data && response.data.token) {
+                localStorage.setItem('innerRootToken', response.data.token);
+                // We might need a way to refresh context here, but usually redirect works if page reloads
+                // Or better, add a verifyOtp to AuthContext
+                window.location.href = '/dashboard';
+            } else {
+                navigate('/dashboard');
+            }
         } catch (err) {
-            setError(err.response?.data?.error || 'Invalid OTP. Please try again.');
+            setLoginError(err.response?.data?.error || 'Invalid OTP. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -54,17 +62,15 @@ const Login = () => {
         onSuccess: async (tokenResponse) => {
             setLoading(true);
             try {
-                const response = await authService.googleLogin(tokenResponse.access_token);
-                localStorage.setItem('user', JSON.stringify(response.data.user));
-                localStorage.setItem('tokens', JSON.stringify(response.data.tokens));
+                await googleAuth(tokenResponse.access_token);
                 navigate('/dashboard');
             } catch (err) {
-                setError('Google login failed. Please try again.');
+                setLoginError('Google login failed. Please try again.');
             } finally {
                 setLoading(false);
             }
         },
-        onError: () => setError('Google Login Failed')
+        onError: () => setLoginError('Google Login Failed')
     });
 
     return (
@@ -91,13 +97,13 @@ const Login = () => {
                         {!requires2FA ? (
                             <form key="login" onSubmit={handleInitialLogin} className="space-y-6">
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-400">Email</label>
+                                    <label className="text-sm font-medium text-gray-400">Email / ID</label>
                                     <input 
-                                        type="email" 
+                                        type="text" 
                                         required
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="w-full bg-black/20 border border-white/10 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-[#6C63FF]"
+                                        className="w-full bg-black/20 border border-white/10 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-[#D4AF37]"
                                         placeholder="name@example.com"
                                     />
                                 </div>
@@ -109,7 +115,7 @@ const Login = () => {
                                         required
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        className="w-full bg-black/20 border border-white/10 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-[#6C63FF]"
+                                        className="w-full bg-black/20 border border-white/10 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-[#D4AF37]"
                                         placeholder="••••••••"
                                     />
                                 </div>
@@ -130,7 +136,7 @@ const Login = () => {
                                 </button>
                                 
                                 <p className="text-center text-gray-500 text-sm">
-                                    No account? <span onClick={() => navigate('/signup')} className="text-[#6C63FF] cursor-pointer">Sign up</span>
+                                    No account? <span onClick={() => navigate('/signup')} className="text-[#D4AF37] cursor-pointer">Sign up</span>
                                 </p>
                             </form>
                         ) : (
@@ -141,7 +147,7 @@ const Login = () => {
                                     required
                                     value={otp}
                                     onChange={(e) => setOtp(e.target.value)}
-                                    className="w-full bg-black/20 border border-white/10 rounded-xl py-4 text-white text-center text-2xl tracking-[0.5em] focus:outline-none focus:border-[#6C63FF]"
+                                    className="w-full bg-black/20 border border-white/10 rounded-xl py-4 text-white text-center text-2xl tracking-[0.5em] focus:outline-none focus:border-[#D4AF37]"
                                     placeholder="000000"
                                 />
                                 {error && <div className="text-red-500 text-sm text-center">{error}</div>}

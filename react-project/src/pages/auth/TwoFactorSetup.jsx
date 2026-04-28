@@ -75,7 +75,7 @@ const TwoFactorSetup = () => {
 
                     <div className="flex items-center gap-4 mb-8">
                         <div className="p-3 bg-accent/20 rounded-xl">
-                            <ShieldAlert className="text-[#6C63FF] w-8 h-8" />
+                            <ShieldAlert className="text-[#D4AF37] w-8 h-8" />
                         </div>
                         <div>
                             <h2 className="text-2xl font-bold">Secure Account</h2>
@@ -85,7 +85,7 @@ const TwoFactorSetup = () => {
 
                     {loading ? (
                         <div className="flex flex-col items-center py-12">
-                            <Loader2 className="animate-spin w-10 h-10 text-[#6C63FF] mb-4" />
+                            <Loader2 className="animate-spin w-10 h-10 text-[#D4AF37] mb-4" />
                             <p className="text-gray-500">Wait...</p>
                         </div>
                     ) : (
@@ -99,7 +99,7 @@ const TwoFactorSetup = () => {
                                     <p className="text-sm text-gray-400">Scan this code with your authenticator app.</p>
                                     <div className="mt-4 flex items-center gap-2 text-xs font-mono bg-black/40 p-2 rounded-lg border border-white/5">
                                         <span className="text-gray-500">Key:</span>
-                                        <span className="text-[#6C63FF] select-all">{qrData?.secret}</span>
+                                        <span className="text-[#D4AF37] select-all">{qrData?.secret}</span>
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +112,7 @@ const TwoFactorSetup = () => {
                                     required
                                     value={otp}
                                     onChange={(e) => setOtp(e.target.value)}
-                                    className="w-full bg-black/20 border border-white/10 rounded-xl py-4 text-center text-3xl font-mono tracking-widest focus:outline-none focus:border-[#6C63FF]"
+                                    className="w-full bg-black/20 border border-white/10 rounded-xl py-4 text-center text-3xl font-mono tracking-widest focus:outline-none focus:border-[#D4AF37]"
                                     placeholder="000000"
                                 />
                                 {error && <p className="text-red-400 text-sm text-center">{error}</p>}

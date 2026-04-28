@@ -1,281 +1,133 @@
-# 🌿 Inner Root
+# 🌿 Inner Root: Indian Heritage & Wellness Platform
 
-> Reconnecting modern individuals with Indian heritage, spirituality, and emotional well-being — powered by AI.
+> **Reconnecting modern individuals with Indian cultural heritage, spirituality, and emotional well-being — powered by AI.**
 
-Inner Root is an immersive digital ecosystem that blends ancient wisdom with modern technology. It transforms cultural knowledge into interactive, personalized, and meaningful experiences — designed not just to inform, but to engage, guide, and evolve.
+Inner Root is an immersive digital ecosystem that transforms timeless cultural knowledge into interactive, personalized, and meaningful experiences. By blending ancient wisdom with modern technology, it creates a unified space for heritage exploration, mindfulness, and personal growth.
 
 ---
 
 ## 📋 Table of Contents
 
-- [Vision](#-vision)
-- [Objectives](#-objectives)
-- [Core Features](#-core-features)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [Getting Started](#-getting-started)
-- [Running the App](#-running-the-app)
-- [Environment Setup](#-environment-setup)
-- [Security](#-security)
-- [CI/CD](#-cicd)
-- [Roadmap](#-roadmap)
-- [Impact](#-impact)
-- [Contributors](#-contributors)
-
----
-
-## 🔭 Vision
-
-To create a world where technology enhances human consciousness, and where timeless knowledge becomes accessible, personalized, and impactful in everyday life.
-
----
-
-## 🎯 Objectives
-
-- 🕉️ Promote awareness of Indian cultural heritage and traditions
-- 🧘 Provide accessible mental wellness and spiritual guidance
-- 🎮 Transform traditional knowledge into interactive digital experiences
-- 🤖 Enable AI-driven personalization for deeper user engagement
+- [✨ Core Features](#-core-features)
+- [🛠️ Tech Stack](#-tech-stack)
+- [🚀 Quick Start](#-quick-start)
+- [📂 Project Structure](#-project-structure)
+- [🛡️ Security & Auth](#-security--auth)
+- [🤖 AI Integration](#-ai-integration)
+- [🌍 Future Roadmap](#-future-roadmap)
+- [👥 Contributors](#-contributors)
 
 ---
 
 ## ✨ Core Features
 
 ### 🏛️ Heritage Exploration
-
-A comprehensive gateway to India's cultural richness:
-
-- **Virtual Tours** — Explore temples, monuments, and heritage sites through immersive digital experiences
-- **Interactive Heritage Map** — Zoomable and pannable map showcasing cultural and spiritual locations across India
-- **Cultural Knowledge Base** — Structured content on traditions, festivals, arts, scriptures, and philosophy
-- **Digital Archives & Museums** — Curated access to artifacts, historical records, and preserved heritage data
+*   **Virtual Tours** — Interactive exploration of historical landmarks, temples, and sacred spaces.
+*   **Interactive Heritage Map** — A dynamic atlas of India featuring cultural and spiritual markers using React Leaflet.
+*   **Cultural Knowledge Base** — Structured insights into traditions, festivals, scriptures, and philosophy.
+*   **Public Access** — Most heritage and wellness content is now publicly accessible without requiring a login.
 
 ### 🧘 Wellness & Spiritual Growth
-
-Designed to support emotional balance and mindful living:
-
-- **Guided Sessions** — Meditation, Yoga, Pranayama, chanting, and relaxation practices
-- **AI-Driven Daily Insights** — Personalized affirmations, wisdom, and spiritual reflections
-- **Mood Tracking & Journaling** — Monitor emotional patterns and track personal growth over time
-- **AI Recommendation Engine** — Context-aware suggestions based on user mood and behavior
-
-### 📊 Personalized Dashboard
-
-- Track wellness journey and activity history
-- Save and revisit content
-- Monitor personal growth and engagement
-
-### 🛡️ Admin Dashboard
-
-- Manage heritage locations and cultural data
-- Control user roles and access
-- Monitor platform activity and analytics
+*   **Guided Sessions** — Meditation, Yoga, Pranayama, and relaxation practices.
+*   **AI Daily Wisdom** — Personalized affirmations and spiritual insights tailored to your journey.
+*   **Mood Tracking** — Monitor emotional patterns and mental wellness progress over time.
+*   **Automatic Login** — Seamless transition from signup to dashboard with zero-click authentication.
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### ⚙️ Backend
-
-| Technology | Purpose |
-|---|---|
-| Spring Boot | Backend framework |
-| Java 21 | Core language |
-| MySQL 8 | Primary database |
-| Spring Security | Authentication & authorization |
-| JWT | Secure session management |
-| OAuth2 (Google) | Social login |
-| Maven | Dependency management |
+*   **Spring Boot 3.5** — High-performance API framework.
+*   **Java 21** — Modern, robust core language.
+*   **Hybrid Database** — **PostgreSQL** for production; **H2 (In-Memory)** fallback for instant local development.
+*   **Spring Security & JWT** — Secure, stateless session management.
+*   **Flyway** — Database migration and version control.
 
 ### 🎨 Frontend
-
-| Technology | Purpose |
-|---|---|
-| React 19 (Vite) | Frontend framework |
-| Tailwind CSS | Styling |
-| Framer Motion | Animations |
-| React Router | Navigation |
-| Lucide Icons | UI icons |
-| Leaflet | Maps |
-| D3.js | Data visualization |
-
-### 🔐 Auth Service
-
-| Technology | Purpose |
-|---|---|
-| Django | Auth microservice |
-| Python 3.10+ | Core language |
-| SQLite | Auth database |
+*   **React 19 (Vite)** — Blazing fast, modern frontend development.
+*   **Tailwind CSS** — Sleek, responsive design system.
+*   **Framer Motion** — Smooth, premium micro-animations.
+*   **React Router 7** — Advanced client-side navigation.
+*   **Lucide Icons** — Minimalist, high-quality iconography.
 
 ---
 
-## 📁 Project Structure
+## 🚀 Quick Start
 
-```
-inner-root/
-├── inner-root-backend/          # Spring Boot API
-│   ├── src/main/java/
-│   ├── src/main/resources/
-│   ├── .env.example
-│   └── pom.xml
-│
-├── react-project/               # React + Vite frontend
-│   ├── src/
-│   │   ├── pages/
-│   │   ├── components/
-│   │   └── config/
-│   └── package.json
-│
-├── django-auth-service/         # Django auth microservice
-│   ├── core/
-│   ├── users/
-│   └── manage.py
-│
-├── .env.template
-├── start-all.bat
-├── deployment_plan.md
-└── README.md
-```
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-| Requirement | Version | Purpose |
-|---|---|---|
-| Java | 21+ | Spring Boot backend |
-| Node.js | LTS | React frontend |
-| Python | 3.10+ | Django auth service |
-| MySQL | 8+ | Primary database |
-| Maven | 3.9+ | Backend deps (or use included `mvnw`) |
-
----
-
-## 💻 Running the App
-
-### ⚡ Quick Start (Windows)
-
-Run all services at once:
+### ⚡ One-Click Startup (Windows)
+We've automated the entire startup process. Just run:
 
 ```bash
 .\start-all.bat
 ```
+*This will automatically launch the Spring Boot backend and the Vite development server in separate windows.*
 
----
+### 🛠️ Manual Setup
 
-### 🎨 Frontend
+#### 1. Backend (Spring Boot)
+The backend is configured to work out-of-the-box using an H2 in-memory database if no external database is detected.
+```bash
+cd inner-root-backend
+./mvnw spring-boot:run
+```
+*   **H2 Console:** [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+*   **API Root:** [http://localhost:8080/api](http://localhost:8080/api)
 
+#### 2. Frontend (React)
 ```bash
 cd react-project
 npm install
 npm run dev
 ```
-
-> Runs on → **[http://localhost:5173](http://localhost:5173)**
+*   **URL:** [http://localhost:5173](http://localhost:5173)
 
 ---
 
-### ⚙️ Backend (Spring Boot)
+## 📂 Project Structure
 
 ```bash
-cd inner-root-backend
-./mvnw spring-boot:run
+inner-root/
+├── inner-root-backend/          # Spring Boot API & Logic
+│   ├── src/main/java/           # Core Java source code
+│   └── src/main/resources/      # App config & H2 fallback settings
+├── react-project/               # React + Vite UI
+│   ├── src/pages/               # Heritage, Wellness & Auth pages
+│   └── src/components/          # Shared UI components
+├── .env.template                # Global environment template
+├── start-all.bat                # Automation script for Windows
+└── README.md                    # You are here
 ```
 
-> On Windows, use `mvnw.cmd spring-boot:run` instead.
+---
 
-> Runs on → **[http://localhost:8080](http://localhost:8080)**
+## 🛡️ Security & Auth
+
+Inner Root features a secure, multi-layered authentication system:
+*   **JWT Tokens** — All user sessions are handled via signed JSON Web Tokens.
+*   **Cookie Integration** — Tokens are stored securely in HTTP-only cookies and synchronized with LocalStorage.
+*   **Open Access** — Routes like `/explore`, `/wellness`, and `/wisdom` are now public, while personal dashboards and admin tools remain protected.
+*   **Google OAuth2** — One-tap social sign-in for a frictionless experience.
 
 ---
 
-### 🔐 Auth Service (Django)
+## 🤖 AI Integration
+The platform uses **OpenRouter AI** (Gemini 2.0 Flash) to provide:
+*   **Sentient Heritage Guidance** — Deep, context-aware answers to complex cultural questions.
+*   **Sentiment-Based Wellness** — Meditation and wisdom recommendations based on user mood tracking.
 
-```bash
-cd django-auth-service
-python -m venv venv              # first time only
-.\venv\Scripts\activate          # Windows (use source venv/bin/activate on Mac/Linux)
-pip install -r requirements.txt  # first time only
-python manage.py runserver
-```
-
-> Runs on → **[http://localhost:8000](http://localhost:8000)**
-
----
-
-## 🌍 Environment Setup
-
-### Frontend — `react-project/.env.local`
-
-```env
-VITE_API_URL=http://localhost:8080/api
-VITE_GOOGLE_CLIENT_ID=your-google-client-id
-```
-
-### Backend — `inner-root-backend/.env`
-
-```env
-DATABASE_URL=jdbc:mysql://localhost:3306/Inner_root
-DB_USER=your_db_user
-DB_PASSWORD=your_db_password
-JWT_SECRET=your_super_secret_key_at_least_256_bits
-GOOGLE_CLIENT_ID=your-google-client-id
-ALLOWED_ORIGINS=http://localhost:5173
-```
-
-> 💡 See `.env.template` and `inner-root-backend/.env.example` for full reference.
-
----
-
-## 🔒 Security
-
-- **🔑 JWT Authentication** — Stateless, secure session management
-- **🌐 OAuth2 Google Login** — One-click social sign-in
-- **🛡️ Spring Security** — Role-based access control
-- **🔐 CORS Protection** — Configured origins for API security
-
----
-
-## 🔄 CI/CD
-
-- **🎨 Frontend CI** — Automated build checks for React/Vite
-- **⚙️ Backend CI** — Maven-based build validation
-- **🚀 Deployment** — Frontend on Vercel, Backend on Railway
-
----
-
-## 🗺️ Roadmap
-
-- [ ] 📱 Mobile application
-- [ ] 🤖 Advanced AI recommendation engine
-- [ ] 🌐 Multilingual support
-- [ ] 🥽 AR/VR heritage experiences
-- [ ] 🤝 Community mentorship features
-
----
-
-## 🌏 Impact
-
-- 🧘 Enhances emotional well-being through guided cultural practices
-- 🏛️ Digitally preserves Indian cultural heritage for future generations
-- 🤝 Builds a conscious and connected global community
-- 🌍 Enables worldwide access to Indian knowledge systems
+*API Configuration can be found in `application.properties`.*
 
 ---
 
 ## 👥 Contributors
 
-**Akuri Venkata Surya Varun** — Founder, Lead Developer & UI/UX Designer
-
-**Gangi Reddy Gari Hem Sathvik Reddy** — Co-Founder
-
-**Md. Roohan** — Backend Engineer
+*   **Akuri Venkata Surya Varun** — Founder, Lead Developer & UI/UX Designer
+*   **Gangi Reddy Gari Hem Sathvik Reddy** — Co-Founder
+*   **Md. Roohan** — Backend Engineer
 
 ---
 
 <div align="center">
-
-🌿 Built with care for the **Inner Root** community 🌿
-
+  🌿 <i>Built with devotion for the Inner Root community</i> 🌿
 </div>

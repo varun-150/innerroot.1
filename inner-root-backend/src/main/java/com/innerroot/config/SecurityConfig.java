@@ -41,12 +41,22 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints
-                        .requestMatchers("/api/auth/login", "/api/auth/google", "/api/auth/refresh", "/api/auth/logout").permitAll()
+                        .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/google", "/api/auth/refresh", "/api/auth/logout").permitAll()
                         .requestMatchers("/api/health").permitAll()
                         .requestMatchers("/api/contact/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/ws/**").permitAll()
                         
+                        // Public GET access to content
+                        .requestMatchers(org.springframework.http.HttpMethod.GET, 
+                            "/api/heritage-sites/**", 
+                            "/api/wellness/**",
+                            "/api/wisdom/**",
+                            "/api/library/**",
+                            "/api/culture/**",
+                            "/api/guides/**",
+                            "/api/events/**").permitAll()
+
                         // Require ADMIN for modifying global content and admin operations
                         .requestMatchers(
                             "/api/admin/**",
@@ -60,12 +70,13 @@ public class SecurityConfig {
 
                         // Require Authentication for User-specific endpoints
                         .requestMatchers(
+                            "/api/auth/me",
                             "/api/users/**", 
                             "/api/japa/**", 
                             "/api/mood/**", 
                             "/api/chat/**").authenticated()
 
-                        // Deny by Default
+                        // Any other request needs authentication
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
