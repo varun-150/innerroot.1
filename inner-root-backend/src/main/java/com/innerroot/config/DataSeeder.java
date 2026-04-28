@@ -3,14 +3,14 @@ package com.innerroot.config;
 import com.innerroot.model.*;
 import com.innerroot.repository.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class DataSeeder implements CommandLineRunner {
-
-        private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(DataSeeder.class);
 
         private final WisdomQuoteRepository wisdomRepository;
         private final CultureItemRepository cultureRepository;
@@ -44,7 +44,7 @@ public class DataSeeder implements CommandLineRunner {
                                 admin.setRole(User.Role.ADMIN);
                                 admin.setActive(true);
                                 userRepository.save(admin);
-                                logger.info("Admin account password reset/verified: akurivarun@gmail.com");
+                                log.info("Admin account password reset/verified: akurivarun@gmail.com");
                         },
                         () -> {
                                 userRepository.save(User.builder()
@@ -56,7 +56,7 @@ public class DataSeeder implements CommandLineRunner {
                                                 .active(true)
                                                 .onboardingCompleted(true)
                                                 .build());
-                                logger.info("Admin account created: akurivarun@gmail.com");
+                                log.info("Admin account created: akurivarun@gmail.com");
                         }
                 );
 

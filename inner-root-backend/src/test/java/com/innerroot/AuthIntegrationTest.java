@@ -2,9 +2,7 @@ package com.innerroot;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.innerroot.dto.LoginRequest;
-import com.innerroot.model.User;
 import com.innerroot.repository.UserRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -27,9 +25,6 @@ public class AuthIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
