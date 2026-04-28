@@ -54,10 +54,19 @@ public class AuthService {
 
         // 1. Handle Admin Security
         if ("akurivarun@gmail.com".equalsIgnoreCase(email)) {
+            logger.info("Admin login attempt detected for: {}", email);
+            User admin = userRepository.findByEmail(email).orElse(null);
+            if (admin == null) {
+                logger.error("Admin user not found in database: {}", email);
+            } else {
+                boolean matches = passwordEncoder.matches(password, admin.getPassword());
+                logger.info("Admin password match status: {}", matches);
+            }
+            
             try {
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
             } catch (Exception e) {
-                logger.error("Admin login failed for {}: {}", email, e.getMessage());
+                logger.error("Admin authentication failed: {}", e.getMessage());
                 throw new RuntimeException("Invalid admin credentials");
             }
         } else {

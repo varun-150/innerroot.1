@@ -24,16 +24,28 @@ public class DataSeeder implements CommandLineRunner {
         private final org.springframework.security.crypto.password.PasswordEncoder passwordEncoder;
 
         @Override
-        public void run(String... args) throws Exception {
-                seedUsers();
-                seedWisdom();
-                seedCulture();
-                seedTours();
-                seedLibrary();
-                seedDiscussions();
-                seedGuides();
-                seedEvents();
-                seedWellness();
+        public void run(String... args) {
+                log.info("Starting data seeding process...");
+                
+                safeSeed("Users", this::seedUsers);
+                safeSeed("Wisdom", this::seedWisdom);
+                safeSeed("Culture", this::seedCulture);
+                safeSeed("Tours", this::seedTours);
+                safeSeed("Library", this::seedLibrary);
+                safeSeed("Discussions", this::seedDiscussions);
+                safeSeed("Guides", this::seedGuides);
+                safeSeed("Events", this::seedEvents);
+                safeSeed("Wellness", this::seedWellness);
+                
+                log.info("Data seeding process completed.");
+        }
+
+        private void safeSeed(String name, Runnable seedTask) {
+                try {
+                        seedTask.run();
+                } catch (Exception e) {
+                        log.error("Failed to seed {}: {}", name, e.getMessage());
+                }
         }
 
         private void seedUsers() {
@@ -60,18 +72,28 @@ public class DataSeeder implements CommandLineRunner {
                         }
                 );
 
-                // Ensure a Demo User Account exists
-                if (!userRepository.existsByEmail("user@innerroot.com")) {
-                        userRepository.save(User.builder()
-                                        .name("Demo Explorer")
-                                        .email("user@innerroot.com")
-                                        .password(passwordEncoder.encode("User@123"))
-                                        .role(User.Role.USER)
-                                        .provider(User.AuthProvider.LOCAL)
-                                        .active(true)
-                                        .onboardingCompleted(true)
-                                        .build());
-                }
+                // Ensure a Demo User Account exists and has correct credentials
+                userRepository.findByEmail("user@innerroot.com").ifPresentOrElse(
+                        user -> {
+                                user.setPassword(passwordEncoder.encode("User@123"));
+                                user.setRole(User.Role.USER);
+                                user.setActive(true);
+                                userRepository.save(user);
+                                log.info("Demo user password reset/verified: user@innerroot.com");
+                        },
+                        () -> {
+                                userRepository.save(User.builder()
+                                                .name("Demo Explorer")
+                                                .email("user@innerroot.com")
+                                                .password(passwordEncoder.encode("User@123"))
+                                                .role(User.Role.USER)
+                                                .provider(User.AuthProvider.LOCAL)
+                                                .active(true)
+                                                .onboardingCompleted(true)
+                                                .build());
+                                log.info("Demo user created: user@innerroot.com");
+                        }
+                );
         }
 
         private void seedWisdom() {
