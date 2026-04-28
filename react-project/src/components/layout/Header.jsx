@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const navItems = [
-    { path: '/',             label: 'Home'      },
-    { path: '/heritage-map', label: 'Heritage'  },
-    { path: '/wellness',     label: 'Wellness'  },
-    { path: '/community',    label: 'Community' },
-    { path: '/pricing',      label: 'Pricing'   },
-    { path: '/about',        label: 'About'     },
+    { path: '/',             label: 'Roots'      },
+    { path: '/heritage-map', label: 'The Map'   },
+    { path: '/wellness',     label: 'Practice'  },
+    { path: '/community',    label: 'Sense'     },
+    { path: '/dashboard',    label: 'Today'     },
 ];
 
-const Header = ({ theme, onToggleTheme }) => {
+const Header = () => {
     const location = useLocation();
     const [scrolled, setScrolled] = useState(false);
     const [open, setOpen] = useState(false);
@@ -25,66 +24,58 @@ const Header = ({ theme, onToggleTheme }) => {
 
     useEffect(() => { setOpen(false); }, [location.pathname]);
 
+    const premiumEasing = [0.22, 1, 0.36, 1];
+
     return (
         <>
             <header
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-1000 ${
                     scrolled 
-                        ? 'bg-main/80 backdrop-blur-md border-b border-main py-4' 
-                        : 'bg-transparent py-6'
+                        ? 'bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/5 py-6' 
+                        : 'bg-transparent py-10'
                 }`}
-                style={{ 
-                    backgroundColor: scrolled ? 'var(--bg-main)' : 'transparent',
-                    borderColor: 'var(--border-main)'
-                }}
             >
-                <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+                <div className="max-w-7xl mx-auto px-12 md:px-24 flex items-center justify-between">
                     {/* Logo */}
-                    <Link to="/" className="flex items-center gap-2">
-                        <span className="font-bold uppercase tracking-tighter text-primary text-xl" style={{ color: 'var(--text-primary)' }}>
-                            INNER<span className="text-brand-gold">ROOT</span>
+                    <Link to="/" className="flex items-center gap-4 group">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+                        <span className="font-medium tracking-[0.2em] text-white text-xs uppercase">
+                            Inner Root
                         </span>
                     </Link>
 
                     {/* Desktop Nav */}
-                    <nav className="hidden lg:flex items-center gap-8">
+                    <nav className="hidden lg:flex items-center gap-16">
                         {navItems.map(item => {
                             const active = location.pathname === item.path;
                             return (
                                 <Link key={item.path} to={item.path}
-                                    className={`text-sm font-medium transition-colors duration-200 ${
-                                        active ? 'text-brand-gold' : 'text-secondary hover:text-primary'
-                                    }`}
-                                    style={{ color: active ? 'var(--brand-gold)' : 'var(--text-secondary)' }}
+                                    className="relative group py-2"
                                 >
-                                    {item.label}
+                                    <span className={`text-[11px] uppercase tracking-[0.2em] font-medium transition-colors duration-700 ${
+                                        active ? 'text-white' : 'text-white/20 group-hover:text-white/60'
+                                    }`}>
+                                        {item.label}
+                                    </span>
                                 </Link>
                             );
                         })}
                     </nav>
 
                     {/* Right Actions */}
-                    <div className="hidden md:flex items-center gap-6">
-                        <button 
-                            onClick={onToggleTheme}
-                            className="p-2 text-secondary hover:text-primary transition-colors"
-                            style={{ color: 'var(--text-secondary)' }}
-                        >
-                            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-                        </button>
-                        <Link to="/login" className="text-sm font-medium text-secondary hover:text-primary transition-colors" style={{ color: 'var(--text-secondary)' }}>
-                            Login
+                    <div className="hidden md:flex items-center gap-12">
+                        <Link to="/login" className="text-[11px] uppercase tracking-widest font-medium text-white/20 hover:text-white transition-colors duration-700">
+                            Sign In
                         </Link>
-                        <Link to="/signup" className="btn-primary px-6 py-2 text-sm rounded-md">
-                            Sign Up
+                        <Link to="/signup" className="text-[11px] uppercase tracking-[0.3em] font-medium text-[#D4AF37] hover:text-white transition-colors duration-700">
+                            Join
                         </Link>
                     </div>
 
                     {/* Mobile toggle */}
-                    <button className="lg:hidden p-2 text-primary hover:text-brand-gold transition-colors"
-                        style={{ color: 'var(--text-primary)' }}
+                    <button className="lg:hidden p-2 text-white/40 hover:text-white transition-colors"
                         onClick={() => setOpen(v => !v)} aria-label="Toggle menu">
-                        {open ? <X size={24} /> : <Menu size={24} />}
+                        {open ? <X size={18} /> : <Menu size={18} />}
                     </button>
                 </div>
             </header>
@@ -93,31 +84,33 @@ const Header = ({ theme, onToggleTheme }) => {
             <AnimatePresence>
                 {open && (
                     <motion.div
-                        initial={{ opacity:0, y:-10 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:-10 }}
-                        className="fixed inset-0 z-40 bg-main pt-24 px-6 lg:hidden"
-                        style={{ backgroundColor: 'var(--bg-main)' }}
+                        initial={{ opacity:0 }} 
+                        animate={{ opacity:1 }} 
+                        exit={{ opacity:0 }}
+                        transition={{ duration: 0.8, ease: premiumEasing }}
+                        className="fixed inset-0 z-40 bg-[#0A0A0A] pt-48 px-12 lg:hidden flex flex-col"
                     >
-                        <nav className="flex flex-col gap-6">
-                            {navItems.map(item => (
-                                <Link key={item.path} to={item.path}
-                                    className={`text-2xl font-bold uppercase tracking-tight`}
-                                    style={{ color: location.pathname === item.path ? 'var(--brand-gold)' : 'var(--text-primary)' }}
+                        <nav className="flex flex-col gap-12 mb-auto">
+                            {navItems.map((item, i) => (
+                                <motion.div
+                                    key={item.path}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: i * 0.1, duration: 0.8, ease: premiumEasing }}
                                 >
-                                    {item.label}
-                                </Link>
+                                    <Link to={item.path}
+                                        className="text-5xl font-serif font-light tracking-tight text-white/30 hover:text-white transition-colors"
+                                    >
+                                        {item.label}
+                                    </Link>
+                                </motion.div>
                             ))}
-                            <div className="pt-6 border-t border-main flex flex-col gap-4" style={{ borderColor: 'var(--border-main)' }}>
-                                <Link to="/login" className="text-center py-3 border border-main rounded-md text-primary font-bold uppercase tracking-widest text-xs" style={{ borderColor: 'var(--border-main)', color: 'var(--text-primary)' }}>Login</Link>
-                                <Link to="/signup" className="btn-primary text-center py-3 rounded-md text-xs font-bold uppercase tracking-widest">Sign Up</Link>
-                                <button 
-                                    onClick={onToggleTheme}
-                                    className="flex items-center justify-center gap-2 py-3 text-secondary font-bold uppercase tracking-widest text-xs"
-                                    style={{ color: 'var(--text-secondary)' }}
-                                >
-                                    {theme === 'dark' ? <><Sun size={16} /> Light Mode</> : <><Moon size={16} /> Dark Mode</>}
-                                </button>
-                            </div>
                         </nav>
+                        
+                        <div className="pb-24 flex flex-col gap-8">
+                            <Link to="/signup" className="text-sm font-medium tracking-widest uppercase text-[#D4AF37]">Join Protocol</Link>
+                            <Link to="/login" className="text-sm font-medium tracking-widest uppercase text-white/20">Sign In</Link>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

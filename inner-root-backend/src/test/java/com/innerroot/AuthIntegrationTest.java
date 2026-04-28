@@ -2,7 +2,7 @@ package com.innerroot;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.innerroot.dto.LoginRequest;
-import com.innerroot.repository.UserRepository;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

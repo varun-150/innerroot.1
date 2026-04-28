@@ -19,6 +19,8 @@ const HeritageExplorer = lazy(() => import('../pages/HeritageExplorer'));
 const Contact = lazy(() => import('../pages/Contact'));
 const Monetization = lazy(() => import('../pages/Monetization'));
 const AdminDashboard = lazy(() => import('../pages/AdminDashboard'));
+const Community = lazy(() => import('../pages/Community'));
+
 
 import { DemoOne } from '../components/ui/demo';
 import DemoMatrix from '../components/ui/cyber-matrix-hero-demo';
@@ -35,6 +37,8 @@ export const routes = [
     { path: '/heritage-map', element: <HeritageExplorer /> },
     { path: '/library', element: <Library /> },
     { path: '/about', element: <About /> },
+    { path: '/community', element: <Community /> },
+
     { path: '/contact', element: <Contact /> },
     { path: '/login', element: <Login /> },
     { path: '/signup', element: <Signup /> },

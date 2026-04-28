@@ -4,30 +4,45 @@
    ============================================================ */
 
 :root {
-    /* ── Dark Mode (Default) ── */
+    /* ── Apple-Inspired Premium Palette ── */
+    --brand-black: #0A0A0A;
+    --brand-white: #E0E0E0;
     --brand-gold: #D4AF37;
-    --brand-gold-light: #F5D76E;
+    --brand-gold-warm: #C5A059;
+    --brand-gold-soft: rgba(197, 160, 89, 0.1);
     
-    --bg-main: #0B0B0B;
-    --text-primary: #FFFFFF;
-    --text-secondary: #A0A0A0;
-    --border-main: rgba(255, 255, 255, 0.1);
-    --card-bg: rgba(255, 255, 255, 0.02);
-    --card-hover: rgba(255, 255, 255, 0.04);
+    --bg-main: var(--brand-black);
+    --text-primary: var(--brand-white);
+    --text-secondary: rgba(224, 224, 224, 0.6);
+    --text-dim: rgba(224, 224, 224, 0.4);
     
-    /* ── Gold Gradient ── */
-    --gold-gradient: linear-gradient(135deg, var(--brand-gold) 0%, var(--brand-gold-light) 100%);
+    --border-soft: rgba(224, 224, 224, 0.05);
+    --border-medium: rgba(224, 224, 224, 0.1);
     
-    /* ── Spacing ── */
+    --glass-bg: rgba(10, 10, 10, 0.7);
+    --glass-border: rgba(224, 224, 224, 0.08);
+    
+    /* ── Spacing (Strict 8px System) ── */
     --space-1: 8px;
     --space-2: 16px;
     --space-3: 24px;
     --space-4: 32px;
+    --space-6: 48px;
     --space-8: 64px;
+    --space-12: 96px;
+    --space-16: 128px;
+    --space-24: 192px;
 
-    /* Fonts */
-    --font-heading: 'Inter', 'Geist', 'Satoshi', sans-serif;
-    --font-body: 'Inter', 'Geist', 'Satoshi', sans-serif;
+    /* ── Typography ── */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    --font-serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    --font-heading: var(--font-serif);
+    
+    /* ── Transitions ── */
+    --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+    --transition-slow: 0.8s var(--ease-premium);
+    --transition-medium: 0.5s var(--ease-premium);
+    --transition-fast: 0.2s var(--ease-premium);
 }
 
 /* ── Light Mode Overrides ── */
@@ -44,79 +59,128 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
     color: var(--text-primary);
     background-color: var(--bg-main);
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
     -webkit-font-smoothing: antialiased;
-    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: -0.01em;
+    line-height: 1.6;
+}
+
+/* Noise Texture Overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 9999;
 }
 
 ::selection {
     background: var(--brand-gold);
-    color: var(--bg-main);
+    color: var(--brand-black);
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    font-weight: 700;
     margin: 0;
     color: var(--text-primary);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
 }
 
-/* ── Global Components ── */
+/* ── Premium Components ── */
 
-/* Buttons */
-.btn-primary {
-    background: var(--gold-gradient);
+.btn-premium {
+    position: relative;
+    background: var(--brand-white);
     color: var(--brand-black) !important;
-    font-weight: 600;
+    font-weight: 400;
     padding: 12px 32px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
+    border-radius: 100px;
+    transition: var(--transition-slow);
     border: none;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
-.btn-primary:hover {
-    transform: scale(1.02);
-    filter: brightness(1.1);
+.btn-premium:hover {
+    background: #FFFFFF;
+    transform: scale(1.01);
 }
 
-.btn-secondary {
+.btn-ghost {
     background: transparent;
-    color: var(--brand-white) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-weight: 600;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-medium);
+    font-weight: 300;
     padding: 12px 32px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
+    border-radius: 100px;
+    transition: var(--transition-slow);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
-.btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: scale(1.02);
+.btn-ghost:hover {
+    background: rgba(224, 224, 224, 0.02);
+    border-color: rgba(224, 224, 224, 0.2);
 }
 
-.text-gold-gradient {
-    background: var(--gold-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+/* Glass Card */
+.glass-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 40px;
+    padding: var(--space-8);
+    transition: var(--transition-slow);
 }
+
+.glass-card:hover {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Legacy Mappings (Refined) ── */
+.spiritual-card {
+    background: rgba(10, 10, 10, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(40px);
+    border-radius: 40px;
+    transition: var(--transition-slow);
+}
+
+.spiritual-card:hover {
+    border-color: rgba(224, 224, 224, 0.08);
+}
+
+.bg-spiritual-gradient {
+    background-color: var(--brand-black);
+}
+
+.text-brand-ivory { color: var(--brand-white); }
+.text-brand-gold { color: var(--brand-gold); }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-track { background: var(--brand-black); }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: var(--brand-gold); }
+::-webkit-scrollbar-thumb { background: rgba(224, 224, 224, 0.05); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(224, 224, 224, 0.1); }
+
+

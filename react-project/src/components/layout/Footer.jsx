@@ -1,59 +1,55 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const footerLinks = {
-    Explore: [
-        { to: '/heritage-map', label: 'Heritage' },
-        { to: '/wellness',     label: 'Wellness' },
-        { to: '/library',      label: 'Library' },
-    ],
-    Platform: [
-        { to: '/community',    label: 'Community' },
-        { to: '/pricing',      label: 'Pricing' },
-        { to: '/about',        label: 'About' },
-    ],
-    Legal: [
-        { to: '/privacy',       label: 'Privacy' },
-        { to: '/terms',         label: 'Terms' },
-    ],
-};
-
 const Footer = () => (
-    <footer className="bg-brand-black border-t border-brand-gray/10 py-24 px-6 font-sans" style={{ borderColor: 'var(--border-main)' }}>
+    <footer className="bg-[#0A0A0A] border-t border-white/5 py-48 px-12 md:px-24 font-sans">
         <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                <div className="md:col-span-1">
-                    <Link to="/" className="font-bold text-brand-white tracking-tighter text-2xl uppercase">
-                        INNER<span className="text-brand-gold">ROOT</span>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-24 mb-32">
+                <div className="md:col-span-5">
+                    <Link to="/" className="flex items-center gap-4 mb-10 group">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+                        <span className="font-medium tracking-[0.2em] text-white text-xs uppercase">
+                            Inner Root
+                        </span>
                     </Link>
-                    <p className="mt-6 text-brand-gray text-sm leading-relaxed max-w-xs font-medium">
-                        Synchronizing ancient wisdom with future intelligence. 
-                        The cradle of spiritual exploration.
+                    <p className="text-white/30 text-sm leading-relaxed font-light max-w-sm">
+                        Five thousand years of heritage, refined for today. 
+                        Simple tools for a more intentional life.
                     </p>
                 </div>
                 
-                {Object.entries(footerLinks).map(([section, links]) => (
-                    <div key={section}>
-                        <h4 className="text-brand-white text-sm font-bold uppercase tracking-widest mb-6">{section}</h4>
+                <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-16">
+                    <div>
+                        <h4 className="text-white/20 text-[10px] font-medium uppercase tracking-[0.4em] mb-8">Roots</h4>
                         <ul className="space-y-4">
-                            {links.map(link => (
-                                <li key={link.label}>
-                                    <Link to={link.to} className="text-brand-gray hover:text-brand-white transition-colors text-sm font-medium">
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))}
+                            <li><Link to="/heritage-map" className="text-white/40 hover:text-white transition-colors text-sm font-light">The Map</Link></li>
+                            <li><Link to="/wellness" className="text-white/40 hover:text-white transition-colors text-sm font-light">Practice</Link></li>
                         </ul>
                     </div>
-                ))}
+                    <div>
+                        <h4 className="text-white/20 text-[10px] font-medium uppercase tracking-[0.4em] mb-8">Sense</h4>
+                        <ul className="space-y-4">
+                            <li><Link to="/community" className="text-white/40 hover:text-white transition-colors text-sm font-light">Community</Link></li>
+                            <li><Link to="/dashboard" className="text-white/40 hover:text-white transition-colors text-sm font-light">Today</Link></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 className="text-white/20 text-[10px] font-medium uppercase tracking-[0.4em] mb-8">Legal</h4>
+                        <ul className="space-y-4">
+                            <li><Link to="/privacy" className="text-white/40 hover:text-white transition-colors text-sm font-light">Privacy</Link></li>
+                            <li><Link to="/terms" className="text-white/40 hover:text-white transition-colors text-sm font-light">Terms</Link></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
-            <div className="pt-8 border-t border-brand-gray/10 flex flex-col md:flex-row justify-between items-center gap-6" style={{ borderColor: 'var(--border-main)' }}>
-                <p className="text-brand-gray text-[10px] font-bold uppercase tracking-[0.3em]">
-                    &copy; 2026 Inner Root Protocol. All rights reserved.
+            <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+                <p className="text-white/10 text-[10px] font-medium uppercase tracking-[0.4em]">
+                    &copy; 2024 Inner Root
                 </p>
-                <div className="text-brand-gray text-[10px] font-bold uppercase tracking-[0.3em]">
-                    Designed for the Eternal Root
+                <div className="flex gap-12">
+                    <a href="#" className="text-white/10 hover:text-white transition-colors text-[10px] font-medium uppercase tracking-[0.4em]">Twitter</a>
+                    <a href="#" className="text-white/10 hover:text-white transition-colors text-[10px] font-medium uppercase tracking-[0.4em]">Instagram</a>
                 </div>
             </div>
         </div>

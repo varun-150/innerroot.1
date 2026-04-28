@@ -1,145 +1,145 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-    Activity, History, BookOpen, Sparkles,
-    Wind, Waves, Mountain, Save, RotateCcw, Plus,
-    ArrowLeft, Settings
-} from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { japaAPI } from '../services/api';
-import SEO from '../components/ui/SEO';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { RotateCcw } from "lucide-react";
 
-const Wellness = () => {
+/* ------------------ Apple Smooth Animation ------------------ */
+const fadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5,
+            ease: [0.22, 1, 0.36, 1],
+        },
+    },
+};
+
+/* ------------------ Mantras ------------------ */
+const MANTRAS = [
+    {
+        id: "Inner stillness",
+        name: "Om Namah Shivaya",
+        text: "Om Namah Shivaya",
+        desc: "A connection to stillness.",
+    },
+    {
+        id: "Devotion",
+        name: "Maha Mantra",
+        text: "Hare Krishna Hare Krishna Krishna Krishna Hare Hare Hare Rama Hare Rama Rama Rama Hare Hare",
+        desc: "A celebration of presence.",
+    },
+    {
+        id: "Clarity",
+        name: "Gayatri",
+        text: "Om Bhur Bhuvah Swaha Tat Savitur Varenyam Bhargo Devasya Dheemahi Dhiyo Yo Nah Prachodayat",
+        desc: "A prayer for light.",
+    },
+];
+
+export default function Wellness() {
     const [beads, setBeads] = useState(0);
     const [malas, setMalas] = useState(0);
-    const [mantra, setMantra] = useState('Om Namah Shivaya');
-    const [journal, setJournal] = useState('');
-    const [isSaving, setIsSaving] = useState(false);
+    const [mantra, setMantra] = useState(MANTRAS[0]);
 
-    const handleIncrement = () => {
+    const increment = () => {
         if (beads >= 107) {
             setBeads(0);
-            setMalas(prev => prev + 1);
+            setMalas((m) => m + 1);
         } else {
-            setBeads(prev => prev + 1);
+            setBeads((b) => b + 1);
         }
     };
 
-    const handleSave = async () => {
-        setIsSaving(true);
-        try {
-            await japaAPI.save({ beadsCount: beads, totalMalas: malas, mantra });
-            setTimeout(() => {
-                setIsSaving(false);
-                setBeads(0);
-                setMalas(0);
-            }, 1000);
-        } catch (e) {
-            setIsSaving(false);
-            console.error(e);
-        }
+    const reset = () => {
+        setBeads(0);
+        setMalas(0);
     };
 
     return (
-        <div className="min-h-screen bg-spiritual-gradient text-brand-ivory font-body overflow-x-hidden selection:bg-brand-gold/30 relative">
-            <SEO title="Wellness Sanctuary | Inner Root" />
+        <div className="min-h-screen bg-[#0A0A0A] text-white px-8 md:px-24 pt-48 pb-24 relative overflow-hidden">
+            <div className="max-w-4xl relative z-10">
 
-            {/* ── HEADER ── */}
-            <header className="relative z-10 px-8 py-10 flex items-center justify-between border-b border-brand-gold/10 backdrop-blur-md">
-                <Link to="/" className="flex items-center gap-2 text-brand-ivory/50 hover:text-brand-gold transition-colors font-bold uppercase tracking-widest text-[10px]">
-                    <ArrowLeft size={18} /> Return to Nexus
-                </Link>
-                <div className="text-center">
-                    <h1 className="text-3xl font-serif font-bold uppercase tracking-tight text-brand-gold">Wellness Sanctuary</h1>
-                    <p className="text-[9px] font-bold uppercase tracking-[0.5em] text-brand-gold/50 mt-1">Protocol: Harmonic Sync</p>
-                </div>
-                <div className="flex items-center gap-6">
-                    <Settings size={22} className="text-brand-ivory/40 hover:text-brand-gold animate-spin-slow cursor-pointer" />
-                </div>
-            </header>
+                {/* ---------------- HEADER ---------------- */}
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2 }}
+                    className="mb-32"
+                >
+                    <h1 className="text-6xl md:text-8xl font-serif font-light tracking-tight text-white mb-6">
+                        Practice
+                    </h1>
+                    <p className="text-white/30 text-base max-w-sm font-light tracking-tight">
+                        Daily tools that build consistency without pressure.
+                    </p>
+                </motion.div>
 
-            <main className="relative z-10 max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
-                
-                {/* ── 🧘 MAIN JAPA PULSE ── */}
-                <div className="lg:col-span-8 flex flex-col gap-10">
-                    <section className="spiritual-card p-16 flex flex-col items-center justify-center text-center relative overflow-hidden h-[650px]">
-                        <div className="absolute inset-0 bg-brand-gold/5 opacity-20 pointer-events-none" />
-                        
-                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4 mb-20">
-                            <span className="text-[11px] font-bold uppercase tracking-[0.6em] text-brand-gold/40">Active Mantra</span>
-                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-gold drop-shadow-gold-glow">{mantra}</h2>
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-24">
+                    {/* Left: Mantra Selection (4 columns) */}
+                    <div className="md:col-span-4 space-y-4">
+                        <p className="text-[10px] uppercase tracking-[0.4em] text-white/20 mb-8">Focus</p>
+                        {MANTRAS.map((m) => (
+                            <button
+                                key={m.id}
+                                onClick={() => setMantra(m)}
+                                className={`w-full text-left py-4 border-b transition-colors duration-500 ${
+                                    mantra.id === m.id
+                                        ? 'border-[#D4AF37] text-white'
+                                        : 'border-white/5 text-white/20 hover:text-white/40'
+                                }`}
+                            >
+                                <span className="text-xs font-medium tracking-widest uppercase">{m.id}</span>
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Right: Counter (8 columns) */}
+                    <div className="md:col-span-8 md:pl-24">
+                        <motion.div
+                            key={mantra.id}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1 }}
+                            className="mb-16"
+                        >
+                            <h2 className="text-3xl md:text-4xl font-serif font-light leading-relaxed text-white/90 mb-6">
+                                {mantra.text}
+                            </h2>
+                            <p className="text-white/20 text-sm font-light">{mantra.desc}</p>
                         </motion.div>
 
-                        {/* The Pulse Button */}
-                        <motion.button
-                            onClick={handleIncrement}
-                            whileTap={{ scale: 0.95 }}
-                            className="relative w-80 h-80 rounded-full flex flex-col items-center justify-center group cursor-pointer border border-brand-gold/20 bg-white/5 backdrop-blur-xl hover:border-brand-gold transition-all duration-500 shadow-2xl"
-                        >
-                            <div className="absolute inset-0 rounded-full bg-brand-gold/10 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity animate-pulse-glow" />
-                            <span className="text-9xl font-serif font-bold text-brand-gold group-hover:scale-110 transition-transform duration-500">{beads}</span>
-                            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-brand-gold/30 group-hover:text-brand-gold/60 mt-4">Beads</span>
-                        </motion.button>
+                        <div className="flex flex-col items-start gap-12">
+                            <button
+                                onClick={increment}
+                                className="w-48 h-48 rounded-full border border-white/5 flex flex-col items-center justify-center hover:bg-white/[0.02] active:scale-95 transition-all duration-700"
+                            >
+                                <span className="text-6xl font-light tracking-tighter text-white">{beads}</span>
+                                <span className="text-[10px] text-white/10 mt-2 uppercase tracking-[0.4em]">beads</span>
+                            </button>
 
-                        <div className="mt-20 grid grid-cols-2 gap-24">
-                            <div className="text-center">
-                                <span className="block text-4xl font-serif font-bold text-brand-gold">{malas}</span>
-                                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-ivory/40 mt-2">Total Malas</span>
-                            </div>
-                            <div className="text-center">
-                                <span className="block text-4xl font-serif font-bold text-brand-gold">{((beads/108)*100).toFixed(0)}%</span>
-                                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-ivory/40 mt-2">Alignment</span>
+                            <div className="flex gap-20">
+                                <div className="text-left">
+                                    <p className="text-3xl font-serif font-light">{malas}</p>
+                                    <p className="text-[10px] uppercase tracking-widest text-white/20">sessions</p>
+                                </div>
+                                <div className="text-left">
+                                    <p className="text-3xl font-serif font-light">
+                                        {Math.floor((beads / 108) * 100)}%
+                                    </p>
+                                    <p className="text-[10px] uppercase tracking-widest text-white/20">completion</p>
+                                </div>
+                                <button
+                                    onClick={reset}
+                                    className="ml-auto self-end text-white/20 hover:text-white transition-colors"
+                                >
+                                    <RotateCcw size={16} />
+                                </button>
                             </div>
                         </div>
-                    </section>
-
-                    <div className="flex items-center gap-6">
-                        <button onClick={handleSave} disabled={isSaving} className="flex-1 btn-primary py-5 uppercase tracking-widest text-sm">
-                            {isSaving ? 'Synchronizing Intelligence...' : 'Commit Session to Roots'}
-                        </button>
-                        <button onClick={() => {setBeads(0); setMalas(0);}} className="p-5 spiritual-card rounded-full hover:bg-brand-gold/10 text-brand-ivory/40 hover:text-brand-gold">
-                            <RotateCcw size={24} />
-                        </button>
                     </div>
                 </div>
-
-                {/* ── 📓 SIDEBAR ── */}
-                <aside className="lg:col-span-4 flex flex-col gap-10">
-                    <section className="spiritual-card p-10 space-y-10">
-                        <h3 className="text-sm font-bold uppercase tracking-[0.4em] text-brand-gold flex items-center gap-3">
-                            <History size={18} /> Heritage Logs
-                        </h3>
-                        <div className="space-y-6">
-                            {[1, 2, 3].map(i => (
-                                <div key={i} className="p-6 rounded-2xl bg-brand-olive-dark/50 flex items-center justify-between border border-brand-gold/10 hover:border-brand-gold/30 transition-colors cursor-default">
-                                    <div className="space-y-1">
-                                        <p className="text-[11px] font-bold uppercase text-brand-gold">Mantra Cycle #{i}09</p>
-                                        <p className="text-[9px] text-brand-ivory/30">18 APR 2026, 11:22 PM</p>
-                                    </div>
-                                    <span className="text-xs font-bold text-brand-gold/80">108 Recits</span>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-
-                    <section className="spiritual-card p-10 space-y-8 flex-grow">
-                        <h3 className="text-sm font-bold uppercase tracking-[0.4em] text-brand-gold flex items-center gap-3">
-                            <BookOpen size={18} /> Neural Journal
-                        </h3>
-                        <textarea 
-                            value={journal} 
-                            onChange={(e) => setJournal(e.target.value)} 
-                            placeholder="Digitize your spiritual insights..."
-                            className="w-full h-80 bg-brand-olive-dark/30 border border-brand-gold/10 rounded-2xl p-8 text-sm focus:outline-none focus:border-brand-gold/40 transition-all font-body text-brand-ivory placeholder:text-brand-ivory/20 resize-none"
-                        />
-                        <button className="w-full py-4 spiritual-card border-brand-gold/20 text-[11px] font-bold uppercase tracking-widest hover:bg-brand-gold/20 text-brand-gold">
-                            Archive to Vault
-                        </button>
-                    </section>
-                </aside>
-            </main>
+            </div>
         </div>
     );
-};
-
-export default Wellness;
+}
