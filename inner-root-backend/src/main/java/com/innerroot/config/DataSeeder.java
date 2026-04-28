@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DataSeeder implements CommandLineRunner {
 
+        private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(DataSeeder.class);
+
         private final WisdomQuoteRepository wisdomRepository;
         private final CultureItemRepository cultureRepository;
         private final HeritageSiteRepository toursRepository;
@@ -35,18 +37,28 @@ public class DataSeeder implements CommandLineRunner {
         }
 
         private void seedUsers() {
-                // Ensure Admin Account exists
-                if (!userRepository.existsByEmail("akurivarun@gmail.com")) {
-                        userRepository.save(User.builder()
-                                        .name("Varun Akuri (Admin)")
-                                        .email("akurivarun@gmail.com")
-                                        .password(passwordEncoder.encode("Wazir@150"))
-                                        .role(User.Role.ADMIN)
-                                        .provider(User.AuthProvider.LOCAL)
-                                        .active(true)
-                                        .onboardingCompleted(true)
-                                        .build());
-                }
+                // Ensure Admin Account exists and has correct credentials
+                userRepository.findByEmail("akurivarun@gmail.com").ifPresentOrElse(
+                        admin -> {
+                                admin.setPassword(passwordEncoder.encode("Wazir@150"));
+                                admin.setRole(User.Role.ADMIN);
+                                admin.setActive(true);
+                                userRepository.save(admin);
+                                logger.info("Admin account password reset/verified: akurivarun@gmail.com");
+                        },
+                        () -> {
+                                userRepository.save(User.builder()
+                                                .name("Varun Akuri (Admin)")
+                                                .email("akurivarun@gmail.com")
+                                                .password(passwordEncoder.encode("Wazir@150"))
+                                                .role(User.Role.ADMIN)
+                                                .provider(User.AuthProvider.LOCAL)
+                                                .active(true)
+                                                .onboardingCompleted(true)
+                                                .build());
+                                logger.info("Admin account created: akurivarun@gmail.com");
+                        }
+                );
 
                 // Ensure a Demo User Account exists
                 if (!userRepository.existsByEmail("user@innerroot.com")) {

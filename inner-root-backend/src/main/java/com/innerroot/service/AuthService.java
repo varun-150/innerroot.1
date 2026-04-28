@@ -45,29 +45,62 @@ public class AuthService {
         User savedUser = userRepository.save(user);
         logger.info("New user registered: {}", savedUser.getEmail());
 
-        return new AuthResponse(
-                savedUser.getId(),
-                savedUser.getName(),
-                savedUser.getEmail(),
-                savedUser.getProfilePicture(),
-                savedUser.getRole().name(),
-                savedUser.getInterests(),
-                savedUser.getMeditationStreak(),
-                savedUser.getLongestStreak(),
-                savedUser.getTotalSessions(),
-                savedUser.getUnlockedBadges());
+        return convertToAuthResponse(savedUser);
     }
 
     public AuthResponse login(LoginRequest request) {
-        // Authenticate
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        String email = request.getEmail();
+        String password = request.getPassword();
 
-        User user = userRepository.findByEmail(request.getEmail())
+        // 1. Handle Admin Security
+        if ("akurivarun@gmail.com".equalsIgnoreCase(email)) {
+            try {
+                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+            } catch (Exception e) {
+                logger.error("Admin login failed for {}: {}", email, e.getMessage());
+                throw new RuntimeException("Invalid admin credentials");
+            }
+        } else {
+            // 2. Handle 'Anything/Anything' for Users
+            // If user doesn't exist or password doesn't match, we auto-sync/register for testing convenience
+            try {
+                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+            } catch (Exception e) {
+                logger.info("Non-admin login failed, applying 'anything/anything' logic for: {}", email);
+                return autoRegisterAndLogin(email, password);
+            }
+        }
+
+        User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         logger.info("User logged in: {}", user.getEmail());
 
+        return convertToAuthResponse(user);
+    }
+
+    private AuthResponse autoRegisterAndLogin(String email, String password) {
+        User user = userRepository.findByEmail(email).orElseGet(() -> {
+            User newUser = User.builder()
+                    .name("User " + email.split("@")[0])
+                    .email(email)
+                    .role(User.Role.USER)
+                    .provider(User.AuthProvider.LOCAL)
+                    .active(true)
+                    .onboardingCompleted(true)
+                    .build();
+            return userRepository.save(newUser);
+        });
+
+        // Update password to 'anything' provided
+        user.setPassword(passwordEncoder.encode(password));
+        user.setActive(true);
+        User savedUser = userRepository.save(user);
+        
+        return convertToAuthResponse(savedUser);
+    }
+
+    private AuthResponse convertToAuthResponse(User user) {
         return new AuthResponse(
                 user.getId(),
                 user.getName(),
@@ -105,19 +138,9 @@ public class AuthService {
             user.setName(name);
             user.setRole(assignedRole); // Ensure role is correct even on login
             user = userRepository.save(user);
-            logger.info("Google user logged in: {}", email);
+        logger.info("Google user logged in: {}", email);
         }
 
-        return new AuthResponse(
-                user.getId(),
-                user.getName(),
-                user.getEmail(),
-                user.getProfilePicture(),
-                user.getRole().name(),
-                user.getInterests(),
-                user.getMeditationStreak(),
-                user.getLongestStreak(),
-                user.getTotalSessions(),
-                user.getUnlockedBadges());
+        return convertToAuthResponse(user);
     }
 }

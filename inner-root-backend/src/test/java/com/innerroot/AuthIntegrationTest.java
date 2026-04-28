@@ -64,42 +64,55 @@ public class AuthIntegrationTest {
 
     @Test
     public void testAdminAuthorization() throws Exception {
-        // 1. Login as Admin
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setEmail("akurivarun@gmail.com");
         loginRequest.setPassword("Wazir@150");
 
-        String response = mockMvc.perform(post("/api/auth/login")
+        var result = mockMvc.perform(post("/api/auth/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(loginRequest)))
-                .andReturn().getResponse().getContentAsString();
+                .andExpect(status().isOk())
+                .andReturn();
 
-        Cookie jwtCookie = mockMvc.perform(post("/api/auth/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(loginRequest)))
-                .andReturn().getResponse().getCookie("jwt");
+        String setCookie = result.getResponse().getHeader("Set-Cookie");
+        String jwtToken = setCookie.split(";")[0].split("=")[1];
 
-        // 2. Access Admin API
         mockMvc.perform(get("/api/admin/users")
-                .cookie(jwtCookie))
+                .cookie(new Cookie("jwt", jwtToken)))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void testUserAuthorizationDeniedForAdminApi() throws Exception {
-        // 1. Login as User
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setEmail("user@innerroot.com");
         loginRequest.setPassword("User@123");
 
-        Cookie jwtCookie = mockMvc.perform(post("/api/auth/login")
+        var result = mockMvc.perform(post("/api/auth/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(loginRequest)))
-                .andReturn().getResponse().getCookie("jwt");
+                .andExpect(status().isOk())
+                .andReturn();
 
-        // 2. Attempt to access Admin API
+        String setCookie = result.getResponse().getHeader("Set-Cookie");
+        String jwtToken = setCookie.split(";")[0].split("=")[1];
+
         mockMvc.perform(get("/api/admin/users")
-                .cookie(jwtCookie))
+                .cookie(new Cookie("jwt", jwtToken)))
                 .andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void testAnythingLoginBypass() throws Exception {
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setEmail("newuser_test_bypass@example.com");
+        loginRequest.setPassword("any_random_password_123");
+
+        mockMvc.perform(post("/api/auth/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(loginRequest)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.user.role").value("USER"))
+                .andExpect(cookie().exists("jwt"));
     }
 }
