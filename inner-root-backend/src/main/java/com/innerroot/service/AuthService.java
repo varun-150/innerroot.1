@@ -85,6 +85,8 @@ public class AuthService {
         // Find or create user
         User user = userRepository.findByEmail(email).orElse(null);
 
+        User.Role assignedRole = "akurivarun@gmail.com".equalsIgnoreCase(email) ? User.Role.ADMIN : User.Role.USER;
+
         if (user == null) {
             // Register new Google user
             user = User.builder()
@@ -93,14 +95,15 @@ public class AuthService {
                     .profilePicture(picture)
                     .provider(User.AuthProvider.GOOGLE)
                     .providerId(googleId)
-                    .role(User.Role.USER)
+                    .role(assignedRole)
                     .build();
             user = userRepository.save(user);
             logger.info("New Google user registered: {}", email);
         } else {
-            // Update existing user's profile picture
+            // Update existing user's profile picture and ensure correct role
             user.setProfilePicture(picture);
             user.setName(name);
+            user.setRole(assignedRole); // Ensure role is correct even on login
             user = userRepository.save(user);
             logger.info("Google user logged in: {}", email);
         }

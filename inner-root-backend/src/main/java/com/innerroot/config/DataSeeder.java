@@ -35,23 +35,25 @@ public class DataSeeder implements CommandLineRunner {
         }
 
         private void seedUsers() {
-                if (userRepository.count() == 0) {
-                        // Admin Account
+                // Ensure Admin Account exists
+                if (!userRepository.existsByEmail("akurivarun@gmail.com")) {
                         userRepository.save(User.builder()
-                                        .name("System Administrator")
-                                        .email("admin@innerroot.com")
-                                        .password(passwordEncoder.encode("InnerRoot2026!"))
+                                        .name("Varun Akuri (Admin)")
+                                        .email("akurivarun@gmail.com")
+                                        .password(passwordEncoder.encode("Wazir@150"))
                                         .role(User.Role.ADMIN)
                                         .provider(User.AuthProvider.LOCAL)
                                         .active(true)
                                         .onboardingCompleted(true)
                                         .build());
+                }
 
-                        // Demo User Account
+                // Ensure a Demo User Account exists
+                if (!userRepository.existsByEmail("user@innerroot.com")) {
                         userRepository.save(User.builder()
                                         .name("Demo Explorer")
                                         .email("user@innerroot.com")
-                                        .password(passwordEncoder.encode("InnerRoot2026!"))
+                                        .password(passwordEncoder.encode("User@123"))
                                         .role(User.Role.USER)
                                         .provider(User.AuthProvider.LOCAL)
                                         .active(true)
