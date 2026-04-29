@@ -72,21 +72,21 @@ export default function Community() {
     };
 
     return (
-        <div className="min-h-screen bg-[#0A0A0A] text-white px-12 md:px-24 pt-48 pb-24 relative overflow-hidden">
-            <div className="max-w-4xl relative z-10">
+        <div className="min-h-screen bg-spiritual-gradient text-white px-8 md:px-24 pt-48 pb-24 relative overflow-hidden">
+            <div className="max-w-5xl relative z-10 mx-auto">
 
                 {/* ------------------ Header ------------------ */}
                 <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1.2 }}
+                    transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
                     className="mb-32"
                 >
-                    <h1 className="text-6xl md:text-8xl font-serif font-light tracking-tight text-white mb-6">
+                    <h1 className="text-7xl md:text-9xl font-serif font-light tracking-tight text-white mb-8">
                         Sense
                     </h1>
-                    <p className="text-white/30 text-base max-w-sm font-light tracking-tight">
-                        A quiet space for others. Share a thought or a moment of stillness.
+                    <p className="text-dim text-lg md:text-xl max-w-md font-light tracking-tight">
+                        A quiet space for others. Share a thought, a reflection, or a moment of stillness.
                     </p>
                 </motion.div>
 
@@ -94,21 +94,21 @@ export default function Community() {
                     
                     {/* Left: Input (5 columns) */}
                     <div className="md:col-span-5">
-                        <div className="border-t border-white/5 pt-12">
-                            <span className="text-[10px] font-medium uppercase tracking-[0.4em] text-[#D4AF37]/60 mb-12 block">Contribute</span>
+                        <div className="border-t border-white/5 pt-12 glass-card p-8 md:p-0 md:bg-transparent md:border-t md:border-none md:backdrop-blur-none">
+                            <span className="text-[10px] font-medium uppercase tracking-[0.5em] text-brand-gold/60 mb-12 block">Contribute</span>
                             <textarea
                                 value={newPost}
                                 onChange={(e) => setNewPost(e.target.value)}
                                 placeholder="Share a thought..."
-                                className="w-full bg-transparent border-none text-xl md:text-2xl font-serif font-light placeholder:text-white/10 focus:ring-0 resize-none min-h-[160px] mb-8 p-0"
+                                className="w-full bg-transparent border-none text-2xl md:text-3xl font-serif font-light placeholder:text-white/10 focus:ring-0 resize-none min-h-[200px] mb-8 p-0"
                             />
                             <button
                                 onClick={handlePost}
                                 disabled={!newPost.trim()}
-                                className="text-sm font-medium tracking-widest uppercase text-white/40 hover:text-white transition-colors disabled:opacity-10 flex items-center gap-6 group"
+                                className="text-sm font-medium tracking-[0.3em] uppercase text-white/40 hover:text-brand-gold transition-all disabled:opacity-10 flex items-center gap-8 group"
                             >
                                 Share
-                                <span className="w-8 h-[1px] bg-white/20 group-hover:bg-white group-hover:w-12 transition-all duration-500" />
+                                <span className="w-12 h-[1px] bg-white/10 group-hover:bg-brand-gold group-hover:w-20 transition-all duration-700" />
                             </button>
                         </div>
                     </div>
@@ -119,28 +119,28 @@ export default function Community() {
                             {posts.map((post, i) => (
                                 <motion.div
                                     key={post.id}
-                                    initial={{ opacity: 0, y: 20 }}
+                                    initial={{ opacity: 0, y: 30 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0 }}
-                                    transition={{ duration: 1, delay: i * 0.1 }}
-                                    className="border-b border-white/5 pb-12 last:border-none"
+                                    transition={{ duration: 1.2, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                                    className="border-b border-white/5 pb-16 last:border-none group"
                                 >
                                     <div className="flex items-center gap-4 mb-8">
-                                        <div className="text-[10px] uppercase tracking-widest text-white/40 font-serif italic">{post.name}</div>
-                                        <div className="w-1 h-1 rounded-full bg-white/5" />
-                                        <div className="text-[9px] uppercase tracking-widest text-white/20">{post.time}</div>
+                                        <div className="text-[10px] uppercase tracking-[0.3em] text-brand-gold/60 font-medium">{post.name}</div>
+                                        <div className="w-1 h-1 rounded-full bg-white/10" />
+                                        <div className="text-[9px] uppercase tracking-widest text-dim">{post.time}</div>
                                     </div>
 
-                                    <p className="text-lg text-white/70 font-light leading-relaxed mb-10">
+                                    <p className="text-xl md:text-2xl text-white/80 font-light leading-relaxed mb-12 group-hover:text-white transition-colors">
                                         {post.content}
                                     </p>
 
-                                    <div className="flex items-center gap-8 text-white/20 text-[10px] tracking-widest uppercase">
-                                        <button className="hover:text-[#D4AF37] transition flex items-center gap-2">
-                                            <Heart size={12} /> {post.likes}
+                                    <div className="flex items-center gap-12 text-dim text-[10px] tracking-[0.3em] uppercase font-medium">
+                                        <button className="hover:text-brand-gold transition-all flex items-center gap-3">
+                                            <Heart size={14} className="stroke-[1.5px]" /> {post.likes}
                                         </button>
-                                        <button className="hover:text-white transition flex items-center gap-2">
-                                            <MessageSquare size={12} /> {post.comments}
+                                        <button className="hover:text-white transition-all flex items-center gap-3">
+                                            <MessageSquare size={14} className="stroke-[1.5px]" /> {post.comments}
                                         </button>
                                     </div>
                                 </motion.div>
