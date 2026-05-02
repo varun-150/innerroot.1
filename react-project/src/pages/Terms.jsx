@@ -1,51 +1,76 @@
 import React from 'react';
-import { Reveal } from '../components/ui/Reveal';
+import { motion } from 'framer-motion';
 import SEO from '../components/ui/SEO';
-import Breadcrumbs from '../components/layout/Breadcrumbs';
+
+const Section = ({ title, children, delay }) => (
+    <motion.section 
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay }}
+        viewport={{ once: true }}
+        className="mb-20 last:mb-0"
+    >
+        <h2 className="text-3xl mb-8">{title}</h2>
+        <div className="text-secondary text-lg leading-relaxed font-light tracking-tight space-y-6">
+            {children}
+        </div>
+    </motion.section>
+);
 
 const Terms = () => {
+    const premiumEasing = [0.22, 1, 0.36, 1];
+
     return (
-        <section className="page active block opacity-100 py-12 lg:py-20">
-            <SEO title="Terms of Use" description="Terms of Use for Inner Root - Shaping our heritage community." />
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <Breadcrumbs />
+        <div className="min-h-screen bg-brand-black text-primary pt-48 pb-24 px-8 md:px-24">
+            <SEO title="Terms of Resonance | Inner Root" description="The agreement for our community of heritage guardians." />
+            
+            <div className="max-w-4xl mx-auto">
+                <motion.div 
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: premiumEasing }}
+                    className="mb-32"
+                >
+                    <span className="text-accent text-[10px] font-medium uppercase tracking-[0.6em] mb-8 block">Legal Protocol</span>
+                    <h1 className="md:text-[8rem] mb-12">Terms.</h1>
+                    <p className="text-secondary text-xl md:text-2xl font-light tracking-tight italic">
+                        "Agreement for a shared journey through timeless wisdom."
+                    </p>
+                </motion.div>
 
-                <Reveal className="mt-12 mb-16 text-center">
-                    <h1 className="font-display text-5xl sm:text-7xl font-bold text-[var(--fg)] mb-6 tracking-tighter">Shared <span className="text-[#F4EBD0]">Honor</span></h1>
-                    <p className="text-[var(--muted)] max-w-2xl mx-auto text-xl leading-relaxed italic font-medium">Agreement for our community of heritage guardians.</p>
-                </Reveal>
-
-                <Reveal delay={0.2}>
-                    <div className="prose prose-invert max-w-none text-[var(--muted)] space-y-6">
-                        <div className="p-4 rounded-lg bg-accent/10 border border-[#F4EBD0]/20 text-[#F4EBD0] text-sm italic mb-8">
-                            Last updated: October 26, 2024
-                        </div>
-                        <p className="text-lg leading-relaxed">
-                            Welcome to Inner Root. By accessing our platform, you agree to honor the heritage we share and the community we build together.
-                        </p>
-                        <section className="space-y-4">
-                            <h3 className="text-2xl font-display font-bold text-[var(--fg)]">1. Agreement to Terms</h3>
-                            <p>These Terms of Use constitute a legally binding agreement between you and Inner Root. If you do not agree with these terms, please discontinue use of the site immediately.</p>
-                        </section>
-
-                        <section className="space-y-4">
-                            <h3 className="text-2xl font-display font-bold text-[var(--fg)]">2. User Representations</h3>
-                            <p>By using the site, you represent that you are of legal age and that the information you provide is accurate and truthful. You agree to use the site in a manner consistent with its mission of cultural exploration and community building.</p>
-                        </section>
-
-                        <section className="space-y-4">
-                            <h3 className="text-2xl font-display font-bold text-[var(--fg)]">3. Content and Copyright</h3>
-                            <p>All content on Inner Root, including text, graphics, and interactive elements, is protected by copyright. You may use the content for personal, non-commercial purposes only.</p>
-                        </section>
-
-                        <section className="space-y-4">
-                            <h3 className="text-2xl font-display font-bold text-[var(--fg)]">4. Community Guidelines</h3>
-                            <p>We encourage respectful and constructive dialogue. Harassment, hate speech, or the dissemination of false information is strictly prohibited.</p>
-                        </section>
+                <div className="glass-card p-12 md:p-20">
+                    <div className="mb-16 inline-block px-4 py-2 bg-brand-gold/10 border border-brand-gold/20 text-accent text-[10px] uppercase tracking-[0.2em]">
+                        Last Updated: May 2, 2026
                     </div>
-                </Reveal>
+
+                    <Section title="1. The Covenant" delay={0.1}>
+                        <p>Welcome to Inner Root. By accessing our platform, you enter into a sanctuary of learning. You agree to honor the heritage we share and the community we build together.</p>
+                    </Section>
+
+                    <Section title="2. Guardian Representations" delay={0.2}>
+                        <p>By using the site, you represent that you are of legal age and that the information you provide is accurate. You agree to use the site in a manner consistent with its mission of cultural exploration and community building.</p>
+                    </Section>
+
+                    <Section title="3. Sacred Content" delay={0.3}>
+                        <p>All content on Inner Root, including text, graphics, and interactive virtual tours, is protected by international copyright. You may use the content for personal, non-commercial contemplation only.</p>
+                    </Section>
+
+                    <Section title="4. Sangha Guidelines" delay={0.4}>
+                        <p>We encourage respectful and constructive dialogue. Harassment, hate speech, or the dissemination of false information is strictly prohibited within our community spaces.</p>
+                    </Section>
+
+                    <Section title="5. Limiting Echoes" delay={0.5}>
+                        <p>Inner Root is provided "as is." While we strive for absolute historical accuracy, we cannot be held liable for any interpretations or technological interruptions in your journey.</p>
+                    </Section>
+                </div>
+
+                <div className="mt-32 text-center">
+                    <p className="text-[9px] uppercase tracking-[0.8em] text-secondary opacity-30">
+                        Inner Root Protocol — All Wisdom Preserved
+                    </p>
+                </div>
             </div>
-        </section>
+        </div>
     );
 };
 

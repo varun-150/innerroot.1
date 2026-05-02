@@ -120,7 +120,10 @@ public class AuthService {
                 user.getMeditationStreak(),
                 user.getLongestStreak(),
                 user.getTotalSessions(),
-                user.getUnlockedBadges());
+                user.getUnlockedBadges(),
+                user.getDailyStreak(),
+                user.getTotalLessonsCompleted(),
+                user.getSubscriptionStatus().name());
     }
 
     public AuthResponse googleAuth(String email, String name, String picture, String googleId) {

@@ -90,7 +90,21 @@ public class User {
     @Column(length = 500)
     private String interests; // comma-separated: yoga,heritage,texts,wellness
 
-    // Progress tracking
+    // Subscription Status
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    private SubscriptionStatus subscriptionStatus = SubscriptionStatus.FREE;
+
+    // Daily Lesson Progress
+    @Builder.Default
+    private Integer dailyStreak = 0;
+
+    @Builder.Default
+    private Integer totalLessonsCompleted = 0;
+
+    private LocalDateTime lastLessonCompletedAt;
+
+    // Legacy Progress (Keeping for compatibility)
     @Builder.Default
     private Integer meditationStreak = 0;
 
@@ -102,7 +116,7 @@ public class User {
 
     @Size(max = 1000)
     @Column(length = 1000)
-    private String unlockedBadges; // comma-separated badge IDs
+    private String unlockedBadges;
 
     @Builder.Default
     private Boolean onboardingCompleted = false;
@@ -118,5 +132,9 @@ public class User {
 
     public enum Role {
         USER, ADMIN
+    }
+
+    public enum SubscriptionStatus {
+        FREE, SEEKER, GURU
     }
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { useSearchParams } from 'react-router-dom';
 import { MapPin, ArrowRight } from 'lucide-react';
 import HeritageMap, { heritageLocations } from '../components/HeritageMap';
@@ -27,9 +28,17 @@ function HeritageExplorer() {
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white selection:bg-[#D4AF37]/30 px-12 md:px-24 pt-48 pb-24 relative overflow-hidden">
         <div className="max-w-6xl relative z-10 mb-32">
-            <h1 className="text-6xl md:text-8xl font-serif font-light tracking-tight mb-6 text-white">The Map</h1>
-            <p className="text-white/30 max-w-sm text-base font-light tracking-tight">
-                See where you are, and where to go next.
+            <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="flex items-center gap-4 mb-8"
+            >
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+                <span className="text-[10px] font-medium uppercase tracking-[0.4em] text-[#D4AF37]">Reference Library</span>
+            </motion.div>
+            <h1 className="text-6xl md:text-8xl font-serif font-light tracking-tighter mb-12 text-white">The Archive.</h1>
+            <p className="text-white/30 max-w-sm text-lg font-light leading-relaxed tracking-tight">
+                Deep-dive into the architectural marvels and sacred geography of Bharat. Your unlocked knowledge lives here.
             </p>
         </div>
 

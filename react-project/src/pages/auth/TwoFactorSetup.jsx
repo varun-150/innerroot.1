@@ -17,8 +17,8 @@ const TwoFactorSetup = () => {
         const fetch2FADetails = async () => {
             setLoading(true);
             try {
-                const tokens = JSON.parse(localStorage.getItem('tokens'));
-                const response = await authService.setup2FA(tokens.access);
+                const token = localStorage.getItem('innerRootToken');
+                const response = await authService.setup2FA(token);
                 setQrData(response.data);
             } catch (err) {
                 setError('Failed to initialize 2FA setup. Are you logged in?');
@@ -34,8 +34,8 @@ const TwoFactorSetup = () => {
         setVerifying(true);
         setError('');
         try {
-            const tokens = JSON.parse(localStorage.getItem('tokens'));
-            await authService.confirm2FA(tokens.access, otp);
+            const token = localStorage.getItem('innerRootToken');
+            await authService.confirm2FA(token, otp);
             setSuccess(true);
         } catch (err) {
             setError('Invalid verification code. Please try again.');

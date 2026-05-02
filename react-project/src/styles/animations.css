@@ -1,14 +1,110 @@
-/* ── Premium Motion Design ── */
+/* ── Ultra Premium Motion System ── */
 
 :root {
     --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-snappy: cubic-bezier(0.3, 0.7, 0.4, 1.5);
 }
 
-/* Smooth Fade In Up */
+/* GPU Optimization */
+* {
+    will-change: transform, opacity;
+}
+
+/* ── Fade In Up (Refined) ── */
 @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0) scale(0.98);
+        filter: blur(6px);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(0, -4px, 0) scale(1.01);
+        filter: blur(0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 1s var(--ease-apple) both;
+}
+
+/* ── Stagger System (Smoother Scaling) ── */
+.stagger-1 { animation-delay: 0.08s; }
+.stagger-2 { animation-delay: 0.16s; }
+.stagger-3 { animation-delay: 0.24s; }
+.stagger-4 { animation-delay: 0.32s; }
+.stagger-5 { animation-delay: 0.4s; }
+
+/* ── Floating (More Natural Physics) ── */
+@keyframes float {
+    0%   { transform: translateY(0px) scale(1); }
+    50%  { transform: translateY(-12px) scale(1.01); }
+    100% { transform: translateY(0px) scale(1); }
+}
+
+.animate-float {
+    animation: float 5.5s var(--ease-smooth) infinite;
+}
+
+/* ── Gradient Drift (More Premium Feel) ── */
+@keyframes gradientDrift {
+    0%   { background-position: 0% 50%; }
+    25%  { background-position: 50% 100%; }
+    50%  { background-position: 100% 50%; }
+    75%  { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-drift {
+    background-size: 300% 300%;
+    animation: gradientDrift 18s ease infinite;
+}
+
+/* ── Micro Interaction (Advanced Scale + Depth) ── */
+.hover-scale {
+    transition: 
+        transform 0.4s var(--ease-apple),
+        box-shadow 0.4s var(--ease-apple);
+}
+
+.hover-scale:hover {
+    transform: scale(1.04) translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Glow Interaction (More Realistic Lighting) ── */
+.hover-glow {
+    transition: 
+        box-shadow 0.4s var(--ease-apple),
+        border-color 0.4s var(--ease-apple),
+        background 0.4s var(--ease-apple);
+}
+
+.hover-glow:hover {
+    box-shadow: 
+        0 0 0 1px rgba(255,255,255,0.05),
+        0 10px 40px rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.15);
+}
+
+/* ── Press Interaction (Tactile Feel) ── */
+.press {
+    transition: transform 0.15s var(--ease-snappy);
+}
+
+.press:active {
+    transform: scale(0.96);
+}
+
+/* ── Smooth Appear (for sections) ── */
+@keyframes smoothReveal {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -16,54 +112,22 @@
     }
 }
 
-.animate-fade-in-up {
-    animation: fadeInUp 1.2s var(--ease-apple) forwards;
+.reveal {
+    animation: smoothReveal 0.8s var(--ease-smooth) both;
 }
 
-/* Staggered Reveals */
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
-
-/* Subtle Float */
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+/* ── Glass Blur Enhancement ── */
+.glass {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.animate-float {
-    animation: float 6s ease-in-out infinite;
-}
-
-/* Gradient Drift */
-@keyframes gradientDrift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.animate-gradient-drift {
-    background-size: 200% 200%;
-    animation: gradientDrift 15s ease infinite;
-}
-
-/* Micro-scale interaction */
-.hover-scale {
-    transition: transform 0.3s var(--ease-apple);
-}
-
-.hover-scale:hover {
-    transform: scale(1.02);
-}
-
-/* Soft Glow */
-.hover-glow {
-    transition: box-shadow 0.3s var(--ease-apple), border-color 0.3s var(--ease-apple);
-}
-
-.hover-glow:hover {
-    box-shadow: 0 0 20px rgba(224, 224, 224, 0.1);
-    border-color: rgba(224, 224, 224, 0.2);
+/* ── Reduced Motion Accessibility ── */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
 }

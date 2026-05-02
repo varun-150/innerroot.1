@@ -4,11 +4,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const navItems = [
-    { path: '/',             label: 'Roots'      },
-    { path: '/heritage-map', label: 'The Map'   },
-    { path: '/wellness',     label: 'Practice'  },
-    { path: '/community',    label: 'Sense'     },
-    { path: '/dashboard',    label: 'Today'     },
+    { path: '/',         label: 'Home' },
+    { path: '/explore',   label: 'Explore' },
+    { path: '/practice',  label: 'Practice' },
+    { path: '/map',       label: 'Map' },
+    { path: '/community', label: 'Sangha' },
+    { path: '/premium',   label: 'Protocol' },
 ];
 
 const Header = () => {
@@ -31,15 +32,23 @@ const Header = () => {
             <header
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-1000 ${
                     scrolled 
-                        ? 'bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/5 py-6' 
-                        : 'bg-transparent py-10'
+                        ? 'py-6 px-8' 
+                        : 'py-10 px-8 md:px-24'
                 }`}
             >
-                <div className="max-w-7xl mx-auto px-12 md:px-24 flex items-center justify-between">
+                <div className={`max-w-7xl mx-auto flex items-center justify-between transition-all duration-1000 ${
+                    scrolled 
+                        ? 'bg-[#0B0E14]/40 backdrop-blur-3xl border border-white/5 px-10 py-4 rounded-full' 
+                        : ''
+                }`}>
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-4 group">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
-                        <span className="font-medium tracking-[0.2em] text-white text-xs uppercase">
+                        <motion.div 
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ duration: 4, repeat: Infinity }}
+                            className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" 
+                        />
+                        <span className="font-medium tracking-[0.4em] text-white text-[10px] uppercase">
                             Inner Root
                         </span>
                     </Link>
@@ -52,11 +61,17 @@ const Header = () => {
                                 <Link key={item.path} to={item.path}
                                     className="relative group py-2"
                                 >
-                                    <span className={`text-[11px] uppercase tracking-[0.2em] font-medium transition-colors duration-700 ${
+                                    <span className={`text-[10px] uppercase tracking-[0.3em] font-medium transition-all duration-700 ${
                                         active ? 'text-white' : 'text-white/20 group-hover:text-white/60'
                                     }`}>
                                         {item.label}
                                     </span>
+                                    {active && (
+                                        <motion.div 
+                                            layoutId="nav-active"
+                                            className="absolute -bottom-1 left-0 right-0 h-[1px] bg-[#D4AF37]/40"
+                                        />
+                                    )}
                                 </Link>
                             );
                         })}
@@ -64,10 +79,10 @@ const Header = () => {
 
                     {/* Right Actions */}
                     <div className="hidden md:flex items-center gap-12">
-                        <Link to="/login" className="text-[11px] uppercase tracking-widest font-medium text-white/20 hover:text-white transition-colors duration-700">
-                            Sign In
+                        <Link to="/login" className="text-[10px] uppercase tracking-[0.3em] font-medium text-white/20 hover:text-white transition-colors duration-700">
+                            Login
                         </Link>
-                        <Link to="/signup" className="text-[11px] uppercase tracking-[0.3em] font-medium text-[#D4AF37] hover:text-white transition-colors duration-700">
+                        <Link to="/signup" className="text-[10px] uppercase tracking-[0.4em] font-medium text-[#D4AF37] border border-[#D4AF37]/20 px-6 py-2 rounded-full hover:bg-[#D4AF37] hover:text-black transition-all duration-700">
                             Join
                         </Link>
                     </div>
@@ -88,7 +103,7 @@ const Header = () => {
                         animate={{ opacity:1 }} 
                         exit={{ opacity:0 }}
                         transition={{ duration: 0.8, ease: premiumEasing }}
-                        className="fixed inset-0 z-40 bg-[#0A0A0A] pt-48 px-12 lg:hidden flex flex-col"
+                        className="fixed inset-0 z-40 bg-[#0B0E14] pt-48 px-12 lg:hidden flex flex-col"
                     >
                         <nav className="flex flex-col gap-12 mb-auto">
                             {navItems.map((item, i) => (
@@ -99,7 +114,7 @@ const Header = () => {
                                     transition={{ delay: i * 0.1, duration: 0.8, ease: premiumEasing }}
                                 >
                                     <Link to={item.path}
-                                        className="text-5xl font-serif font-light tracking-tight text-white/30 hover:text-white transition-colors"
+                                        className="text-6xl font-serif font-light tracking-tighter text-white/20 hover:text-white transition-colors"
                                     >
                                         {item.label}
                                     </Link>

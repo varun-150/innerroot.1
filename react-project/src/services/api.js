@@ -127,5 +127,9 @@ export const otpAuthAPI = {
     },
 };
 
+export const journeyAPI = {
+    getToday: (userId) => api.get('/v2/journey/today', { params: { userId } }).then(res => res.data),
+};
+
 export { otpApi };
 export default api;

@@ -1,37 +1,44 @@
-# 🌿 Inner Root: Indian Heritage & Wellness Platform
+# 🌿 Inner Root v2.0: The Duolingo of Indian Cultural Literacy
 
-> **Reconnecting modern individuals with Indian cultural heritage, spirituality, and emotional well-being — powered by AI.**
+> **"5 minutes of heritage every morning."**
 
-Inner Root is an immersive digital ecosystem that transforms timeless cultural knowledge into interactive, personalized, and meaningful experiences. By blending ancient wisdom with modern technology, it creates a unified space for heritage exploration, mindfulness, and personal growth.
+Inner Root is the world's first micro-learning platform dedicated to Indian cultural literacy. Designed specifically for the global diaspora, it transforms 5,000 years of Vedic wisdom and heritage into a frictionless daily habit. 
 
 ---
 
 ## 📋 Table of Contents
 
-- [✨ Core Features](#-core-features)
-- [🛠️ Tech Stack](#-tech-stack)
+- [✨ The Singular Focus](#-the-singular-focus)
+- [🛤️ The Core Loop](#️-the-core-loop)
+- [💎 Membership Models](#-membership-models)
+- [🛠️ Tech Stack](#️-tech-stack)
 - [🚀 Quick Start](#-quick-start)
 - [📂 Project Structure](#-project-structure)
-- [🛡️ Security & Auth](#-security--auth)
-- [🤖 AI Integration](#-ai-integration)
-- [🌍 Future Roadmap](#-future-roadmap)
+- [🤖 AI & Authenticity](#-ai--authenticity)
 - [👥 Contributors](#-contributors)
 
 ---
 
-## ✨ Core Features
+## ✨ The Singular Focus
+Inner Root is no longer a broad wellness platform. It is a structured, gamified journey through Indian heritage.
+*   **ONE Product**: Daily micro-learning journeys.
+*   **ONE Target**: Global diaspora seeking cultural reconnection.
+*   **ONE Goal**: Master cultural literacy in 5 minutes a day.
 
-### 🏛️ Heritage Exploration
-*   **Virtual Tours** — Interactive exploration of historical landmarks, temples, and sacred spaces.
-*   **Interactive Heritage Map** — A dynamic atlas of India featuring cultural and spiritual markers using React Leaflet.
-*   **Cultural Knowledge Base** — Structured insights into traditions, festivals, scriptures, and philosophy.
-*   **Public Access** — Most heritage and wellness content is now publicly accessible without requiring a login.
+---
 
-### 🧘 Wellness & Spiritual Growth
-*   **Guided Sessions** — Meditation, Yoga, Pranayama, and relaxation practices.
-*   **AI Daily Wisdom** — Personalized affirmations and spiritual insights tailored to your journey.
-*   **Mood Tracking** — Monitor emotional patterns and mental wellness progress over time.
-*   **Automatic Login** — Seamless transition from signup to dashboard with zero-click authentication.
+## 🛤️ The Core Loop
+Every morning, seekers embark on a 3-part immersive journey:
+1.  **3-min Immersive Story**: Cinematic virtual tours and historical narratives of sacred sites (Hampi, Varanasi, Ajanta).
+2.  **1-min Philosophical Insight**: Timeless wisdom from the Gita or Upanishads, explained with modern simplicity.
+3.  **1-min Guided Practice**: A quick breathing exercise, mantra ritual, or gratitude practice to ground the day.
+
+---
+
+## 💎 Membership Models
+*   **Free Explorer**: 1 lesson/day, access to 10 core heritage sites.
+*   **Seeker ($6.99/mo)**: Unlimited lessons, 100+ sites, downloadable guides, and priority personalization.
+*   **Guru ($19.99/mo)**: Weekly live "Heritage Hour" with scholars, expert Q&A, and family plans.
 
 ---
 
@@ -40,39 +47,34 @@ Inner Root is an immersive digital ecosystem that transforms timeless cultural k
 ### ⚙️ Backend
 *   **Spring Boot 3.5** — High-performance API framework.
 *   **Java 21** — Modern, robust core language.
-*   **Hybrid Database** — **PostgreSQL** for production; **H2 (In-Memory)** fallback for instant local development.
-*   **Spring Security & JWT** — Secure, stateless session management.
-*   **Flyway** — Database migration and version control.
+*   **JPA/Hibernate** — Advanced ORM for heritage and lesson mapping.
+*   **PostgreSQL / H2** — Hybrid database for production and local dev.
 
 ### 🎨 Frontend
 *   **React 19 (Vite)** — Blazing fast, modern frontend development.
-*   **Tailwind CSS** — Sleek, responsive design system.
-*   **Framer Motion** — Smooth, premium micro-animations.
-*   **React Router 7** — Advanced client-side navigation.
-*   **Lucide Icons** — Minimalist, high-quality iconography.
+*   **Framer Motion & GSAP** — Premium, immersive path animations.
+*   **Tailwind CSS** — Minimalist, spiritual-themed design system.
+*   **Lucide Icons** — High-end iconography for the journey path.
 
 ---
 
 ## 🚀 Quick Start
 
 ### ⚡ One-Click Startup (Windows)
-We've automated the entire startup process. Just run:
-
 ```bash
 .\start-all.bat
 ```
-*This will automatically launch the Spring Boot backend and the Vite development server in separate windows.*
+*This launches the Spring Boot backend and the Vite development server in separate windows.*
 
 ### 🛠️ Manual Setup
 
 #### 1. Backend (Spring Boot)
-The backend is configured to work out-of-the-box using an H2 in-memory database if no external database is detected.
 ```bash
 cd inner-root-backend
 ./mvnw spring-boot:run
 ```
-*   **H2 Console:** [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
 *   **API Root:** [http://localhost:8080/api](http://localhost:8080/api)
+*   **Lessons API:** `/api/lessons`
 
 #### 2. Frontend (React)
 ```bash
@@ -88,35 +90,22 @@ npm run dev
 
 ```bash
 inner-root/
-├── inner-root-backend/          # Spring Boot API & Logic
-│   ├── src/main/java/           # Core Java source code
-│   └── src/main/resources/      # App config & H2 fallback settings
-├── react-project/               # React + Vite UI
-│   ├── src/pages/               # Heritage, Wellness & Auth pages
-│   └── src/components/          # Shared UI components
-├── .env.template                # Global environment template
-├── start-all.bat                # Automation script for Windows
+├── inner-root-backend/          # Spring Boot API & Lesson Logic
+│   ├── src/main/java/           # Lesson, User, Heritage models
+│   └── src/main/resources/      # DataSeeder & App config
+├── react-project/               # React + Vite Journey UI
+│   ├── src/pages/               # Home (Journey), Heritage (Archive)
+│   └── src/components/          # Immersive Lesson Components
+├── start-all.bat                # Automation script
 └── README.md                    # You are here
 ```
 
 ---
 
-## 🛡️ Security & Auth
-
-Inner Root features a secure, multi-layered authentication system:
-*   **JWT Tokens** — All user sessions are handled via signed JSON Web Tokens.
-*   **Cookie Integration** — Tokens are stored securely in HTTP-only cookies and synchronized with LocalStorage.
-*   **Open Access** — Routes like `/explore`, `/wellness`, and `/wisdom` are now public, while personal dashboards and admin tools remain protected.
-*   **Google OAuth2** — One-tap social sign-in for a frictionless experience.
-
----
-
-## 🤖 AI Integration
-The platform uses **OpenRouter AI** (Gemini 2.0 Flash) to provide:
-*   **Sentient Heritage Guidance** — Deep, context-aware answers to complex cultural questions.
-*   **Sentiment-Based Wellness** — Meditation and wisdom recommendations based on user mood tracking.
-
-*API Configuration can be found in `application.properties`.*
+## 🤖 AI & Authenticity
+**"Human Wisdom, AI Delivery."**
+*   **Curated Knowledge**: Every story and insight is written/recorded by real scholars and cultural guides.
+*   **AI Personalization**: Our AI personalizes the *delivery* (pacing, difficulty, mood-alignment) without ever generating spiritual "truth."
 
 ---
 
@@ -129,5 +118,5 @@ The platform uses **OpenRouter AI** (Gemini 2.0 Flash) to provide:
 ---
 
 <div align="center">
-  🌿 <i>Built with devotion for the Inner Root community</i> 🌿
+  🌿 <i>Preserving the Eternal for the Connected.</i> 🌿
 </div>

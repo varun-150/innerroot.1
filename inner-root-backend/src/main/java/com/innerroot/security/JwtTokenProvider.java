@@ -65,6 +65,17 @@ public class JwtTokenProvider {
         }
     }
 
+    public String getJwtFromRequest(HttpServletRequest request) {
+        // 1. Try to get from Authorization Header
+        String bearerToken = request.getHeader("Authorization");
+        if (org.springframework.util.StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        }
+
+        // 2. Try to get from Cookies (Fallback)
+        return getJwtFromCookies(request);
+    }
+
     public String generateToken(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         return generateTokenFromEmail(userDetails.getUsername());

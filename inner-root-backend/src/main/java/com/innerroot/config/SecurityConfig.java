@@ -4,6 +4,7 @@ import com.innerroot.security.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -14,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.http.HttpStatus;
 
 @Configuration
 @EnableWebSecurity
@@ -36,20 +39,23 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors(org.springframework.security.config.Customizer.withDefaults())
+                .cors(cors -> cors.configure(http))
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(exceptions -> exceptions
+                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+                )
                 .authorizeHttpRequests(auth -> auth
-                        // Public endpoints
+                        // 1. Auth & Public System Endpoints
                         .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/google", "/api/auth/refresh", "/api/auth/logout").permitAll()
-                        .requestMatchers("/api/otp/**").permitAll()
-                        .requestMatchers("/api/health").permitAll()
-                        .requestMatchers("/api/contact/**").permitAll()
-                        .requestMatchers("/h2-console/**").permitAll()
-                        .requestMatchers("/ws/**").permitAll()
+                        .requestMatchers("/api/otp/**", "/api/health", "/api/contact/**").permitAll()
+                        .requestMatchers("/h2-console/**", "/ws/**").permitAll()
                         
-                        // Public GET access to content
-                        .requestMatchers(org.springframework.http.HttpMethod.GET, 
+                        // 2. Chat History (Publicly accessible for guest sessions as per requirements)
+                        .requestMatchers("/api/chat/history/**").permitAll()
+                        
+                        // 3. Public Read-Only Content (GET)
+                        .requestMatchers(HttpMethod.GET, 
                             "/api/heritage-sites/**", 
                             "/api/wellness/**",
                             "/api/wisdom/**",
@@ -58,7 +64,7 @@ public class SecurityConfig {
                             "/api/guides/**",
                             "/api/events/**").permitAll()
 
-                        // Require ADMIN for modifying global content and admin operations
+                        // 4. Admin Protected Operations
                         .requestMatchers(
                             "/api/admin/**",
                             "/api/heritage-sites/**", 
@@ -69,7 +75,7 @@ public class SecurityConfig {
                             "/api/guides/**",
                             "/api/events/**").hasRole("ADMIN")
 
-                        // Require Authentication for User-specific endpoints
+                        // 5. User Protected Endpoints
                         .requestMatchers(
                             "/api/auth/me",
                             "/api/users/**", 
@@ -77,7 +83,7 @@ public class SecurityConfig {
                             "/api/mood/**", 
                             "/api/chat/**").authenticated()
 
-                        // Any other request needs authentication
+                        // 6. Global Catch-all
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

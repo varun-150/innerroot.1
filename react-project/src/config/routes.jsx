@@ -14,40 +14,35 @@ const TwoFactorSetup = lazy(() => import('../pages/auth/TwoFactorSetup'));
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Privacy = lazy(() => import('../pages/Privacy'));
 const Terms = lazy(() => import('../pages/Terms'));
+const OurTeam = lazy(() => import('../pages/OurTeam'));
 const SeedGenerator = lazy(() => import('../pages/SeedGenerator'));
 const HeritageExplorer = lazy(() => import('../pages/HeritageExplorer'));
 const Contact = lazy(() => import('../pages/Contact'));
 const Monetization = lazy(() => import('../pages/Monetization'));
 const AdminDashboard = lazy(() => import('../pages/AdminDashboard'));
 const Community = lazy(() => import('../pages/Community'));
+const Mirror = lazy(() => import('../pages/Mirror'));
+const Practice = lazy(() => import('../pages/Practice'));
 
 
 import { DemoOne } from '../components/ui/demo';
 import DemoMatrix from '../components/ui/cyber-matrix-hero-demo';
 
 export const routes = [
-    { path: '/demo/hero', element: <DemoOne /> },
-    { path: '/demo/matrix', element: <DemoMatrix /> },
-
-    { path: '/', element: <LandingPage />, exact: true },
-    { path: '/v1', element: <Home /> },
+    { path: '/', element: <Home />, exact: true },
     { path: '/explore', element: <Explore /> },
-    { path: '/tours', element: <Tours /> },
-    { path: '/wellness', element: <Wellness /> },
-    { path: '/heritage-map', element: <HeritageExplorer /> },
-    { path: '/library', element: <Library /> },
-    { path: '/about', element: <About /> },
+    { path: '/practice', element: <Practice /> },
     { path: '/community', element: <Community /> },
-
-    { path: '/contact', element: <Contact /> },
+    { path: '/mirror', element: <Mirror /> },
+    { path: '/premium', element: <Monetization /> },
+    { path: '/lesson/:id', element: <Library /> },
     { path: '/login', element: <Login /> },
     { path: '/signup', element: <Signup /> },
-    { path: '/privacy', element: <Privacy /> },
-    { path: '/terms', element: <Terms /> },
-    { path: '/monetization', element: <Monetization /> },
-    { path: '/setup-2fa', element: <TwoFactorSetup /> },
     { path: '/dashboard', element: <Dashboard /> },
-    { path: '/admin', element: <AdminDashboard /> },
-    { path: '/tools/sql-seed-generator', element: <SeedGenerator /> },
-    { path: '*', element: <LandingPage /> }, // Fallback route
+    { path: '/about', element: <About /> },
+    { path: '/team', element: <OurTeam /> },
+    { path: '/terms', element: <Terms /> },
+    { path: '/privacy', element: <Privacy /> },
+    { path: '/map', element: <HeritageExplorer /> },
+    { path: '*', element: <Home /> }, 
 ];

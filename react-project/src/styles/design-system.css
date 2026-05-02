@@ -5,22 +5,22 @@
 
 :root {
     /* ── Apple-Inspired Premium Palette ── */
-    --brand-black: #0A0A0A;
-    --brand-white: #F5F5F7;
-    --brand-gold: #D4AF37;
+    --brand-black: #0B0E14; /* Deep Midnight Indigo */
+    --brand-white: #EAEAEA; /* Refined Ivory */
+    --brand-gold: #D4AF37; /* Temple Gold */
     --brand-gold-warm: #C5A059;
-    --brand-gold-soft: rgba(197, 160, 89, 0.1);
+    --brand-gold-soft: rgba(212, 175, 55, 0.1);
     
     --bg-main: var(--brand-black);
     --text-primary: var(--brand-white);
-    --text-secondary: rgba(245, 245, 247, 0.6);
-    --text-dim: rgba(245, 245, 247, 0.4);
+    --text-secondary: #A1A1AA;
+    --text-dim: rgba(161, 161, 170, 0.5);
     
-    --border-soft: rgba(245, 245, 247, 0.05);
-    --border-medium: rgba(245, 245, 247, 0.1);
+    --border-soft: rgba(234, 234, 234, 0.05);
+    --border-medium: rgba(234, 234, 234, 0.1);
     
-    --glass-bg: rgba(10, 10, 10, 0.7);
-    --glass-border: rgba(245, 245, 247, 0.08);
+    --glass-bg: rgba(11, 14, 20, 0.8);
+    --glass-border: rgba(234, 234, 234, 0.08);
 
     /* ── Premium Gradients ── */
     --spiritual-gradient: radial-gradient(circle at 50% -20%, #1a1a1a 0%, #0a0a0a 100%);
@@ -39,10 +39,25 @@
     --space-16: 128px;
     --space-24: 192px;
 
-    /* ── Typography ── */
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-    --font-serif: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
-    --font-heading: var(--font-serif);
+    /* ── Typography V2.0 ── */
+    --font-headline: 'Instrument Serif', 'Playfair Display', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    --font-accent: 'Marcellus', serif;
+
+    /* Typography Scale */
+    --fs-hero: clamp(4rem, 8vw, 6rem);    /* 64-96px */
+    --fs-h1: clamp(2.5rem, 5vw, 3rem);    /* 40-48px */
+    --fs-h2: clamp(1.75rem, 3vw, 2.25rem);/* 28-36px */
+    --fs-body: 1.0625rem;                 /* 17px */
+    --fs-small: 0.8125rem;                /* 13px */
+
+    /* Optical Spacing Tokens */
+    --ls-hero: -0.04em;
+    --ls-heading: -0.02em;
+    --ls-ui: 0.1em;
+    --lh-hero: 1.05;
+    --lh-heading: 1.15;
+    --lh-body: 1.6;
     
     /* ── Transitions ── */
     --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
@@ -66,7 +81,8 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: var(--font-sans);
+    font-family: var(--font-body);
+    font-optical-sizing: auto;
     color: var(--text-primary);
     background-color: var(--bg-main);
     background-image: var(--spiritual-gradient);
@@ -75,8 +91,10 @@ body {
     overflow-x: hidden;
     position: relative;
     -webkit-font-smoothing: antialiased;
-    letter-spacing: -0.01em;
-    line-height: 1.6;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
 }
 
 /* Noise Texture Overlay */
@@ -100,11 +118,26 @@ body::before {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+    font-family: var(--font-headline);
+    font-weight: 400;
     margin: 0;
     color: var(--text-primary);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-heading);
+}
+
+h1 {
+    font-size: var(--fs-hero);
+    letter-spacing: var(--ls-hero);
+    line-height: var(--lh-hero);
+}
+
+h2 { font-size: var(--fs-h1); }
+h3 { font-size: var(--fs-h2); }
+
+.text-accent {
+    font-family: var(--font-accent);
+    color: var(--brand-gold);
 }
 
 /* ── Premium Components ── */
@@ -122,8 +155,8 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
-    letter-spacing: 0.05em;
+    font-size: var(--fs-small);
+    letter-spacing: var(--ls-ui);
     text-transform: uppercase;
     box-shadow: 0 4px 24px rgba(0,0,0,0.2);
 }
@@ -146,8 +179,8 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
-    letter-spacing: 0.05em;
+    font-size: var(--fs-small);
+    letter-spacing: var(--ls-ui);
     text-transform: uppercase;
 }
 

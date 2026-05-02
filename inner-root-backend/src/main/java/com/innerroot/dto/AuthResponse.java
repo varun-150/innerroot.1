@@ -20,4 +20,7 @@ public class AuthResponse {
     private Integer longestStreak;
     private Integer totalSessions;
     private String unlockedBadges;
+    private Integer dailyStreak;
+    private Integer totalLessonsCompleted;
+    private String subscriptionStatus;
 }

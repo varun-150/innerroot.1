@@ -1,50 +1,44 @@
 import React from 'react';
-import { Reveal, Stagger } from '../components/ui/Reveal';
+import { motion } from 'framer-motion';
 import SEO from '../components/ui/SEO';
-import Breadcrumbs from '../components/layout/Breadcrumbs';
-import {
-    Check, Star, Users, Briefcase, Globe, GraduationCap,
-    Heart, Shield, Zap, Gift, Crown, Rocket
-} from 'lucide-react';
+import { Check, Crown, Star, Sparkles, Rocket, Users, Shield, Zap } from 'lucide-react';
 
-const PricingCard = ({ title, price, period, description, features, buttonText, highlighted, icon: Icon, color }) => (
-    <div className={`relative p-10 flex flex-col h-full transition-all duration-500 rounded-[48px] border-2 group ${highlighted
-        ? 'bg-accent border-[#F4EBD0] text-black shadow-2xl shadow-accent/20 -translate-y-4'
-        : 'bg-white/5 border-[var(--border)] hover:border-[#F4EBD0]/30 hover:-translate-y-2'}`}>
+const PricingCard = ({ title, price, description, features, buttonText, highlighted, icon: Icon }) => (
+    <div className={`relative p-12 flex flex-col h-full transition-all duration-700 rounded-[48px] border group ${highlighted
+        ? 'bg-white text-black border-white shadow-2xl scale-105 z-10'
+        : 'bg-white/5 border-white/5 hover:border-[#D4AF37]/30'}`}>
 
         {highlighted && (
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white text-black px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] shadow-xl border border-[#F4EBD0]/10 z-10">
-                RECOMMENDED
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#D4AF37] text-black px-8 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] shadow-xl z-10">
+                Most Popular
             </div>
         )}
 
-        <div className={`w-16 h-16 rounded-[24px] ${highlighted ? 'bg-white/20' : 'bg-accent/10'} flex items-center justify-center mb-8 shadow-xl transition-transform group-hover:scale-110 group-hover:rotate-6`}>
-            <Icon className={`w-8 h-8 ${highlighted ? 'text-white' : 'text-[#F4EBD0]'}`} />
+        <div className={`w-16 h-16 rounded-[24px] mb-8 flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-6 ${highlighted ? 'bg-black/5' : 'bg-white/5'}`}>
+            <Icon className={`w-8 h-8 ${highlighted ? 'text-black' : 'text-[#D4AF37]'}`} />
         </div>
 
-        <h3 className={`font-display text-3xl font-bold mb-3 tracking-tight ${highlighted ? 'text-white' : 'text-[var(--fg)]'}`}>{title}</h3>
+        <h3 className="font-serif text-3xl font-light mb-3 tracking-tight">{title}</h3>
 
-        <div className="mb-6 flex items-baseline gap-1">
-            <span className={`text-5xl font-bold tracking-tighter ${highlighted ? 'text-white' : 'text-[var(--fg)]'}`}>{price}</span>
-            {period && <span className={`text-sm font-bold uppercase tracking-widest ${highlighted ? 'text-white/60' : 'text-[var(--muted)]'}`}> / {period}</span>}
+        <div className="mb-8 flex items-baseline gap-2">
+            <span className="text-5xl font-light tracking-tighter">{price}</span>
+            {price !== 'Free' && <span className={`text-[10px] font-medium uppercase tracking-[0.2em] ${highlighted ? 'text-black/40' : 'text-white/20'}`}> / month</span>}
         </div>
 
-        <p className={`text-lg mb-10 leading-relaxed font-medium italic ${highlighted ? 'text-white/80' : 'text-[var(--muted)]'}`}>{description}</p>
+        <p className={`text-lg mb-12 leading-relaxed font-light italic ${highlighted ? 'text-black/60' : 'text-white/40'}`}>{description}</p>
 
-        <ul className="space-y-5 mb-12 flex-grow">
+        <ul className="space-y-6 mb-16 flex-grow">
             {features.map((feature, i) => (
                 <li key={i} className="flex items-start gap-4">
-                    <div className={`mt-1 p-0.5 rounded-full ${highlighted ? 'bg-white/20' : 'bg-accent/10'}`}>
-                        <Check className={`w-4 h-4 ${highlighted ? 'text-white' : 'text-[#F4EBD0]'}`} />
-                    </div>
-                    <span className={`text-sm font-medium ${highlighted ? 'text-white/90' : 'text-[var(--muted)]'}`}>{feature}</span>
+                    <Check className={`w-4 h-4 mt-1 ${highlighted ? 'text-black' : 'text-[#D4AF37]'}`} />
+                    <span className={`text-sm font-light ${highlighted ? 'text-black/80' : 'text-white/60'}`}>{feature}</span>
                 </li>
             ))}
         </ul>
 
-        <button className={`w-full py-5 rounded-[24px] font-bold text-xs uppercase tracking-[0.2em] transition-all duration-500 ${highlighted
-            ? 'bg-white text-black hover:bg-neutral-100 shadow-2xl'
-            : 'bg-accent text-black hover:opacity-90 shadow-lg shadow-accent/20'
+        <button className={`w-full py-6 rounded-full font-medium text-[10px] uppercase tracking-[0.4em] transition-all duration-500 ${highlighted
+            ? 'bg-black text-white hover:bg-black/80 shadow-2xl'
+            : 'bg-white/5 text-white border border-white/10 hover:bg-white hover:text-black'
             }`}>
             {buttonText}
         </button>
@@ -52,185 +46,119 @@ const PricingCard = ({ title, price, period, description, features, buttonText, 
 );
 
 const Monetization = () => {
+    const premiumEasing = [0.22, 1, 0.36, 1];
+
     return (
-        <section className="page active block opacity-100 py-12 lg:py-20">
+        <div className="min-h-screen bg-[#0A0A0A] text-white selection:bg-[#D4AF37]/30 pb-32">
             <SEO
-                title="Monetization & Plans"
-                description="Explore Inner Root's sustainable growth models and pricing plans designed for the Indian cultural landscape."
+                title="Inner Root | Membership"
+                description="Join the protocol. Reconnect with your heritage through structured micro-learning."
             />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <Breadcrumbs />
-
-                {/* Hero Section */}
-                <Reveal className="text-center mt-12 mb-20 relative">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/5 blur-[120px] pointer-events-none"></div>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 backdrop-blur-md border border-[#F4EBD0]/20 text-[#F4EBD0] font-bold text-xs uppercase tracking-[0.2em] mb-10">
-                        <Rocket className="w-3.5 h-3.5" />
-                        <span>Sustainable Future</span>
-                    </div>
-                    <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold text-[var(--fg)] mb-8 tracking-tighter leading-[0.9]">
-                        Authentic Spirit,<br />
-                        <Sparkles size={32} className="inline text-[#F4EBD0] mr-4" />
-                        <span className="text-[#F4EBD0]">Sustainable Growth</span>
-                    </h1>
-                    <p className="text-[var(--muted)] max-w-3xl mx-auto text-xl leading-relaxed italic font-medium">
-                        Empowering cultural guardians through a "By Indians, For Indians" ecosystem that honors traditions while scaling through modern technology.
-                    </p>
-                </Reveal>
-
-                {/* Main Models Grid */}
-                <div className="space-y-32">
-
-                    {/* Option A: Freemium */}
-                    <div id="freemium">
-                        <Reveal className="mb-12">
-                            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--fg)] mb-4">The Freemium Model</h2>
-                            <p className="text-[var(--muted)]">Balanced access for explorers and dedicated practitioners.</p>
-                        </Reveal>
-                        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                            <PricingCard
-                                title="Free Explorer"
-                                price="₹0"
-                                description="Basic culture exploration and essential meditation tools."
-                                icon={Heart}
-                                color="bg-accent/10"
-                                features={[
-                                    "Basic culture exploration",
-                                    "Limited meditations (3 per week)",
-                                    "Cultural library access",
-                                    "Daily wisdom quotes"
-                                ]}
-                                buttonText="Get Started"
-                            />
-                            <PricingCard
-                                title="Premium Sadhaka"
-                                price="₹399"
-                                period="month"
-                                description="Unlimited access and deep-dive heritage experiences."
-                                icon={Crown}
-                                color="bg-accent"
-                                highlighted={true}
-                                features={[
-                                    "Unlimited meditation access",
-                                    "Offline downloads for sanctuary",
-                                    "Live interactive sessions",
-                                    "Exclusive heritage documentaries",
-                                    "Ad-free experience"
-                                ]}
-                                buttonText="Go Premium"
-                            />
+            {/* ── Header ── */}
+            <header className="pt-48 pb-20 px-8 md:px-24">
+                <div className="max-w-7xl mx-auto">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.2, ease: premiumEasing }}
+                        className="max-w-4xl"
+                    >
+                        <div className="flex items-center gap-4 mb-8">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+                            <span className="text-[10px] font-medium uppercase tracking-[0.4em] text-[#D4AF37]">Join the Protocol</span>
                         </div>
-                    </div>
-
-                    {/* Option B: Subscription Tiers */}
-                    <div id="creator-economy">
-                        <Reveal className="mb-12 text-center">
-                            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--fg)] mb-4">Creator Economy & Tiers</h2>
-                            <p className="text-[var(--muted)] max-w-xl mx-auto">Empowering the next generation of cultural storytellers and institutions.</p>
-                        </Reveal>
-                        <Stagger className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div className="heritage-card p-6 bg-white/5 border-dashed">
-                                <Users className="w-8 h-8 text-[#F4EBD0] mb-4" />
-                                <h3 className="font-bold mb-2 text-[var(--fg)]">Free</h3>
-                                <p className="text-xs text-[var(--muted)] mb-4">Browse and learn from curated archives.</p>
-                                <span className="text-xl font-bold">Browse Only</span>
-                            </div>
-                            <div className="heritage-card p-6 border-[#F4EBD0]/20 bg-accent/5">
-                                <Rocket className="w-8 h-8 text-[#F4EBD0] mb-4" />
-                                <h3 className="font-bold mb-2 text-[var(--fg)]">Creator</h3>
-                                <p className="text-xs text-[var(--muted)] mb-4">Share your wisdom and monetize your content.</p>
-                                <span className="text-xl font-bold">₹249 /mo</span>
-                            </div>
-                            <div className="heritage-card p-6 border-[#F4EBD0]/30 bg-accent/5">
-                                <Crown className="w-8 h-8 text-[#F4EBD0] mb-4" />
-                                <h3 className="font-bold mb-2 text-[var(--fg)]">Pro</h3>
-                                <p className="text-xs text-[var(--muted)] mb-4">Advanced learning tools and premium content.</p>
-                                <span className="text-xl font-bold">₹799 /mo</span>
-                            </div>
-                            <div className="heritage-card p-6 bg-[var(--fg)] text-black">
-                                <Briefcase className="w-8 h-8 text-[#F4EBD0] mb-4" />
-                                <h3 className="font-bold mb-2">Enterprise</h3>
-                                <p className="text-xs text-black/70 mb-4">Dedicated solutions for schools and institutions.</p>
-                                <span className="text-sm font-bold uppercase">Contact Us</span>
-                            </div>
-                        </Stagger>
-                    </div>
-
-                    {/* Option C & D: B2B2C and Ad-Supported */}
-                    <div className="grid lg:grid-cols-2 gap-12">
-                        <Reveal className="heritage-card p-8 bg-gradient-to-br from-[#F4EBD0]/10 to-transparent">
-                            <GraduationCap className="w-12 h-12 text-[#F4EBD0] mb-6" />
-                            <h2 className="font-display text-3xl font-bold text-[var(--fg)] mb-4">B2B2C & Partnerships</h2>
-                            <ul className="space-y-4 text-[var(--muted)]">
-                                <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center shrink-0 text-[#F4EBD0]">1</div>
-                                    <p><strong>Educational Curriculums:</strong> partnering with schools to bring Vedic values and history to the modern classroom.</p>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center shrink-0 text-[#F4EBD0]">2</div>
-                                    <p><strong>White-label Solutions:</strong> specialized platforms for cultural organizations to manage their archives.</p>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center shrink-0 text-[#F4EBD0]">3</div>
-                                    <p><strong>Content Licensing:</strong> providing authentic Indian heritage content to global educational platforms.</p>
-                                </li>
-                            </ul>
-                        </Reveal>
-
-                        <Reveal className="heritage-card p-8 bg-gradient-to-br from-[#F4EBD0]/10 to-transparent">
-                            <Shield className="w-12 h-12 text-[#F4EBD0] mb-6" />
-                            <h2 className="font-display text-3xl font-bold text-[var(--fg)] mb-4">Hybrid Model</h2>
-                            <p className="text-[var(--muted)] mb-6">Our Ad-Supported + Premium approach ensures accessibility without compromising on quality.</p>
-                            <div className="grid grid-cols-2 gap-6">
-                                <div className="p-4 rounded-xl border border-dashed border-[#F4EBD0]/30">
-                                    <span className="font-bold block mb-1">Free Tier</span>
-                                    <p className="text-xs text-[var(--muted)]">Supported by culturally aligned, low-intrusion ads.</p>
-                                </div>
-                                <div className="p-4 rounded-xl bg-accent/10 border border-[#F4EBD0]/20">
-                                    <span className="font-bold block mb-1">Premium</span>
-                                    <p className="text-xs text-[var(--muted)]">Ad-free, faster streaming, and enhanced features.</p>
-                                </div>
-                            </div>
-                        </Reveal>
-                    </div>
-
-                    {/* Strategic Advantages */}
-                    <div className="py-20 bg-accent/5 rounded-[40px] px-8 sm:px-12">
-                        <Reveal className="mb-12 text-center">
-                            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--fg)] mb-4">Strategic Competitive Advantages</h2>
-                        </Reveal>
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {[
-                                { title: "Regional Focus", desc: "Starting in India, leveraging local knowledge and deep network effects.", icon: Globe },
-                                { title: "Creator Economy", desc: "Rev-share models that turn historians and teachers into entrepreneurs.", icon: Zap },
-                                { title: "Authentic Positioning", desc: "A platform built by Indians, for Indians, ensuring deep cultural resonance.", icon: Shield },
-                                { title: "Cultural Partnerships", desc: "Direct alignment with temples, ashrams, and prestigious cultural orgs.", icon: Heart },
-                                { title: "Educational Angle", desc: "B2B revenue streams from schools, building brand credibility early.", icon: GraduationCap },
-                                { title: "Heritage First", desc: "Allowing users to explore and curate content, driving organic growth.", icon: Users }
-                            ].map(({ icon: Icon, ...item }, i) => (
-                                <div key={i} className="flex gap-4">
-                                    <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                                        <Icon className="w-5 h-5 text-[#F4EBD0]" />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-bold text-[var(--fg)] mb-1">{item.title}</h3>
-                                        <p className="text-sm text-[var(--muted)]">{item.desc}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Final CTA */}
-                    <Reveal className="mt-32 text-center">
-                        <h2 className="font-display text-3xl font-bold text-[var(--fg)] mb-6">Ready to scale Indian Heritage?</h2>
-                        <button className="btn-primary min-w-[200px]">Partner With Us</button>
-                        <p className="mt-4 text-sm text-[var(--muted)]">Contact us at partnerships@innerroot.in</p>
-                    </Reveal>
+                        <h1 className="text-6xl md:text-[8rem] font-serif font-light tracking-tighter leading-[0.85] mb-12">
+                            Deepen your<br />
+                            <span className="text-white/10 italic">roots.</span>
+                        </h1>
+                        <p className="text-lg md:text-2xl text-white/30 max-w-2xl leading-relaxed font-light tracking-tight">
+                            Choose your depth. From daily micro-habits to intensive live sessions with cultural scholars.
+                        </p>
+                    </motion.div>
                 </div>
-            </div>
-        </section>
+            </header>
+
+            {/* ── Pricing Grid ── */}
+            <section className="px-8 md:px-24">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <PricingCard
+                        title="Free"
+                        price="Free"
+                        description="Start your habit with daily essentials."
+                        icon={Rocket}
+                        features={[
+                            "1 Lesson per day",
+                            "Access to 10 Heritage Sites",
+                            "Community Travel Stories",
+                            "Personalized delivery"
+                        ]}
+                        buttonText="Begin for Free"
+                    />
+                    <PricingCard
+                        title="Seeker"
+                        price="₹499"
+                        description="For those ready to dive deeper into the chronicles."
+                        icon={Crown}
+                        highlighted={true}
+                        features={[
+                            "Unlimited Daily Lessons",
+                            "100+ Heritage Sites Archive",
+                            "Downloadable Cultural Guides",
+                            "Priority AI Personalization",
+                            "Early Access to Features"
+                        ]}
+                        buttonText="Become a Seeker"
+                    />
+                    <PricingCard
+                        title="Guru"
+                        price="₹1,499"
+                        description="Direct communion with experts and scholars."
+                        icon={Star}
+                        features={[
+                            "Weekly Live 'Heritage Hour'",
+                            "Direct Expert Q&A",
+                            "Offline Immersion Mode",
+                            "Family Plan (5 Accounts)",
+                            "Certified Course Participation"
+                        ]}
+                        buttonText="Join the Guru Tier"
+                    />
+                </div>
+            </section>
+
+            {/* ── The Moat ── */}
+            <section className="py-64 px-8 md:px-24">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+                    <div>
+                        <h2 className="text-5xl md:text-7xl font-serif font-light tracking-tighter leading-none mb-12">
+                            Human wisdom.<br />
+                            <span className="text-[#D4AF37]">AI delivery.</span>
+                        </h2>
+                        <p className="text-white/30 text-xl leading-relaxed font-light tracking-tight max-w-md">
+                            Our lessons are written by real scholars, not algorithms. AI only ensures the wisdom reaches you in a way that matches your life.
+                        </p>
+                    </div>
+                    <div className="space-y-12">
+                        {[
+                            { title: 'Verified Scholars', desc: 'Every story is validated by historians and cultural guides.', icon: Shield },
+                            { title: 'Personalized Path', desc: 'Daily insights adapted to your mood and spiritual difficulty.', icon: Zap },
+                            { title: 'Global Diaspora', desc: 'Designed for those who feel culturally disconnected.', icon: Users },
+                        ].map((item, i) => (
+                            <div key={i} className="flex gap-8 group">
+                                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-[#D4AF37]/10 transition-colors">
+                                    <item.icon className="w-5 h-5 text-[#D4AF37]" />
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-serif font-light mb-2">{item.title}</h3>
+                                    <p className="text-white/30 text-sm font-light leading-relaxed">{item.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </div>
     );
 };
 
